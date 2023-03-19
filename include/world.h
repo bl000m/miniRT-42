@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 16:05:57 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/19 21:45:32 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_sphere
 {
 	t_vec3	center;
 	double	radius;
+	t_vec3	color;
 }	t_sphere;
 
 /*	list_op1.c	*/
