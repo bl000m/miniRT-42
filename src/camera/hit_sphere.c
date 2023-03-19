@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_something.c                                    :+:      :+:    :+:   */
+/*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 17:05:30 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/19 17:21:16 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,30 @@ int	ft_hit_sph(t_sphere *sph, t_ray ray, double root_max, t_record *rec)
 	}
 	if (root[0] < root_max && root[0] > 0.001)
 	{
-		rec->t = root[0];
-		rec->p = ft_ray_at(ray, root[0]);
-		rec->normal = ft_div(ft_sub(rec.p, sph->center), sph->radius);
+		ft_set_rec(root[0], ray, rec);
 		return (1);
 	}
 	else if (root[1] < root_max && root[1] > 0.001)
 	{
-		rec->t = root[1];
-		rec->p = ft_ray_at(ray, root[1]);
-		rec->normal = ft_div(ft_sub(rec.p, sph->center), sph->radius);
+		ft_set_rec(root[1], ray, rec);
 		return (1);
 	}
 	return (0);
+}
+
+/*
+	If the ray intersect the sphere from inside,
+	the normal is reset, so it's always against the ray
+*/
+void	ft_set_rec(double root, t_ray ray, t_record *rec)
+{
+	rec->t = root;
+	rec->p = ft_ray_at(ray, root);
+	rec->normal = ft_div(ft_sub(rec.p, sph->center), sph->radius);
+	if (ft_dot(ray, rec->normal) < 0)
+	{
+		rec->normal = ft_mul(rec->normal, -1);
+	}
 }
 
 /*
