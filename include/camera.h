@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:52:10 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 16:09:19 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/19 17:02:30 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_ray
 typedef struct s_record
 {
 	double	t;
-	t_vec3	hit_point;
+	t_vec3	p;
 	t_vec3	normal;
 	//color
 }	t_record;
