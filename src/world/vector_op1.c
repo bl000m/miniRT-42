@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:51:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 14:21:05 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/20 15:56:14 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ t_vec3	ft_div(t_vec3 v1, double t)
 	return (temp);
 }
 
-double	ft_dot(t_vec3 v1, t_vec3 v2)
+t_vec3	ft_rev_vec(t_vec3 v)
 {
-	double	temp;
+	t_vec3	temp;
 
-	temp = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	temp.x = -v.x;
+	temp.y = -v.y;
+	temp.z = -v.z;
 	return (temp);
 }

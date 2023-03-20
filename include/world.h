@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 21:45:32 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/20 17:12:21 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,17 @@ t_vec3	ft_add(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_sub(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_mul(t_vec3 v1, double t);
 t_vec3	ft_div(t_vec3 v1, double t);
-double	ft_dot(t_vec3 v1, t_vec3 v2);
+t_vec3	ft_rev_vec(t_vec3 v);
 
 /*	vector_op2.c	*/
 double	ft_squr_len(t_vec3 v);
 double	ft_veclen(t_vec3 v);
 t_vec3	ft_unit_vec(t_vec3 v);
-t_vec3	ft_rev_vec(t_vec3 v);
+double	ft_dot(t_vec3 v1, t_vec3 v2);
+t_vec3	ft_cross(t_vec3 u, t_vec3 v);
+
+/*	matrix_op.c	*/
+int		ft_matrix_inv(t_vec3 a1, t_vec3 a2, t_vec3 a3, double matrix[3][3]);
+t_vec3	ft_matrix_mul(double matrix[3][3], t_vec3 x);
 
 #endif
