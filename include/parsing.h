@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:34:49 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/21 13:00:00 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/21 13:31:55 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # ifndef HEIGHT
 #  define HEIGHT 225
 # endif
+
+typedef struct s_image  t_image;
 
 typedef struct s_minirt
 {
