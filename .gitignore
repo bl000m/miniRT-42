@@ -1,0 +1,17 @@
+#ignore all the .obj directory and its content, 
+.obj/
+
+#ignore all .a file
+*.a
+
+#ignore all a.out
+a.out
+
+#ignore all object file
+*.o
+
+#ignore the file miniRT at the root 
+/miniRT
+
+#ignore the mlx_linux directory at root, and its content
+/mlx_linux/ 
