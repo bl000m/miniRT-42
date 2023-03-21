@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:05:54 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/21 13:28:05 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/21 14:47:03 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	ft_set_hook(void *win)
 	mlx_hook(win, 17, 0, ft_destroy_hook, w);
 }
 
+
+/*
+    do we need to free minirt->mlx ???
+*/
 int	ft_key_up_hook(int keycode, void *param)
 {
 	t_minirt    *minirt;
