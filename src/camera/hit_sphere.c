@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 21:08:35 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/21 11:15:00 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_set_rec_sph(double root, t_sphere *sph, t_ray ray, t_record *rec)
 	if t is not btw t_min / t_max, return 0 (no hit)
 	else if hit, save the hit record in *rec, and return 1
 */
-int	ft_solve_sph(t_sphere *sph, t_ray ray, double *ret)
+int	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2])
 {
 	t_vec3	oc;
 	double	a;
