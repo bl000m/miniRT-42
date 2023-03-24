@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/24 14:48:13 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/24 15:28:08 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,49 @@ int ft_solve_cyl(t_cylinder cyl, t_ray ray, double ret[2])
 	}
 	ray = ft_new_ray(&ray, matrix, cyl.center);
 	cyl = ft_new_cyl(&cyl, matrix);
-	//solve the new cyl / ray
-	// hit body
-	// hit top hit bottom
+	/*
+	solve the new cyl / ray
+		hit_body
+		 	get ret[0] and ret[1]
+			get dot_low and dot_high
+		if dot_low.z < cyl.height / 2
+			update ret[0] with ft_hit_bottom
+		if dot_high > cyl.hight / 2
+			update ret[1] with ft_hit_top
+	
+	note : 
+		shall I make the hit_record here ? 
+		Do I only keep a ret ? (Only one is needed)
+	return (0)
+	*/
 }
 
 
 
+
+/*
+	return 0 if there's no solution
+*/
+int	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, double ret[2])
+{
+	double	a;
+	double	b;
+	double	c;
+	double	discrim;
+	
+	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y;
+	b = 2 * (ray.orig.x * ray.dir.x + ray.orig.y * ray.dir.y);
+	c = ray.orig.x * ray.orig.x + ray.orig.y * ray.orig.y
+		- cyl.diameter * cyl.diameter;
+	discrim = b * b - 4 * a * c;
+	if (discrim < 0)
+	{
+		return (0);
+	}
+	ret[0] = (-b - discrim) / (2.0 * a);
+	ret[1] = (-b + discrim) / (2.0 * a);
+	return (1);
+}
 
 
 /*
