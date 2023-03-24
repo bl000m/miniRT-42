@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_op.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:08:42 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/20 17:09:20 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/24 14:10:57 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "world.h"
+
+/*
+	take the new z, calculate the linear transformation matrix
+	it will first normalized z
+*/
+int	ft_rotate_xyz(t_vec3 z, double matrix[3][3])
+{
+	t_vec3	x;
+	t_vec3	y;
+
+	z = ft_unit_vec(z);
+	x = ft_cross(ft_vec(0, 1, 0), z);
+	if (ft_is_zero(x))
+	{
+		x = ft_vec(1, 0, 0);
+	}
+	else
+	{
+		x = ft_unit(x);
+	}
+	y = ft_unit(ft_cross(z, x));
+	if (ft_matrix_inv(x, y, z, matrix))
+	{
+		return (1);
+	}
+	return (0);
+}
+
 
 /*
 	matrix inverse

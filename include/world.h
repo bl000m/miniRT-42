@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/20 17:12:21 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/24 13:22:52 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ typedef struct s_sphere
 	double	radius;
 	t_vec3	color;
 }	t_sphere;
+
+typedef struct s_cylinder
+{
+	t_vec3	center;
+    t_vec3  dir;
+	double	diameter;
+    double	height;
+	t_vec3	color;
+}	t_cylinder;
 
 /*	list_op1.c	*/
 t_node	*ft_new_sphere(t_vec3 cent, double r);
