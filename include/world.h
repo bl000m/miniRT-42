@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/24 13:22:52 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/26 18:12:02 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,13 @@
 #  define CYL 2
 # endif
 
-typedef struct s_vec3	t_vec3;
+/*	vector in 3d space	*/
+typedef struct s_vec3
+{
+	double	x;
+	double	y;
+	double	z;	
+}	t_vec3;
 
 typedef struct	s_node
 {
@@ -58,14 +64,6 @@ t_node	*ft_new_sphere(t_vec3 cent, double r);
 void	ft_add_node(t_node **head, t_node *node);
 void	ft_del_lst(t_node **head);
 
-/*	vector in 3d space	*/
-typedef struct s_vec3
-{
-	double	x;
-	double	y;
-	double	z;	
-}	t_vec3;
-
 /*	vector_op1.c	*/
 t_vec3	ft_add(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_sub(t_vec3 v1, t_vec3 v2);
@@ -80,8 +78,16 @@ t_vec3	ft_unit_vec(t_vec3 v);
 double	ft_dot(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_cross(t_vec3 u, t_vec3 v);
 
+/*	vector_op3.c	*/
+t_vec3	ft_vec(double x, double y, double z);
+int		ft_is_zero(t_vec3 v);
+
+
 /*	matrix_op.c	*/
-int		ft_matrix_inv(t_vec3 a1, t_vec3 a2, t_vec3 a3, double matrix[3][3]);
+int		ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3]);
+void	ft_vec_to_matrix(t_vec3 a1, t_vec3 a2, t_vec3 a3, double m[3][3]);
+int		ft_matrix_inv(double m[3][3], double inv[3][3]);
 t_vec3	ft_matrix_mul(double matrix[3][3], t_vec3 x);
+
 
 #endif
