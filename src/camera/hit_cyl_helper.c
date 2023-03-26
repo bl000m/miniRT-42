@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cyl_helper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/24 15:28:08 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/24 16:00:38 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,31 @@
 	if fail, return 1
 	ray : A + tB
 	cylinder: 
-	solve t and keep the result in ret[2]
+	solve t and keep the result in rec[2]
 	t is not effected by change base
+	the content of record has to be inverted back
 */
-int ft_solve_cyl(t_cylinder cyl, t_ray ray, double ret[2])
+int ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record rec[2])
 {
 	double		matrix[3][3];
+	double		inv[3][3];
+	t_vec3		shift;
 	
 	if (ft_rotate_xyz(cyl.dir, matrix))
 	{
 		return (1);
 	}
+	
 	ray = ft_new_ray(&ray, matrix, cyl.center);
 	cyl = ft_new_cyl(&cyl, matrix);
 	/*
 	solve the new cyl / ray
 		hit_body
-		 	get ret[0] and ret[1]
-			get dot_low and dot_high
-		if dot_low.z < cyl.height / 2
-			update ret[0] with ft_hit_bottom
-		if dot_high > cyl.hight / 2
-			update ret[1] with ft_hit_top
+		 	get rec [0 1]
+		if pos.z < cyl.height / 2
+			update rec[0] with ft_hit_bottom
+		if pos.z > cyl.hight / 2
+			update rec[1] with ft_hit_top
 	
 	note : 
 		shall I make the hit_record here ? 
