@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/24 16:00:38 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/26 19:23:50 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,42 +20,46 @@
 	t is not effected by change base
 	the content of record has to be inverted back
 */
-int ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record rec[2])
+int ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2])
 {
 	double		matrix[3][3];
 	double		inv[3][3];
 	t_vec3		shift;
 	
-	if (ft_rotate_xyz(cyl.dir, matrix))
+	if (ft_rotate_xyz(cyl.dir, matrix, inv))
 	{
 		return (1);
 	}
-	
-	ray = ft_new_ray(&ray, matrix, cyl.center);
+	shift = cyl.center;
+	ray = ft_new_ray(&ray, matrix, shift);
 	cyl = ft_new_cyl(&cyl, matrix);
-	/*
-	solve the new cyl / ray
-		hit_body
-		 	get rec [0 1]
-		if pos.z < cyl.height / 2
-			update rec[0] with ft_hit_bottom
-		if pos.z > cyl.hight / 2
-			update rec[1] with ft_hit_top
-	
-	note : 
-		shall I make the hit_record here ? 
-		Do I only keep a ret ? (Only one is needed)
-	return (0)
-	*/
+	if (ft_solve_cyl_body(cyl, ray, temp))
+	{
+		return (1);
+	}
+	if (ft_dabs(temp[0].pos.z) > cyl.height / 2)
+		//reset temp[0]
+	if (ft_dabs(temp[1].pos.z) > cyl.height / 2)
+		//reset temp[1]
+	return (0);
 }
 
-
-
+/*
+	the ray actually hit the top or bottom of the cyl
+	solve the point where ray and the circle intersect
+*/
+void	ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp)
+{
+	if (temp.pos.z > 0)
+		//intersect with the top
+	else
+		//intersect with the bottom
+}
 
 /*
-	return 0 if there's no solution
+	return 1 if there's no solution
 */
-int	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, double ret[2])
+bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
 {
 	double	a;
 	double	b;
@@ -69,11 +73,18 @@ int	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, double ret[2])
 	discrim = b * b - 4 * a * c;
 	if (discrim < 0)
 	{
-		return (0);
+		return (1);
 	}
-	ret[0] = (-b - discrim) / (2.0 * a);
-	ret[1] = (-b + discrim) / (2.0 * a);
-	return (1);
+	discrim = sqrt(discrim);
+	rec[0].dist = (-b - discrim) / (2.0 * a);
+	rec[1].dist = (-b + discrim) / (2.0 * a);
+	rec[0].pos = ft_ray_at(ray, rec[0].dist);
+	rec[1].pos = ft_ray_at(ray, rec[1].dist);
+	rec[0].normal = ft_unit_vec(rec[0].pos);
+	rec[1].normal = ft_unit_vec(rec[0].pos);
+	rec[0].color = cyl.color;
+	rec[1].color = cyl.color;
+	return (0);
 }
 
 

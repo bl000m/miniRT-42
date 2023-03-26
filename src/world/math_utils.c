@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_op3.c                                       :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 13:53:09 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/26 18:21:14 by sasha            ###   ########.fr       */
+/*   Created: 2023/03/26 19:08:38 by sasha             #+#    #+#             */
+/*   Updated: 2023/03/26 19:10:12 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_vec3	ft_vec(double x, double y, double z)
-{
-	t_vec3	temp;
+#include "world.h"
 
-	temp.x = x;
-	temp.y = y;
-	temp.z = z;
-	return (temp);
-}
-
-bool	ft_is_zero(t_vec3 v)
+double	ft_dabs(double x)
 {
-	if (v.x == 0 && v.y == 0 && v.z == 0)
+	if (x > 0)
 	{
-		return (1);
+		return (x);
 	}
-	return (0);
+	return (-x);
 }

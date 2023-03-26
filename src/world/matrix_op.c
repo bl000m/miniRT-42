@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:08:42 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/26 18:05:18 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/26 18:28:33 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 	it will first normalized z
 	inv will keep the inverse of the matrix
 */
-int	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3])
+bool	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3])
 {
 	t_vec3	x;
 	t_vec3	y;
 
 	z = ft_unit_vec(z);
-	x = ft_unit(ft_cross(ft_vec(0, 1, 0), z));
+	x = ft_unit_vec(ft_cross(ft_vec(0, 1, 0), z));
 	if (ft_is_zero(x))
 	{
 		x = ft_vec(1, 0, 0);
 	}
-	y = ft_unit(ft_cross(z, x));
+	y = ft_unit_vec(ft_cross(z, x));
 	ft_vec_to_matrix(x, y, z, inv);
 	if (ft_matrix_inv(inv, matrix))
 	{
@@ -59,7 +59,7 @@ void	ft_vec_to_matrix(t_vec3 a1, t_vec3 a2, t_vec3 a3, double m[3][3])
 	the output is put in matrix[3][3]
 	return 1, if matrix is not invertible
 */
-int	ft_matrix_inv(double m[3][3], double inv[3][3])
+bool	ft_matrix_inv(double m[3][3], double inv[3][3])
 {
 	double	det;
 	double	invdet;

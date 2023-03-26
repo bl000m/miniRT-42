@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/21 11:15:00 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/26 18:33:56 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
 
-int	ft_hit_sph(t_sphere *sph, t_ray ray, double root_max, t_record *rec)
+bool	ft_hit_sph(t_sphere *sph, t_ray ray, double dist_max, t_record *rec)
 {
-	double	root[2];
+	double	temp[2];
 
-	if (ft_solve_sph(sph, ray, root) == 0)
+	if (ft_solve_sph(sph, ray, temp))
 	{
 		return (0);
 	}
-	if (root[0] < root_max && root[0] > 0.001)
+	if (temp[0] < dist_max && temp[0] > 0.001)
 	{
-		ft_set_rec_sph(root[0], sph, ray, rec);
+		ft_set_rec_sph(temp[0], sph, ray, rec);
 		return (1);
 	}
-	else if (root[1] < root_max && root[1] > 0.001)
+	else if (temp[1] < dist_max && temp[1] > 0.001)
 	{
-		ft_set_rec_sph(root[1], sph, ray, rec);
+		ft_set_rec_sph(temp[1], sph, ray, rec);
 		return (1);
 	}
 	return (0);
@@ -37,11 +37,11 @@ int	ft_hit_sph(t_sphere *sph, t_ray ray, double root_max, t_record *rec)
 	If the ray intersect the sphere from inside,
 	the normal is reset, so it's always against the ray
 */
-void	ft_set_rec_sph(double root, t_sphere *sph, t_ray ray, t_record *rec)
+void	ft_set_rec_sph(double dist, t_sphere *sph, t_ray ray, t_record *rec)
 {
-	rec->t = root;
-	rec->p = ft_ray_at(ray, root);
-	rec->normal = ft_div(ft_sub(rec.p, sph->center), sph->radius);
+	rec->dist = dist;
+	rec->pos = ft_ray_at(ray, dist);
+	rec->normal = ft_unit_vec(ft_sub(rec.pos, sph->center));
 	if (ft_dot(ray, rec->normal) < 0)
 	{
 		rec->normal = ft_mul(rec->normal, -1);
@@ -50,13 +50,15 @@ void	ft_set_rec_sph(double root, t_sphere *sph, t_ray ray, t_record *rec)
 }
 
 /*
+	return 1 on error (no solution)
+	
 	sph : (x - c1)^2 + (y - c2)^2 + (z - c3)^2 = r^2
 	ray : orig + dir * t
 	solve t
 	if t is not btw t_min / t_max, return 0 (no hit)
-	else if hit, save the hit record in *rec, and return 1
+	else if hit, save the hit record in *rec, and return 0
 */
-int	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2])
+bool	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2])
 {
 	t_vec3	oc;
 	double	a;
@@ -71,10 +73,10 @@ int	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2])
 	discrim = b * b - 4 * a * c;
 	if (discrim < 0)
 	{
-		return (0);
+		return (1);
 	}
 	discrim = sqrt(discrim);
 	ret[0] = (-b - discrim) / (2.0 * a);
 	ret[1] = (-b + discrim) / (2.0 * a);
-	return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/26 18:12:02 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/26 19:11:02 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <math.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 # ifndef SPH
 #  define SPH 0
@@ -80,14 +81,16 @@ t_vec3	ft_cross(t_vec3 u, t_vec3 v);
 
 /*	vector_op3.c	*/
 t_vec3	ft_vec(double x, double y, double z);
-int		ft_is_zero(t_vec3 v);
+bool	ft_is_zero(t_vec3 v);
 
 
 /*	matrix_op.c	*/
-int		ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3]);
+bool	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3]);
 void	ft_vec_to_matrix(t_vec3 a1, t_vec3 a2, t_vec3 a3, double m[3][3]);
-int		ft_matrix_inv(double m[3][3], double inv[3][3]);
+bool	ft_matrix_inv(double m[3][3], double inv[3][3]);
 t_vec3	ft_matrix_mul(double matrix[3][3], t_vec3 x);
 
+/*	math_utils.c	*/
+double	ft_dabs(double x);
 
 #endif
