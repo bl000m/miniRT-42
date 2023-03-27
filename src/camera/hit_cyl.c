@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:21:23 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/27 11:05:23 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 15:17:06 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2])
 	double		inv[3][3];
 	t_vec3		shift;
 	
-	ft_rotate_xyz(cyl.dir, matrix, inv)
+	ft_rotate_xyz(cyl.dir, matrix, inv);
 	shift = cyl.center;
 	ray = ft_new_ray(&ray, matrix, shift);
 	cyl = ft_new_cyl(&cyl, matrix);

@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:34:49 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 13:40:13 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 15:21:31 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include "camera.h"
 
 # ifndef WIDTH
-#  define WIDTH 400
+#  define WIDTH 200
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 226
+#  define HEIGHT 113
 # endif
 
 typedef struct s_image

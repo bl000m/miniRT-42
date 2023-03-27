@@ -6,7 +6,7 @@
 #    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/03/27 13:38:47 by sasha            ###   ########.fr        #
+#    Updated: 2023/03/27 15:14:19 by sasha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,15 @@ VPATH	=	./src/parsing ./src/camera ./src/light ./src/world ./src/exec
 
 LIST_PARSING	=	
 
-LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c 
+LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
+					hit_cyl.c hit_cyl_helper.c 
 
 LIST_LIGHT		= 
 
 LIST_WORLD		= 	list_op1.c math_utils.c matrix_op.c \
 					vector_op1.c vector_op2.c vector_op3.c 
 
-LIST_EXEC		=	main.c hooks.c init.c
+LIST_EXEC		=	test_cyl.c hooks.c init.c
 
 PARSING_DIR		=	$(addprefix $(SRC_DIR), parsing)
 

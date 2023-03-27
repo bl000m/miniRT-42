@@ -6,13 +6,13 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/27 11:43:01 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 15:19:01 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
 
-void	ft_inv_record(double inv[3][3], double shift, t_record temp[2])
+void	ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2])
 {
 	if (temp[0].dist != -1)
 	{
@@ -93,7 +93,7 @@ bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
 t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3])
 {
 	cyl->center = ft_vec(0, 0, 0);
-	cyl->dir = ft_matrix_mul(matrix, cyl.dir);
+	cyl->dir = ft_matrix_mul(matrix, cyl->dir);
 	return (*cyl);
 }
 
