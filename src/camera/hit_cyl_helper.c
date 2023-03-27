@@ -6,42 +6,24 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/26 19:23:50 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 10:58:52 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
 
-/*
-	if fail, return 1
-	ray : A + tB
-	cylinder: 
-	solve t and keep the result in rec[2]
-	t is not effected by change base
-	the content of record has to be inverted back
-*/
-int ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2])
+void	ft_inv_record(double inv[3][3], double shift, t_record temp[2])
 {
-	double		matrix[3][3];
-	double		inv[3][3];
-	t_vec3		shift;
-	
-	if (ft_rotate_xyz(cyl.dir, matrix, inv))
+	if (temp[0].dist != -1)
 	{
-		return (1);
+		temp[0].pos = ft_add(temp[0].pos, shift);
+		temp[0].normal = ft_matrix_mul(inv, temp[0].normal);
 	}
-	shift = cyl.center;
-	ray = ft_new_ray(&ray, matrix, shift);
-	cyl = ft_new_cyl(&cyl, matrix);
-	if (ft_solve_cyl_body(cyl, ray, temp))
+	if (temp[1].dist != -1)
 	{
-		return (1);
+		temp[1].pos = ft_add(temp[1].pos, shift);
+		temp[1].normal = ft_matrix_mul(inv, temp[1].normal);
 	}
-	if (ft_dabs(temp[0].pos.z) > cyl.height / 2)
-		//reset temp[0]
-	if (ft_dabs(temp[1].pos.z) > cyl.height / 2)
-		//reset temp[1]
-	return (0);
 }
 
 /*
@@ -50,10 +32,26 @@ int ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2])
 */
 void	ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp)
 {
-	if (temp.pos.z > 0)
-		//intersect with the top
+	if (ft_dabs(temp->pos.z) <= cyl.height / 2)
+	{
+		return ;
+	}
+	if (temp->pos.z > 0)
+	{
+		temp->dist = (cyl.height / 2 - ray.orig.z) / ray.dir.z;
+		temp->pos = ft_ray_at(ray, temp->dist);
+		temp->normal = ft_vec(0, 0, 1);
+	}
 	else
-		//intersect with the bottom
+	{
+		temp->dist = (cyl.height / -2 - ray.orig.z) / ray.dir.z;
+		temp->pos = ft_ray_at(ray, temp->dist);
+		temp->normal = ft_vec(0, 0, -1);
+	}
+	if (ft_squr_len(temp->pos) > cyl.diameter * cyl.diameter)
+	{
+		temp->dist = -1;
+	}
 }
 
 /*
@@ -73,7 +71,7 @@ bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
 	discrim = b * b - 4 * a * c;
 	if (discrim < 0)
 	{
-		return (1);
+		return (FALSE);
 	}
 	discrim = sqrt(discrim);
 	rec[0].dist = (-b - discrim) / (2.0 * a);
@@ -84,7 +82,7 @@ bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
 	rec[1].normal = ft_unit_vec(rec[0].pos);
 	rec[0].color = cyl.color;
 	rec[1].color = cyl.color;
-	return (0);
+	return (TRUE);
 }
 
 

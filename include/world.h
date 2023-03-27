@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/26 19:11:02 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 10:10:25 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ bool	ft_is_zero(t_vec3 v);
 
 
 /*	matrix_op.c	*/
-bool	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3]);
+void	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3]);
 void	ft_vec_to_matrix(t_vec3 a1, t_vec3 a2, t_vec3 a3, double m[3][3]);
-bool	ft_matrix_inv(double m[3][3], double inv[3][3]);
+void	ft_matrix_inv(double m[3][3], double inv[3][3]);
 t_vec3	ft_matrix_mul(double matrix[3][3], t_vec3 x);
 
 /*	math_utils.c	*/

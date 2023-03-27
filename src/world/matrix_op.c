@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:08:42 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/26 18:28:33 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 10:10:16 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	it will first normalized z
 	inv will keep the inverse of the matrix
 */
-bool	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3])
+void	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3])
 {
 	t_vec3	x;
 	t_vec3	y;
@@ -30,11 +30,8 @@ bool	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3])
 	}
 	y = ft_unit_vec(ft_cross(z, x));
 	ft_vec_to_matrix(x, y, z, inv);
-	if (ft_matrix_inv(inv, matrix))
-	{
-		return (1);
-	}
-	return (0);
+	ft_matrix_inv(inv, matrix)
+	return ;
 }
 
 /*
@@ -59,7 +56,7 @@ void	ft_vec_to_matrix(t_vec3 a1, t_vec3 a2, t_vec3 a3, double m[3][3])
 	the output is put in matrix[3][3]
 	return 1, if matrix is not invertible
 */
-bool	ft_matrix_inv(double m[3][3], double inv[3][3])
+void	ft_matrix_inv(double m[3][3], double inv[3][3])
 {
 	double	det;
 	double	invdet;
@@ -70,7 +67,7 @@ bool	ft_matrix_inv(double m[3][3], double inv[3][3])
 	if (det == 0)
 	{
 		write(2, "matrix not invertible\n", 22);
-		return (1);
+		return ;
 	}
 	invdet = 1 / det;
 	inv[0][0] = (m[1][1] * m[2][2] - m[2][1] * m[1][2]) * invdet;
