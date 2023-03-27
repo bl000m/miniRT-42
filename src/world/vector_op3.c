@@ -6,9 +6,11 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:53:09 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/26 18:21:14 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:45:45 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "world.h"
 
 t_vec3	ft_vec(double x, double y, double z)
 {

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:05:54 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/21 14:47:03 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/27 12:18:14 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-void	ft_set_hook(void *win)
+void	ft_set_hook(t_minirt *minirt)
 {
-	mlx_hook(win, 3, 0, ft_key_up_hook, w);
-	mlx_hook(win, 17, 0, ft_destroy_hook, w);
+	mlx_hook(minirt->win, 3, 0, ft_key_up_hook, minirt);
+	mlx_hook(minirt->win, 17, 0, ft_destroy_hook, minirt);
 }
 
 
@@ -35,8 +35,11 @@ int	ft_key_up_hook(int keycode, void *param)
 	exit(0);
 }
 
-int	ft_destroy_hook(void)
+int	ft_destroy_hook(void *param)
 {
+	t_minirt    *minirt;
+
+    minirt = (t_minirt *)param;
 	mlx_destroy_display(minirt->mlx);
     exit(0);
 }

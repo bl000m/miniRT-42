@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:08:42 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 10:10:16 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:44:54 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_rotate_xyz(t_vec3 z, double matrix[3][3], double inv[3][3])
 	}
 	y = ft_unit_vec(ft_cross(z, x));
 	ft_vec_to_matrix(x, y, z, inv);
-	ft_matrix_inv(inv, matrix)
+	ft_matrix_inv(inv, matrix);
 	return ;
 }
 
@@ -66,7 +66,7 @@ void	ft_matrix_inv(double m[3][3], double inv[3][3])
     	+ m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
 	if (det == 0)
 	{
-		write(2, "matrix not invertible\n", 22);
+		(void) (write(2, "matrix not invertible\n", 22) + 1);
 		return ;
 	}
 	invdet = 1 / det;
@@ -79,7 +79,7 @@ void	ft_matrix_inv(double m[3][3], double inv[3][3])
 	inv[2][0] = (m[1][0] * m[2][1] - m[2][0] * m[1][1]) * invdet;
 	inv[2][1] = (m[2][0] * m[0][1] - m[0][0] * m[2][1]) * invdet;
 	inv[2][2] = (m[0][0] * m[1][1] - m[1][0] * m[0][1]) * invdet;
-	return (0);
+	return ;
 }
 
 /*

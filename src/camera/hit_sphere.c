@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 11:40:51 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:43:14 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_set_rec_sph(double dist, t_sphere *sph, t_ray ray, t_record *rec)
 {
 	rec->dist = dist;
 	rec->pos = ft_ray_at(ray, dist);
-	rec->normal = ft_unit_vec(ft_sub(rec.pos, sph->center));
-	if (ft_dot(ray, rec->normal) < 0)
+	rec->normal = ft_unit_vec(ft_sub(rec->pos, sph->center));
+	if (ft_dot(ray.dir, rec->normal) < 0)
 	{
 		rec->normal = ft_mul(rec->normal, -1);
 	}
@@ -66,7 +66,7 @@ bool	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2])
 	double	c;
 	double	discrim;
 
-	oc = ft_sub(ray.orig - sph->center);
+	oc = ft_sub(ray.orig, sph->center);
 	a = ft_dot(ray.dir, ray.dir);
 	b = 2 * ft_dot(oc, ray.dir);
 	c = ft_dot(oc, oc) - sph->radius * sph->radius;

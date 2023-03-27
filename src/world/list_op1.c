@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:28:19 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 14:51:22 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:43:53 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_node	*ft_new_sphere(t_vec3 cent, double r)
 	node = malloc(sizeof(t_node));
 	if (sphere == NULL || node == NULL)
 	{
-		write(2, "malloc fails\n", 13);
+		(void) (write(2, "malloc fails\n", 13) + 1);
 		free(sphere);
 		free(node);
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 10:10:25 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 12:25:39 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <math.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include <stdbool.h>
 
 # ifndef SPH
@@ -29,6 +30,14 @@
 #  define CYL 2
 # endif
 
+# ifndef FALSE
+#  define FALSE 0
+# endif
+
+# ifndef TRUE
+#  define TRUE 1
+# endif
+
 /*	vector in 3d space	*/
 typedef struct s_vec3
 {
@@ -36,6 +45,8 @@ typedef struct s_vec3
 	double	y;
 	double	z;	
 }	t_vec3;
+
+typedef struct	s_node	t_node;
 
 typedef struct	s_node
 {
