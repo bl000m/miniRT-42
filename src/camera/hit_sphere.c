@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/26 18:33:56 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 11:40:51 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ bool	ft_hit_sph(t_sphere *sph, t_ray ray, double dist_max, t_record *rec)
 {
 	double	temp[2];
 
-	if (ft_solve_sph(sph, ray, temp))
+	if (!ft_solve_sph(sph, ray, temp))
 	{
-		return (0);
+		return (FALSE);
 	}
 	if (temp[0] < dist_max && temp[0] > 0.001)
 	{
 		ft_set_rec_sph(temp[0], sph, ray, rec);
-		return (1);
+		return (TRUE);
 	}
 	else if (temp[1] < dist_max && temp[1] > 0.001)
 	{
 		ft_set_rec_sph(temp[1], sph, ray, rec);
-		return (1);
+		return (TRUE);
 	}
 	return (0);
 }
@@ -50,7 +50,7 @@ void	ft_set_rec_sph(double dist, t_sphere *sph, t_ray ray, t_record *rec)
 }
 
 /*
-	return 1 on error (no solution)
+	return 0 when no solution
 	
 	sph : (x - c1)^2 + (y - c2)^2 + (z - c3)^2 = r^2
 	ray : orig + dir * t
@@ -73,10 +73,10 @@ bool	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2])
 	discrim = b * b - 4 * a * c;
 	if (discrim < 0)
 	{
-		return (1);
+		return (FALSE);
 	}
 	discrim = sqrt(discrim);
 	ret[0] = (-b - discrim) / (2.0 * a);
 	ret[1] = (-b + discrim) / (2.0 * a);
-	return (0);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/27 10:58:52 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 11:43:01 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
 	rec[0].pos = ft_ray_at(ray, rec[0].dist);
 	rec[1].pos = ft_ray_at(ray, rec[1].dist);
 	rec[0].normal = ft_unit_vec(rec[0].pos);
-	rec[1].normal = ft_unit_vec(rec[0].pos);
+	rec[1].normal = ft_unit_vec(ft_mul(rec[0].pos, -1));
 	rec[0].color = cyl.color;
 	rec[1].color = cyl.color;
 	return (TRUE);
