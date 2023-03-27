@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 13:43:14 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 14:38:01 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	ft_hit_sph(t_sphere *sph, t_ray ray, double dist_max, t_record *rec)
 		ft_set_rec_sph(temp[1], sph, ray, rec);
 		return (TRUE);
 	}
-	return (0);
+	return (FALSE);
 }
 
 /*

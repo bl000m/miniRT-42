@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:16:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/27 14:10:18 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 15:00:50 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,22 @@ int main(void)
 		(void) (write(2, "init fails\n", 11) + 1);
 		return (0);
     }
+	
 	ft_set_hook(minirt.win);
 	/*	set canvas	*/
+	printf("set canvas\n");
 	minirt.canvas.eps = 0.01;
 	minirt.canvas.pos = ft_vec(-2, -1.13, -1);
 	
 	/*	define sphere	*/
+	printf("def sph\n");
 	t_sphere	sph;
 	sph.center = ft_vec(0, 0, -3);
 	sph.radius = 1;
 	sph.color =  ft_vec(100, 100, 100);
 	
 	/*	generate camera ray and draw	*/
+	printf("draw\n");
 	int			x;
 	int			y;
 	t_image		*img;
@@ -50,26 +54,24 @@ int main(void)
 	t_record	rec;
 
 	img = minirt.img;
-	x = 0;
-	while (x < HEIGHT)
+	y = 0;
+	while (y < HEIGHT)
 	{
-		y = 0;
-		while (y < WIDTH)
+		x = 0;
+		while (x < WIDTH)
 		{
 			ray = ft_camera_ray(&(minirt.canvas), x, y);
-			if (ft_hit_sph(&sph, ray, 100, &rec))
+			if (ft_hit_sph(&sph, ray, 10000, &rec))
 			{
-				printf("HELLO\n");
-				ft_put_pixel(img, HEIGHT - x, y, 0xFFFFFF);
+				ft_put_pixel(img, x, HEIGHT - y, 0xFFFFFF);
 			}
 			else
 			{
-				printf("coucou\n");
-				ft_put_pixel(img, HEIGHT - x, y, 0x0);
+				ft_put_pixel(img, x, HEIGHT - y, 0x0);
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 	
 	//put image to win
@@ -82,7 +84,7 @@ static void	ft_put_pixel(t_image *img, int x, int y, int color)
 {
 	int		index;
 
-	index = x * img->line_byte + y * img->pixel_bit / 8;
+	index = (HEIGHT - y) * img->line_byte + x * img->pixel_bit / 8;
 	if (img->endian == 1)
 	{
 		img->buf[index + 0] = (color >> 24);
