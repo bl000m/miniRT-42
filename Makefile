@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
+#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/03/27 15:14:19 by sasha            ###   ########.fr        #
+#    Updated: 2023/03/28 13:30:01 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ LIST_LIGHT		=
 LIST_WORLD		= 	list_op1.c math_utils.c matrix_op.c \
 					vector_op1.c vector_op2.c vector_op3.c 
 
-LIST_EXEC		=	test_cyl.c hooks.c init.c
+LIST_EXEC		=	test_sph.c hooks.c init.c
 
 PARSING_DIR		=	$(addprefix $(SRC_DIR), parsing)
 

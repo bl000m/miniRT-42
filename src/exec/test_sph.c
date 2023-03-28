@@ -1,14 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_sph.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:16:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/27 15:00:50 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/28 13:31:13 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "parsing.h"
+#include "world.h"
+#include "camera.h"
+#include "mlx.h"
+#include "exec.h"
+#include <stdio.h>
+
+#include "parsing.h"
+#include "world.h"
+#include "camera.h"
+#include "mlx.h"
+#include "exec.h"
+#include <stdio.h>
 
 #include "parsing.h"
 #include "world.h"
@@ -32,28 +46,29 @@ int main(void)
 		return (0);
     }
 	
-	ft_set_hook(minirt.win);
+	ft_set_hook(&minirt);
+	
 	/*	set canvas	*/
 	printf("set canvas\n");
 	minirt.canvas.eps = 0.01;
-	minirt.canvas.pos = ft_vec(-2, -1.13, -1);
+	minirt.canvas.pos = ft_vec(-6, -3.39, -1);
 	
 	/*	define sphere	*/
 	printf("def sph\n");
 	t_sphere	sph;
-	sph.center = ft_vec(0, 0, -3);
-	sph.radius = 1;
+	sph.center = ft_vec(70, 70, -30);
+	sph.radius = 10;
 	sph.color =  ft_vec(100, 100, 100);
 	
 	/*	generate camera ray and draw	*/
 	printf("draw\n");
 	int			x;
 	int			y;
-	t_image		*img;
+	t_image		*img_info;
 	t_ray		ray;
 	t_record	rec;
 
-	img = minirt.img;
+	img_info = &(minirt.img_info);
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -61,13 +76,15 @@ int main(void)
 		while (x < WIDTH)
 		{
 			ray = ft_camera_ray(&(minirt.canvas), x, y);
-			if (ft_hit_sph(&sph, ray, 10000, &rec))
+			if (ft_hit_sph(&sph, ray, 1000, &rec))
 			{
-				ft_put_pixel(img, x, HEIGHT - y, 0xFFFFFF);
+				//printf("o");
+				ft_put_pixel(img_info, x, y, 0xFFFFFF);
 			}
 			else
 			{
-				ft_put_pixel(img, x, HEIGHT - y, 0x0);
+				//printf(" ");
+				ft_put_pixel(img_info, x, y, 0x0);
 			}
 			x++;
 		}
@@ -80,23 +97,23 @@ int main(void)
 	mlx_loop(minirt.mlx);
 }
 
-static void	ft_put_pixel(t_image *img, int x, int y, int color)
+static void	ft_put_pixel(t_image *img_info, int x, int y, int color)
 {
 	int		index;
 
-	index = (HEIGHT - y) * img->line_byte + x * img->pixel_bit / 8;
-	if (img->endian == 1)
+	index = y * img_info->line_byte + x * img_info->pixel_bit / 8;
+	if (img_info->endian == 1)
 	{
-		img->buf[index + 0] = (color >> 24);
-		img->buf[index + 1] = (color >> 16) & 0xFF;
-		img->buf[index + 2] = (color >> 8) & 0xFF;
-		img->buf[index + 3] = (color) & 0xFF;
+		img_info->buf[index + 0] = (color >> 24);
+		img_info->buf[index + 1] = (color >> 16) & 0xFF;
+		img_info->buf[index + 2] = (color >> 8) & 0xFF;
+		img_info->buf[index + 3] = (color) & 0xFF;
 	}
-	else if (img->endian == 0)
+	else if (img_info->endian == 0)
 	{
-		img->buf[index + 0] = (color) & 0xFF;
-		img->buf[index + 1] = (color >> 8) & 0xFF;
-		img->buf[index + 2] = (color >> 16) & 0xFF;
-		img->buf[index + 3] = (color >> 24);
+		img_info->buf[index + 0] = (color) & 0xFF;
+		img_info->buf[index + 1] = (color >> 8) & 0xFF;
+		img_info->buf[index + 2] = (color >> 16) & 0xFF;
+		img_info->buf[index + 3] = (color >> 24);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:34:49 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 15:49:50 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/28 13:19:25 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include "camera.h"
 
 # ifndef WIDTH
-#  define WIDTH 400
+#  define WIDTH 1200
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 226
+#  define HEIGHT 678
 # endif
 
 typedef struct s_image
@@ -46,9 +46,10 @@ typedef struct s_canvas
 
 typedef struct s_minirt
 {
-	void        *mlx;
-    void        *win;
-	t_image     *img;
+	void		*mlx;
+    void		*win;
+	void		*img;
+	t_image		img_info;
 	t_canvas	canvas;
 	t_node		*world;
 	//ambient light 
