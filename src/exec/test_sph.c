@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:16:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/28 14:58:29 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/28 15:48:27 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int main(void)
 	/*	set canvas	*/
 	printf("set canvas\n");
 	minirt.canvas.eps = 0.01;
-	minirt.canvas.pos = ft_vec((WIDTH / 2) * -0.01, (HEIGHT / 2) * -0.01, -1);
+	minirt.canvas.pos = ft_vec((WIDTH / 2) * -0.01, (HEIGHT / 2) * -0.01, 0);
 	
 	/*	define sphere	*/
 	printf("def sph\n");
 	t_sphere	sph;
-	sph.center = ft_vec(-25, -25, -30);
+	sph.center = ft_vec(20, 20, -30);
 	sph.radius = 10;
 	sph.color =  ft_vec(100, 100, 100);
 	
@@ -81,20 +81,18 @@ int main(void)
 		while (x < WIDTH)
 		{
 			ray = ft_camera_ray(&(minirt.canvas), x, y);
-			printf("%.3g ", ray.dir.x);
-			if (ft_hit_sph(&sph, ray, 1000, &rec))
+			if (ft_hit_sph(&sph, ray, 10000, &rec))
 			{
 				//printf("o");
 				ft_put_pixel(img_info, x, y, 0xFFFFFF);
 			}
 			else
 			{
-				//printf(" ");
+				//printf("x");
 				ft_put_pixel(img_info, x, y, 0x0);
 			}
 			x++;
 		}
-		printf("\n");
 		y++;
 	}
 	
