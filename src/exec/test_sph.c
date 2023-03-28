@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:16:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/28 13:44:45 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/28 14:58:29 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 
 static void	ft_put_pixel(t_image *img, int x, int y, int color);
 
+// static void	ft_print_vec(t_vec3 v)
+// {
+// 	printf("(%.3g, %.3g)", v.x, v.y);
+// }
+
 /*
     for testing
 */
@@ -51,12 +56,12 @@ int main(void)
 	/*	set canvas	*/
 	printf("set canvas\n");
 	minirt.canvas.eps = 0.01;
-	minirt.canvas.pos = ft_vec(-6, -3.39, -1);
+	minirt.canvas.pos = ft_vec((WIDTH / 2) * -0.01, (HEIGHT / 2) * -0.01, -1);
 	
 	/*	define sphere	*/
 	printf("def sph\n");
 	t_sphere	sph;
-	sph.center = ft_vec(0, 0, -30);
+	sph.center = ft_vec(-25, -25, -30);
 	sph.radius = 10;
 	sph.color =  ft_vec(100, 100, 100);
 	
@@ -76,6 +81,7 @@ int main(void)
 		while (x < WIDTH)
 		{
 			ray = ft_camera_ray(&(minirt.canvas), x, y);
+			printf("%.3g ", ray.dir.x);
 			if (ft_hit_sph(&sph, ray, 1000, &rec))
 			{
 				//printf("o");
@@ -88,6 +94,7 @@ int main(void)
 			}
 			x++;
 		}
+		printf("\n");
 		y++;
 	}
 	
