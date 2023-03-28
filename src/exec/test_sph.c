@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_sph.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:16:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/28 15:48:27 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/28 22:17:57 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int main(void)
 	/*	define sphere	*/
 	printf("def sph\n");
 	t_sphere	sph;
-	sph.center = ft_vec(20, 20, -30);
-	sph.radius = 10;
+	sph.center = ft_vec(5, 5, -30);
+	sph.radius = 5;
 	sph.color =  ft_vec(100, 100, 100);
 	
 	/*	generate camera ray and draw	*/
