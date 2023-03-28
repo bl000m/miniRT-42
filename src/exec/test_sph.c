@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:16:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/28 13:31:13 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/28 13:44:45 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(void)
 	/*	define sphere	*/
 	printf("def sph\n");
 	t_sphere	sph;
-	sph.center = ft_vec(70, 70, -30);
+	sph.center = ft_vec(0, 0, -30);
 	sph.radius = 10;
 	sph.color =  ft_vec(100, 100, 100);
 	

@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:05:54 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/28 13:41:49 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/28 13:50:19 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	ft_set_hook(t_minirt *minirt)
 {
 	mlx_hook(minirt->win, 3, 0, ft_key_up_hook, minirt);
-	mlx_hook(minirt->win, 17, 0, ft_destroy_hook, minirt);
+	mlx_hook(minirt->win, 17, 1L<<1, ft_destroy_hook, minirt);
 	//mlx_key_hook(minirt->win, &ft_key_hook, minirt);
 }
 
@@ -29,6 +29,7 @@ int	ft_key_up_hook(int keycode, void *param)
 {
 	t_minirt    *minirt;
 
+	printf("hooks\n");
 	if (keycode != 65307)
 		return (0);
     minirt = (t_minirt *)param;
