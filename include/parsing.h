@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:34:49 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/29 12:18:08 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/29 13:04:08 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include "camera.h"
 
 # ifndef WIDTH
-#  define WIDTH 1200
+#  define WIDTH 2400
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 680
+#  define HEIGHT 1360
 # endif
 
 typedef struct s_image

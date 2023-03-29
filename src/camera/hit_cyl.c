@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cyl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:21:23 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/27 15:17:06 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/29 13:19:09 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
+#include "stdio.h"
 
 /*
 	return only one record according to the value of dist_max
@@ -33,6 +34,7 @@ bool	ft_hit_cyl(t_cylinder cyl, t_ray ray, double dist_max, t_record *rec)
 		ft_copy_rec(rec, temp + 1);
 		return (TRUE);
 	}
+	return (TRUE); //TEST
 	return (FALSE);
 }
 

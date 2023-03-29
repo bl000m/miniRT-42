@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cyl_helper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/27 15:19:01 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/29 13:16:33 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
-
+//test
 void	ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2])
 {
 	if (temp[0].dist != -1)
 	{
-		temp[0].pos = ft_add(temp[0].pos, shift);
+		temp[0].pos = ft_matrix_mul(inv, ft_add(temp[0].pos, shift));
 		temp[0].normal = ft_matrix_mul(inv, temp[0].normal);
 	}
 	if (temp[1].dist != -1)
 	{
-		temp[1].pos = ft_add(temp[1].pos, shift);
+		temp[1].pos = ft_matrix_mul(inv, ft_add(temp[1].pos, shift));
 		temp[1].normal = ft_matrix_mul(inv, temp[1].normal);
 	}
 }
@@ -48,14 +48,14 @@ void	ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp)
 		temp->pos = ft_ray_at(ray, temp->dist);
 		temp->normal = ft_vec(0, 0, -1);
 	}
-	if (ft_squr_len(temp->pos) > cyl.diameter * cyl.diameter)
+	if (temp->pos.x * temp->pos.x + temp->pos.y * temp->pos.y > cyl.diameter * cyl.diameter)
 	{
 		temp->dist = -1;
 	}
 }
 
 /*
-	return 1 if there's no solution
+	return 0 if there's no solution
 */
 bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
 {
@@ -99,7 +99,8 @@ t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3])
 
 t_ray	ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift)
 {	
-	ray->orig = ft_sub(ray->orig, shift);
+	//test
+	ray->orig = ft_sub(ft_matrix_mul(matrix, ray->orig), shift);
 	ray->dir = ft_matrix_mul(matrix, ray->dir);
 	return (*ray);
 }
