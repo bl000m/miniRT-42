@@ -6,12 +6,12 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/29 13:30:14 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/29 13:39:07 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
-//test
+
 void	ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2])
 {
 	if (temp[0].dist != -1)
@@ -99,7 +99,6 @@ t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3])
 
 t_ray	ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift)
 {	
-	//test
 	ray->orig = ft_matrix_mul(matrix, ft_sub(ray->orig, shift));
 	ray->dir = ft_matrix_mul(matrix, ray->dir);
 	return (*ray);
