@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/29 13:16:33 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/29 13:30:14 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2])
 {
 	if (temp[0].dist != -1)
 	{
-		temp[0].pos = ft_matrix_mul(inv, ft_add(temp[0].pos, shift));
+		temp[0].pos = ft_add(ft_matrix_mul(inv, temp[0].pos), shift);
 		temp[0].normal = ft_matrix_mul(inv, temp[0].normal);
 	}
 	if (temp[1].dist != -1)
@@ -100,7 +100,7 @@ t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3])
 t_ray	ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift)
 {	
 	//test
-	ray->orig = ft_sub(ft_matrix_mul(matrix, ray->orig), shift);
+	ray->orig = ft_matrix_mul(matrix, ft_sub(ray->orig, shift));
 	ray->dir = ft_matrix_mul(matrix, ray->dir);
 	return (*ray);
 }

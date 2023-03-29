@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:10:16 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/29 13:20:33 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/29 13:30:48 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int main(void)
 	printf("def cyl\n");
 	t_cylinder	cyl;
 	cyl.center = ft_vec(10, 0, -30);
-	cyl.dir = ft_unit_vec(ft_vec(0, 0, 1));
+	cyl.dir = ft_unit_vec(ft_vec(1, 1, 0));
 	cyl.diameter = 1;
-	cyl.height = 30;
+	cyl.height = 10;
 	cyl.color =  ft_vec(100, 100, 100);
 	
 	/*	generate camera ray and draw	*/
