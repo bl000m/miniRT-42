@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:34:49 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/28 15:21:51 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/29 12:18:08 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_image
 */
 typedef struct s_canvas
 {
-	t_vec3	pos;
+	t_vec3	pos; // -(WIDTH / 2) * eps ; -(HEIGHT / 2) * eps ; -focal_length
 	double	eps;
 }	t_canvas;
 

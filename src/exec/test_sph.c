@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_sph.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:16:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/28 22:17:57 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/29 12:17:38 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,17 @@ int main(void)
 	
 	ft_set_hook(&minirt);
 	
-	/*	set canvas	*/
-	printf("set canvas\n");
+	/*	set canvas and camera	*/
+	printf("set canvas and camera\n");
 	minirt.canvas.eps = 0.01;
-	minirt.canvas.pos = ft_vec((WIDTH / 2) * -0.01, (HEIGHT / 2) * -0.01, 0);
+	minirt.canvas.pos = ft_vec((WIDTH / 2) * -0.01, (HEIGHT / 2) * -0.01, -20);
+	
 	
 	/*	define sphere	*/
 	printf("def sph\n");
 	t_sphere	sph;
-	sph.center = ft_vec(5, 5, -30);
-	sph.radius = 5;
+	sph.center = ft_vec(-2, -2, -30);
+	sph.radius = 2;
 	sph.color =  ft_vec(100, 100, 100);
 	
 	/*	generate camera ray and draw	*/
