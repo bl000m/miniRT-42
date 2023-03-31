@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 14:38:01 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/31 12:46:31 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_set_rec_sph(double dist, t_sphere *sph, t_ray ray, t_record *rec)
 	rec->dist = dist;
 	rec->pos = ft_ray_at(ray, dist);
 	rec->normal = ft_unit_vec(ft_sub(rec->pos, sph->center));
-	if (ft_dot(ray.dir, rec->normal) < 0)
+	if (ft_dot(ray.dir, rec->normal) > 0)
 	{
 		rec->normal = ft_mul(rec->normal, -1);
 	}

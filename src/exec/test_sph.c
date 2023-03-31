@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:16:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/29 12:29:39 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/31 12:27:54 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,25 @@
 #include <stdio.h>
 
 static void	ft_put_pixel(t_image *img, int x, int y, int color);
+
+static int	ft_vec_to_int(t_vec3 color)
+{
+	int	temp;
+	
+	color = ft_unit_vec(color);
+	color.x += 1;
+	color.y += 1;
+	color.z += 1;
+	color = ft_unit_vec(color);
+   // double	t = 0.5 * (color.y + 1.0);
+   // color = ft_add(ft_mul(ft_vec(1.0, 1.0, 1.0), (1.0 - t)), ft_mul(ft_vec(0.5, 0.7, 1.0), t));
+	
+	temp = 0;
+	temp |= (int)(color.x * 250) << 0; // blue
+	temp |= (int)(color.y * 250) << 8; // green
+	temp |= (int)(color.z * 250) << 16; //red
+	return (temp);
+}
 
 // static void	ft_print_vec(t_vec3 v)
 // {
@@ -85,7 +104,7 @@ int main(void)
 			if (ft_hit_sph(&sph, ray, 10000, &rec))
 			{
 				//printf("o");
-				ft_put_pixel(img_info, x, y, 0xFFFFFF);
+				ft_put_pixel(img_info, x, y, ft_vec_to_int(rec.normal));
 			}
 			else
 			{

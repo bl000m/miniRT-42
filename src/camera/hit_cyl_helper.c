@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/29 13:39:07 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/03/31 12:38:21 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2])
 	}
 	if (temp[1].dist != -1)
 	{
-		temp[1].pos = ft_matrix_mul(inv, ft_add(temp[1].pos, shift));
+		temp[1].pos = ft_add(ft_matrix_mul(inv, temp[1].pos), shift);
 		temp[1].normal = ft_matrix_mul(inv, temp[1].normal);
 	}
 }
@@ -78,7 +78,7 @@ bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
 	rec[1].dist = (-b + discrim) / (2.0 * a);
 	rec[0].pos = ft_ray_at(ray, rec[0].dist);
 	rec[1].pos = ft_ray_at(ray, rec[1].dist);
-	rec[0].normal = ft_unit_vec(rec[0].pos);
+	rec[0].normal = ft_unit_vec(ft_vec(rec[0].pos.x, rec[0].pos.y, 0));
 	rec[1].normal = ft_unit_vec(ft_mul(rec[0].pos, -1));
 	rec[0].color = cyl.color;
 	rec[1].color = cyl.color;
