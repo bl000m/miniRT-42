@@ -15,3 +15,6 @@ a.out
 
 #ignore the mlx_linux directory at root, and its content
 /mlx_linux/ 
+
+#ignore .vscode/ at the root of profect
+/.vscode/

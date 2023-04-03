@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_camera_ray.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:54:35 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 21:15:20 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/29 12:01:32 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ t_ray	ft_camera_ray(t_canvas *canvas, int x, int y)
 	temp.orig.x = 0;
 	temp.orig.y = 0;
 	temp.orig.z = 0;
-	temp.dir.x = canvas->pos.x + canvas->eps * x;
-	temp.dir.y = canvas->pos.y + WIDTH - canvas->eps * y;
-	temp.dir.z = -1;
+	temp.dir.x = (canvas->pos.x + canvas->eps * x) - temp.orig.x;
+	temp.dir.y = canvas->pos.y + canvas->eps * (HEIGHT - y) - temp.orig.y;
+	temp.dir.z = canvas->pos.z - temp.orig.z;
+	temp.dir = ft_unit_vec(temp.dir);
 	return (temp);
 }

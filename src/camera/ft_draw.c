@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:15:42 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/19 21:54:54 by sasha            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:19:05 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,28 @@ void	ft_draw_pixel(int x, int y, t_minirt *minirt)
 	draw color to pixel(x, y)
 	*/
 }
+
+/*
+void	ft_put_pixel(t_image *img, int x, int y, t_vec3 color)
+{
+	int		index;
+	double	factor;
+	int		temp;
+
+	index = y * img->line_byte + x * img->pixel_bit / 8;
+	if (img->endian == 1)
+	{
+		img->buffer[index + 0] = (color >> 24);
+		img->buffer[index + 1] = (color >> 16) & 0xFF;
+		img->buffer[index + 2] = (color >> 8) & 0xFF;
+		img->buffer[index + 3] = (color) & 0xFF;
+	}
+	else if (img->endian == 0)
+	{
+		img->buffer[index + 0] = (color) & 0xFF;
+		img->buffer[index + 1] = (color >> 8) & 0xFF;
+		img->buffer[index + 2] = (color >> 16) & 0xFF;
+		img->buffer[index + 3] = (color >> 24);
+	}
+}
+*/

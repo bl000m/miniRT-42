@@ -6,7 +6,7 @@
 #    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/03/21 14:09:28 by hsliu            ###   ########.fr        #
+#    Updated: 2023/03/31 12:46:39 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,19 @@ OBJ_DIR	=	./.obj/
 
 INC_DIR	=	./include/
 
-VPATH	=	./src/parsing ./src/camara ./src/light ./src/world ./src/exec
+VPATH	=	./src/parsing ./src/camera ./src/light ./src/world ./src/exec
 
 LIST_PARSING	=	
 
-LIST_CAMERA		=	
+LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
+					hit_cyl.c hit_cyl_helper.c 
 
 LIST_LIGHT		= 
 
-LIST_WORLD		= 
+LIST_WORLD		= 	list_op1.c math_utils.c matrix_op.c \
+					vector_op1.c vector_op2.c vector_op3.c 
 
-LIST_EXEC		=
+LIST_EXEC		=	test_sph.c hooks.c init.c
 
 PARSING_DIR		=	$(addprefix $(SRC_DIR), parsing)
 
@@ -60,7 +62,7 @@ INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
 
 MLX_DIR	=	mlx_linux
 
-#MLX		=	mlx_linux/libmlx.a
+MLX		=	 mlx_linux/libmlx.a mlx_linux/libmlx_Linux.a
 
 CC		=	cc
 
@@ -68,7 +70,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJ) $(INC) $(MLX_DIR)
+$(NAME): $(OBJ_DIR) $(OBJ) $(INC) $(MLX)
 	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 $(MLX): $(MLX_DIR)
