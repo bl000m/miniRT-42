@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:52:10 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 15:18:07 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/06 13:43:15 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	ft_solve_sph(t_sphere *sph, t_ray ray, double *ret);
 /*	hit_cyl.c	*/
 bool	ft_hit_cyl(t_cylinder cyl, t_ray ray, double dist_max, t_record *rec);
 bool	ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2]);
-void	ft_copy_rec(t_record *rec, t_record *temp);
+void	ft_copy_rec(t_record *rec, t_record *temp, t_ray ray);
 
 /*	hit_cyl_helper.c	*/
 void		ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2]);

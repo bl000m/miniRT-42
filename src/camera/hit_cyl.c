@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cyl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:21:23 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/29 13:36:16 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/06 13:44:47 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ bool	ft_hit_cyl(t_cylinder cyl, t_ray ray, double dist_max, t_record *rec)
 	}
 	else if (temp[0].dist < dist_max && temp[0].dist > 0.001)
 	{
-		ft_copy_rec(rec, temp);
+		ft_copy_rec(rec, temp, ray);
 		return (TRUE);
 	}
 	else if (temp[1].dist < dist_max && temp[1].dist > 0.001)
 	{
-		ft_copy_rec(rec, temp + 1);
+		ft_copy_rec(rec, temp + 1, ray);
 		return (TRUE);
 	}
 	return (FALSE);
@@ -72,10 +72,14 @@ bool	ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2])
 	return (TRUE);
 }
 
-void	ft_copy_rec(t_record *rec, t_record *temp)
+void	ft_copy_rec(t_record *rec, t_record *temp, t_ray ray)
 {
 	rec->dist = temp->dist;
 	rec->pos = temp->pos;
 	rec->normal = temp->normal;
 	rec->color = temp->color;
+	if (ft_dot(ray.dir, rec->normal) > 0)
+	{
+		rec->normal = ft_mul(rec->normal, -1);
+	}
 }
