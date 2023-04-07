@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/06 16:03:13 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/07 17:52:30 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	main(int argc, char **argv)
 {
 	t_minirt	minirt;
 
-	if (!ft_init_mlx(&minirt))
+	if (!ft_init(&minirt))
 	{
 		(void) (write(2, "init fails\n", 11) + 1);
-		return (0);
+		return (1);
 	}
 	read_rt_map(argv[1], &minirt);
 	ft_set_hook(&minirt);

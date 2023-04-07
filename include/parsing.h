@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:34:49 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/29 13:04:08 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/07 18:05:21 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "world.h"
 //include light.h
 # include "mlx.h"
+# include "scene.h"
 # include "camera.h"
 
 # ifndef WIDTH
@@ -44,6 +45,11 @@ typedef struct s_canvas
 	double	eps;
 }	t_canvas;
 
+typedef struct s_map
+{
+	int	n_lines;
+}	t_map;
+
 typedef struct s_minirt
 {
 	void		*mlx;
@@ -52,17 +58,11 @@ typedef struct s_minirt
 	t_image		img_info;
 	t_canvas	canvas;
 	t_node		*world;
-	//ambient light 
+	t_map		*rt_map;
+	t_scene		*scene;
+	//ambient light
     //light source
 }	t_minirt;
 
-/*	
-	move it if it's more suitable in light.h
-*/
-typedef struct s_light
-{
-	t_vec3	pos;
-	t_vec3	color;
-}	t_light;
 
 #endif
