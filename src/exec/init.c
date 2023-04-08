@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/08 13:01:40 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/08 20:06:46 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool	ft_init_mlx(t_minirt *minirt)
 
 bool	ft_init_objects(t_minirt *minirt)
 {
-	t_objects	*objects;
+	t_object	*objects;
 
 	objects = calloc(sizeof(*objects), 1);
 	if (!objects)

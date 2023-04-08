@@ -6,7 +6,7 @@
 #    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/08 14:10:55 by mathia           ###   ########.fr        #
+#    Updated: 2023/04/08 20:23:54 by mathia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,14 +82,14 @@ $(NAME): $(OBJ_DIR) $(OBJ) $(INC) $(MLX)
 $(MLX): $(MLX_DIR)
 	$(MAKE) -C $(MLX_DIR)
 
-$(OBJ_DIR)%.o: %.c $(INC)
+$(OBJ_DIR)%.o: %.c $(INC) $(LIBFT)
 	$(CC) $(CFLAGS) $(LIBFT_INC) -I/usr/include -Imlx_linux -I $(INC_DIR) -O3 -c $< -o $@
 
 $(OBJ_DIR) : 
 	mkdir -p $(OBJ_DIR)
 
-$(LIBFT):	FORCE
-	make -C $(LIBFT_DIR)
+# $(LIBFT):	FORCE
+# 	make -C $(LIBFT_DIR)
 
 clean : 
 	rm -rf $(OBJ_DIR)

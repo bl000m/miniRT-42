@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:36:05 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/08 13:51:28 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/08 20:00:09 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    initialize_plane(t_minirt *minirt, char **tokens)
     new_plane->pos = get_instruction(tokens, 1);
     new_plane->dir = get_instruction(tokens, 2);
     new_plane->color = get_instruction(tokens, 3);
-    add_new_object(minirt, new_plane, "t_plane");
+    add_new_object(minirt, new_plane);
 }
 
 void    initialize_sphere(t_minirt *minirt, char **tokens)
@@ -35,9 +35,9 @@ void    initialize_sphere(t_minirt *minirt, char **tokens)
     if (new_sphere == NULL)
         return ;
     new_sphere->center = get_instruction(tokens, 1);
-    new_sphere->diameter = get_instruction(tokens, 2);
+    new_sphere->diameter = get_instruction_double(tokens, 2);
     new_sphere->color = get_instruction(tokens, 3);
-    add_new_object(minirt, new_sphere, "t_sphere");
+    add_new_object(minirt, new_sphere);
 }
 
 void    initialize_cylinder(t_minirt *minirt, char **tokens)
@@ -49,10 +49,10 @@ void    initialize_cylinder(t_minirt *minirt, char **tokens)
         return ;
     new_cylinder->center = get_instruction(tokens, 1);
     new_cylinder->dir = get_instruction(tokens, 2);
-    new_cylinder->diameter = get_instruction(tokens, 3);
-    new_cylinder->height = get_instruction(tokens, 4);
+    new_cylinder->diameter = get_instruction_double(tokens, 3);
+    new_cylinder->height = get_instruction_double(tokens, 4);
     new_cylinder->color = get_instruction(tokens, 5);
-    add_new_object(minirt, new_cylinder, "t_cylinder");
+    add_new_object(minirt, new_cylinder);
 }
 
 void    initialize_ambient_light(t_minirt *minirt, char **tokens)
@@ -62,9 +62,9 @@ void    initialize_ambient_light(t_minirt *minirt, char **tokens)
     ambient_light = ft_calloc(sizeof(*ambient_light), 1);
     if (ambient_light == NULL)
         return ;
-    ambient_light->ratio = get_instruction(tokens, 1);
+    ambient_light->ratio = get_instruction_double(tokens, 1);
     ambient_light->color = get_instruction(tokens, 2);
-    minirt->ambient_light = ambient_light;
+    minirt->scene->ambient_light = ambient_light;
 }
 
 void    initialize_camera(t_minirt *minirt, char **tokens)
@@ -76,8 +76,8 @@ void    initialize_camera(t_minirt *minirt, char **tokens)
         return ;
     camera->view_point = get_instruction(tokens, 1);
     camera->orientation = get_instruction(tokens, 2);
-    camera->FOV = get_instruction(tokens, 3);
-    minirt->camera = camera;
+    camera->FOV = get_instruction_double(tokens, 3);
+    minirt->scene->camera = camera;
 }
 
 void    initialize_light(t_minirt *minirt, char **tokens)
@@ -88,7 +88,7 @@ void    initialize_light(t_minirt *minirt, char **tokens)
     if (light == NULL)
         return ;
     light->pos = get_instruction(tokens, 1);
-    light->ratio = get_instruction(tokens, 2);
+    light->ratio = get_instruction_double(tokens, 2);
     light->color = get_instruction(tokens, 3);
-    minirt->light = light;
+    minirt->scene->light = light;
 }
