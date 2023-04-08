@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 17:56:01 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/08 13:52:04 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,16 @@ typedef struct	s_node
 typedef struct s_sphere
 {
 	t_vec3	center;
-	double	radius;
+	double	diameter;
 	t_vec3	color;
 }	t_sphere;
+
+typedef struct s_plane
+{
+	t_vec3	pos;
+	t_vec3	dir;
+	t_vec3	color;
+}	t_plane;
 
 typedef struct s_cylinder
 {

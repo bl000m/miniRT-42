@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:09 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 17:54:00 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/08 12:20:24 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	ft_init_mlx(t_minirt *minirt);
 bool	ft_init(t_minirt *minirt);
 bool	ft_init_map(t_minirt *minirt);
 bool	ft_init_scene(t_minirt *minirt);
+bool	ft_init_objects(t_minirt *minirt);
 
 /*	hooks.c	*/
 void	ft_set_hook(t_minirt *minirt);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:34:49 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/07 18:05:21 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:11:37 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "mlx.h"
 # include "scene.h"
 # include "camera.h"
+# include "../libft/libft.h"
 
 # ifndef WIDTH
 #  define WIDTH 2400
