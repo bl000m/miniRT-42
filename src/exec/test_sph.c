@@ -82,7 +82,7 @@ int main(void)
 	printf("def sph\n");
 	t_sphere	sph;
 	sph.center = ft_vec(-2, -2, -50);
-	sph.radius = 2;
+	sph.diameter = 2;
 	sph.color =  ft_vec(100, 100, 100);
 	
 	/*	generate camera ray and draw	*/

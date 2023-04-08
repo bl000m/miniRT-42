@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/08 13:41:49 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/08 14:15:49 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 
 void	checking_identifier(t_minirt *minirt, char **tokens)
 {
-	if (ft_strcmp(tokens[0], "pl") == 0)
+	if (ft_strncmp(tokens[0], "pl", 2) == 0)
 		initialize_plane(minirt, tokens);
-	if (ft_strcmp(tokens[0], "sp") == 0)
+	if (ft_strncmp(tokens[0], "sp", 2) == 0)
 		initialize_sphere(minirt, tokens);	
-	if (ft_strcmp(tokens[0], "cy") == 0)
+	if (ft_strncmp(tokens[0], "cy", 2) == 0)
 		initialize_cylinder(minirt, tokens);	
-	if (ft_strcmp(tokens[0], "A") == 0)
+	if (ft_strncmp(tokens[0], "A", 1) == 0)
 		initialize_ambient_light(minirt, tokens);	
-	if (ft_strcmp(tokens[0], "C") == 0)
+	if (ft_strncmp(tokens[0], "C", 1) == 0)
 		initialize_camera(minirt, tokens);
-	if (ft_strcmp(tokens[0], "L") == 0)
+	if (ft_strncmp(tokens[0], "L", 1) == 0)
 		initialize_light(minirt, tokens);
 }
 

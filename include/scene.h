@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:11:05 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/08 13:59:15 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/08 14:13:19 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_camera
 
 typedef struct s_object
 {
-	void		*content;
-	t_object	next;
+	void			*content;
+	struct s_object	*next;
 }	t_object;
 
 typedef struct s_scene

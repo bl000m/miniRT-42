@@ -6,7 +6,7 @@
 #    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/08 13:54:49 by mathia           ###   ########.fr        #
+#    Updated: 2023/04/08 14:10:55 by mathia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,13 +56,19 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_WORLD:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_EXEC:.c=.o))
 
-LIST_INC	=	parsing.h camera.h world.h exec.h
+LIST_INC	=	parsing.h camera.h world.h exec.h scene.h
 
 INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
 
 MLX_DIR	=	mlx_linux
 
 MLX		=	 mlx_linux/libmlx.a mlx_linux/libmlx_Linux.a
+
+# library ft_
+LIBFT_DIR	= ./libft
+LIBFT		= $(LIBFT_DIR)/libft.a
+LIBFT_INC	= -I ./libft
+LIBFT_LNK	= -L ./libft -l ft
 
 CC		=	cc
 
@@ -71,21 +77,26 @@ CFLAGS	=	-Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ) $(INC) $(MLX)
-	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT_LNK) -o $(NAME)
 
 $(MLX): $(MLX_DIR)
 	$(MAKE) -C $(MLX_DIR)
 
 $(OBJ_DIR)%.o: %.c $(INC)
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -I $(INC_DIR) -O3 -c $< -o $@
+	$(CC) $(CFLAGS) $(LIBFT_INC) -I/usr/include -Imlx_linux -I $(INC_DIR) -O3 -c $< -o $@
 
 $(OBJ_DIR) : 
 	mkdir -p $(OBJ_DIR)
 
+$(LIBFT):	FORCE
+	make -C $(LIBFT_DIR)
+
 clean : 
 	rm -rf $(OBJ_DIR)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
+	make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re:	fclean $(NAME)
