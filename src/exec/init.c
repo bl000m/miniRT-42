@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/07 18:07:43 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/08 13:01:40 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,17 @@ bool	ft_init_mlx(t_minirt *minirt)
 	return (TRUE);
 }
 
+bool	ft_init_objects(t_minirt *minirt)
+{
+	t_objects	*objects;
+
+	objects = calloc(sizeof(*objects), 1);
+	if (!objects)
+		return (FALSE);
+	minirt->scene->objects = objects;
+	return (TRUE);
+}
+
 bool	ft_init_map(t_minirt *minirt)
 {
 	t_map	*rt_map;
@@ -71,9 +82,7 @@ bool	ft_init_scene(t_minirt *minirt)
 	scene->ambient_light = NULL;
 	scene->camera = NULL;
 	scene->light = NULL;
-	scene->cylinder = NULL;
-	scene->sphere = NULL;
-	scene->plane = NULL;
+	scene->objects = NULL;
 	minirt->scene = scene;
 	return (TRUE);
 }
@@ -84,5 +93,6 @@ bool	ft_init(t_minirt *minirt)
 
 	ret = ft_init_mlx(minirt);
 	ret += ft_init_map(minirt);
+	ret += ft_init_objects(minirt);
 	return (ret);
 }

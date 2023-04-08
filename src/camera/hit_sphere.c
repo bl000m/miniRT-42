@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/31 12:46:31 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/08 13:52:03 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2])
 	oc = ft_sub(ray.orig, sph->center);
 	a = ft_dot(ray.dir, ray.dir);
 	b = 2 * ft_dot(oc, ray.dir);
-	c = ft_dot(oc, oc) - sph->radius * sph->radius;
+	c = ft_dot(oc, oc) - sph->diameter * sph->diameter;
 	discrim = b * b - 4 * a * c;
 	if (discrim < 0)
 	{

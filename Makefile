@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
+#    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/03/31 12:46:39 by hsliu            ###   ########.fr        #
+#    Updated: 2023/04/08 13:54:49 by mathia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INC_DIR	=	./include/
 
 VPATH	=	./src/parsing ./src/camera ./src/light ./src/world ./src/exec
 
-LIST_PARSING	=	
+LIST_PARSING	=	reading_rt.c scanning_rt.c init_instructions.c parsing_utils.c
 
 LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
 					hit_cyl.c hit_cyl_helper.c 
@@ -32,7 +32,7 @@ LIST_LIGHT		=
 LIST_WORLD		= 	list_op1.c math_utils.c matrix_op.c \
 					vector_op1.c vector_op2.c vector_op3.c 
 
-LIST_EXEC		=	test_sph.c hooks.c init.c
+LIST_EXEC		=	main.c hooks.c init.c
 
 PARSING_DIR		=	$(addprefix $(SRC_DIR), parsing)
 

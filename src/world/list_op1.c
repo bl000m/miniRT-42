@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   list_op1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:28:19 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 13:43:53 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/08 13:28:28 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "world.h"
 
+// Sasha sphere->radius is now sphere->diameter (as in the instructions)
+// please check if some math needs to be updated 
 t_node	*ft_new_sphere(t_vec3 cent, double r)
 {
 	t_sphere	*sphere;
@@ -27,7 +29,7 @@ t_node	*ft_new_sphere(t_vec3 cent, double r)
 		return (NULL);
 	}
 	sphere->center = cent;
-	sphere->radius = r;
+	sphere->diameter = r;
 	node->type = SPH;
 	node->hittable = sphere;
 	node->next = NULL;
