@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/08 13:59:04 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/08 20:06:28 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 #include "camera.h"
 #include "mlx.h"
 #include "exec.h"
+#include "scene.h"
+
 
 int	main(int argc, char **argv)
 {
 	t_minirt	minirt;
 
+	(void)argc;
 	if (!ft_init(&minirt))
 	{
 		(void) (write(2, "init fails\n", 11) + 1);

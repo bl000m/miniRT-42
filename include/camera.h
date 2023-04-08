@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:52:10 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 15:18:07 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/08 20:03:04 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_record
 /*	hit_sphere.c	*/
 bool	ft_hit_sph(t_sphere *sph, t_ray ray, double root_max, t_record *rec);
 void	ft_set_rec_sph(double dist, t_sphere *sph, t_ray ray, t_record *rec);
-bool	ft_solve_sph(t_sphere *sph, t_ray ray, double *ret);
+bool	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2]);
 
 /*	hit_cyl.c	*/
 bool	ft_hit_cyl(t_cylinder cyl, t_ray ray, double dist_max, t_record *rec);
