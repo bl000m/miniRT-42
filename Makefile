@@ -6,7 +6,7 @@
 #    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/08 20:23:54 by mathia           ###   ########.fr        #
+#    Updated: 2023/04/09 07:35:34 by mathia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,15 +60,21 @@ LIST_INC	=	parsing.h camera.h world.h exec.h scene.h
 
 INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
 
-MLX_DIR	=	mlx_linux
+# MLX_DIR	=	mlx_linux
 
-MLX		=	 mlx_linux/libmlx.a mlx_linux/libmlx_Linux.a
+# MLX		=	 mlx_linux/libmlx.a mlx_linux/libmlx_Linux.a
+
+# library minilibx
+MLX_DIR		= mlx_linux
+MLX			= $(MLX_DIR)/libmlx.a $(MLX_DIR)/libmlx_Linux.a
+MLX_INC		= -Imlx_linux
+MLX_LNK		= -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 # library ft_
-LIBFT_DIR	= ./libft
+LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
-LIBFT_INC	= -I ./libft
-LIBFT_LNK	= -L ./libft -l ft
+LIBFT_INC	= -Ilibft
+LIBFT_LNK	= -Llibft -l ft
 
 CC		=	cc
 
@@ -76,20 +82,26 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJ) $(INC) $(MLX)
-	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT_LNK) -o $(NAME)
+$(NAME): $(OBJ_DIR) $(OBJ) $(INC) $(MLX) $(LIBFT)
+	$(CC) $(OBJ) $(MLX_LNK) $(MLX_INC) $(LIBFT_LNK) $(LIBFT_INC) -o $(NAME)
 
 $(MLX): $(MLX_DIR)
 	$(MAKE) -C $(MLX_DIR)
 
-$(OBJ_DIR)%.o: %.c $(INC) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBFT_INC) -I/usr/include -Imlx_linux -I $(INC_DIR) -O3 -c $< -o $@
 
+$(OBJ_DIR)%.o: %.c $(INC)
+	$(CC) $(CFLAGS) -I/usr/include $(MLX_INC) $(LIBFT_INC) -I $(INC_DIR) -O3 -c $< -o $@
+
+$(LIBFT):	FORCE
+	make -C $(LIBFT_DIR)
+	
 $(OBJ_DIR) : 
 	mkdir -p $(OBJ_DIR)
+	
+FORCE	:
 
-# $(LIBFT):	FORCE
-# 	make -C $(LIBFT_DIR)
+val :
+	valgrind --tool=memcheck --leak-check=full --leak-resolution=high --show-reachable=no ./miniRT scene_basic.rt
 
 clean : 
 	rm -rf $(OBJ_DIR)
