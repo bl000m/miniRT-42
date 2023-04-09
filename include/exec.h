@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:09 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/09 10:16:50 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/09 15:56:00 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ bool	ft_init(t_minirt *minirt);
 bool	ft_init_map(t_minirt *minirt);
 bool	ft_init_scene(t_minirt *minirt);
 bool	ft_init_objects(t_scene **scene);
+void    setting_canvas(t_minirt *minirt);
 
 /*	hooks.c	*/
 void	ft_set_hook(t_minirt *minirt);

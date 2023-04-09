@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/08 20:06:28 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/09 16:57:11 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 int	main(int argc, char **argv)
 {
 	t_minirt	minirt;
+	t_object	*temp;
 
 	(void)argc;
 	if (!ft_init(&minirt))
@@ -30,9 +31,14 @@ int	main(int argc, char **argv)
 	}
 	read_rt_map(argv[1], &minirt);
 	ft_set_hook(&minirt);
-	//set canvas
+	setting_canvas(&minirt);
 	//initialize objects
-	//generate camera ray and draw
+	temp = minirt.scene->objects;
+	while (temp)
+	{
+		generating_camera_ray_draw(&minirt, temp);
+		temp = temp->next;
+	}
 	mlx_put_image_to_window(minirt.mlx, minirt.win, minirt.img, 0, 0);
 	mlx_loop(minirt.mlx);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/08 13:52:04 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/09 16:01:53 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_vec3	ft_cross(t_vec3 u, t_vec3 v);
 /*	vector_op3.c	*/
 t_vec3	ft_vec(double x, double y, double z);
 bool	ft_is_zero(t_vec3 v);
+int		ft_vec_to_int(t_vec3 color);
 
 
 /*	matrix_op.c	*/

@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/09 15:30:05 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/09 18:40:41 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ bool	ft_init_objects(t_scene **scene)
 	objects->plane = NULL;
 	objects->sphere = NULL;
 	objects->cylinder = NULL;
+	objects->type = 0;
 	objects->first = 0;
 	objects->next = NULL;
 	(*scene)->objects = objects;
