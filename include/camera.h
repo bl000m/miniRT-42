@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:52:10 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/08 20:03:04 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/09 16:54:44 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "world.h"
 # include "parsing.h"
+# include "scene.h"
 
 typedef struct s_canvas	t_canvas;
 
@@ -54,5 +55,6 @@ t_vec3	ft_ray_at(t_ray ray, double t);
 
 /*	ft_camera_ray.c	*/
 t_ray	ft_camera_ray(t_canvas *canvas, int x, int y);
+
 
 #endif

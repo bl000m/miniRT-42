@@ -6,7 +6,7 @@
 #    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/09 08:02:12 by mathia           ###   ########.fr        #
+#    Updated: 2023/04/09 15:54:05 by mathia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ LIST_LIGHT		=
 LIST_WORLD		= 	list_op1.c math_utils.c matrix_op.c \
 					vector_op1.c vector_op2.c vector_op3.c 
 
-LIST_EXEC		=	main.c hooks.c init.c
+LIST_EXEC		=	main.c hooks.c init.c settings.c
 
 PARSING_DIR		=	$(addprefix $(SRC_DIR), parsing)
 
@@ -59,10 +59,6 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
 LIST_INC	=	parsing.h camera.h world.h exec.h scene.h
 
 INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
-
-# MLX_DIR	=	mlx_linux
-
-# MLX		=	 mlx_linux/libmlx.a mlx_linux/libmlx_Linux.a
 
 # library minilibx
 MLX_DIR		= mlx_linux

@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:11:05 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/09 15:30:39 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/09 18:43:51 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_object
 	t_plane			*plane;
 	t_sphere		*sphere;
 	t_cylinder		*cylinder;
+	char			type;
 	int				first;
 	struct s_object	*next;
 }	t_object;
@@ -108,6 +109,7 @@ int    	check_commas(char *token);
 void    add_new_plane_object(t_minirt *minirt, t_plane *new_object_content);
 void    add_new_sphere_object(t_minirt *minirt, t_sphere *new_object_content);
 void    add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content);
-
+void	ft_put_pixel(t_image *img_info, int x, int y, int color);
+void    generating_camera_ray_draw(t_minirt *minirt, t_object *object);
 
 #endif
