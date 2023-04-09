@@ -6,7 +6,7 @@
 #    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/09 07:35:34 by mathia           ###   ########.fr        #
+#    Updated: 2023/04/09 08:02:12 by mathia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ $(OBJ_DIR) :
 FORCE	:
 
 val :
-	valgrind --tool=memcheck --leak-check=full --leak-resolution=high --show-reachable=no ./miniRT scene_basic.rt
+	valgrind --tool=memcheck --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --leak-resolution=high --show-reachable=no ./miniRT scene_basic.rt
 
 clean : 
 	rm -rf $(OBJ_DIR)

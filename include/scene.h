@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:11:05 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/08 20:05:41 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/09 15:30:39 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ typedef struct s_camera
 
 typedef struct s_object
 {
-	void			*content;
+	t_plane			*plane;
+	t_sphere		*sphere;
+	t_cylinder		*cylinder;
+	int				first;
 	struct s_object	*next;
 }	t_object;
 
@@ -102,7 +105,9 @@ int		get_n_lines(int fd);
 t_vec3 	get_instruction(char **tokens, int index);
 double 	get_instruction_double(char **tokens, int index);
 int    	check_commas(char *token);
-void    add_new_object(t_minirt *minirt, void *new_object_content);
+void    add_new_plane_object(t_minirt *minirt, t_plane *new_object_content);
+void    add_new_sphere_object(t_minirt *minirt, t_sphere *new_object_content);
+void    add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content);
 
 
 #endif
