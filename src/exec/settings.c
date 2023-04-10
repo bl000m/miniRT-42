@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/09 18:45:08 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/10 15:32:29 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,49 +42,36 @@ void    setting_canvas(t_minirt *minirt)
 	minirt->canvas.pos = ft_vec((WIDTH / 2) * -0.01, (HEIGHT / 2) * -0.01, -20);
 }
 
-// void    putting_pixel_depending_on_objects(char type)
-// {
-//     if (type == 'p')
-//         return ;
-//     else if (type == 's')
-//     {
-//         if (ft_hit_sph(&sph, ray, 10000, &rec))
-//             ft_put_pixel(img_info, x, y, ft_vec_to_int(rec.normal));
-//         else
-//             ft_put_pixel(img_info, x, y, 0x0);
-//     }
-//     else if (type == 'c')
-//         return ;
-// }
+void    putting_pixel_depending_on_objects(t_minirt *minirt, t_object *object)
+{
+	if (((object->type == 's') && (ft_hit_sph(object->sphere, minirt->ray, 10000, &(minirt->rec))))
+		|| ((object->type == 'c') && (ft_hit_cyl(*object->cylinder, minirt->ray, 1000000, &(minirt->rec)))))
+		ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.normal));
+	else if (object->type == 'p')
+	{
+		// if (ft_hit_plane(*object->plane, minirt->ray, 1000000, &(minirt->rec)))
+		//     ft_put_pixel(&(minirt->img_info), x, y, ft_vec_to_int(rec.normal));
+		// else
+		//     ft_put_pixel(&(minirt->img_info), x, y, 0x0);
+		return;
+	}
+	else
+		ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
+}
 
 void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
-    int			x;
-	int			y;
-	t_image		*img_info;
-	t_ray		ray;
-	t_record	rec;
-
-	img_info = &(minirt->img_info);
-	y = 0;
-	while (y < HEIGHT)
+	minirt->y = 0;
+	while (minirt->y < HEIGHT)
 	{
-		x = 0;
-		while (x < WIDTH)
+		minirt->x = 0;
+		while (minirt->x < WIDTH)
 		{
-			ray = ft_camera_ray(&(minirt->canvas), x, y);
-            if (object->type == 's')
-            {
-                if (ft_hit_sph(object->sphere, ray, 10000, &rec))
-                    ft_put_pixel(img_info, x, y, ft_vec_to_int(rec.normal));
-                else
-                    ft_put_pixel(img_info, x, y, 0x0);
-            }
-            else
-                return ;
-			x++;
+			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
+            putting_pixel_depending_on_objects(minirt, object);
+			minirt->x++;
 		}
-		y++;
+		minirt->y++;
 	}
 }
 
