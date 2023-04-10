@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/10 15:32:29 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/10 19:42:58 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ void    putting_pixel_depending_on_objects(t_minirt *minirt, t_object *object)
 		ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.normal));
 	else if (object->type == 'p')
 	{
-		// if (ft_hit_plane(*object->plane, minirt->ray, 1000000, &(minirt->rec)))
-		//     ft_put_pixel(&(minirt->img_info), x, y, ft_vec_to_int(rec.normal));
-		// else
-		//     ft_put_pixel(&(minirt->img_info), x, y, 0x0);
-		return;
+		if (ft_hit_plane(minirt, object->plane))
+		    ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.normal));
+		else
+		    ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
 	}
 	else
 		ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
