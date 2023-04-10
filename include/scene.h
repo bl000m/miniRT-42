@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:11:05 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/09 18:43:51 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/10 15:27:49 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,25 @@
 
 # include "parsing.h"
 # include "world.h"
+# include "camera.h"
 # include <stdio.h>
 # include <fcntl.h>
+
+typedef struct s_canvas	t_canvas;
+
+typedef struct s_ray
+{
+	t_vec3	orig;
+	t_vec3	dir;
+}	t_ray;
+
+typedef struct s_record
+{
+	double	dist;
+	t_vec3	pos;
+	t_vec3	normal;
+	t_vec3	color;
+}	t_record;
 
 typedef struct s_ambient
 {
@@ -89,6 +106,10 @@ typedef struct s_minirt
 	t_node		*world;
 	t_map		*rt_map;
 	t_scene		*scene;
+	t_record	rec;
+	t_ray		ray;
+	int			x;
+	int			y;
 	//ambient light
     //light source
 }	t_minirt;
@@ -111,5 +132,31 @@ void    add_new_sphere_object(t_minirt *minirt, t_sphere *new_object_content);
 void    add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content);
 void	ft_put_pixel(t_image *img_info, int x, int y, int color);
 void    generating_camera_ray_draw(t_minirt *minirt, t_object *object);
+/*	hit_plane.c	*/
+bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec);
+
+/*	hit_sphere.c	*/
+bool	ft_hit_sph(t_sphere *sph, t_ray ray, double root_max, t_record *rec);
+void	ft_set_rec_sph(double dist, t_sphere *sph, t_ray ray, t_record *rec);
+bool	ft_solve_sph(t_sphere *sph, t_ray ray, double ret[2]);
+
+/*	hit_cyl.c	*/
+bool	ft_hit_cyl(t_cylinder cyl, t_ray ray, double dist_max, t_record *rec);
+bool	ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2]);
+void	ft_copy_rec(t_record *rec, t_record *temp);
+
+/*	hit_cyl_helper.c	*/
+void		ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2]);
+void		ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp);
+bool		ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2]);
+t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3]);
+t_ray		ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift);
+
+/*	ray_op.c	*/
+t_vec3	ft_ray_at(t_ray ray, double t);
+
+/*	ft_camera_ray.c	*/
+t_ray	ft_camera_ray(t_canvas *canvas, int x, int y);
+
 
 #endif

@@ -6,14 +6,15 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/08 10:05:13 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/10 15:27:40 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
 
-bool	ft_hit_plane(t_sphere *sph, t_ray ray, double dist_max, t_record *rec)
+bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec)
 {
+	return (0);
 	// if the line connecting the point touched by ray and a known point of the plane
 	// is dot_product = 0 that means that we found the plane (except for the plane being parallel
 	// to ray => that would mean that ray never touch plane)
