@@ -6,7 +6,7 @@
 #    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/09 15:54:05 by mathia           ###   ########.fr        #
+#    Updated: 2023/04/10 19:31:15 by mathia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ VPATH	=	./src/parsing ./src/camera ./src/light ./src/world ./src/exec
 LIST_PARSING	=	reading_rt.c scanning_rt.c init_instructions.c parsing_utils.c
 
 LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
-					hit_cyl.c hit_cyl_helper.c 
+					hit_cyl.c hit_cyl_helper.c hit_plane.c
 
 LIST_LIGHT		= 
 

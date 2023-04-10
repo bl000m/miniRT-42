@@ -6,26 +6,42 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/10 15:27:40 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/10 19:47:38 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parsing.h"
+#include "world.h"
 #include "camera.h"
+#include "mlx.h"
+#include "exec.h"
+#include "scene.h"
 
-bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec)
+/*
+	check if minirt->ray.orig is the ray position
+	if the line connecting the point touched by ray and a known point of the plane
+	is dot_product ? 0 (œ epsilon that is distance btw 2 pixels) that means that we found the plane (except for the plane being parallel
+	to ray => that would mean that ray never touch plane)
+	The fabs() function calculates the absolute value of the floating-point argument x.
+*/ 
+bool	ft_hit_plane(t_minirt *minirt, t_plane *plane)
 {
-	return (0);
-	// if the line connecting the point touched by ray and a known point of the plane
-	// is dot_product = 0 that means that we found the plane (except for the plane being parallel
-	// to ray => that would mean that ray never touch plane)
+	double	scalar_magnitude;
+	double	value;
+
+	scalar_magnitude = ft_dot(minirt->ray.dir, plane->dir);
+	if (fabs(scalar_magnitude) > 0)
+	{
+		value = ft_dot(ft_sub(plane->pos, minirt->ray.orig), plane->dir) / scalar_magnitude;
+		if (value > minirt->canvas.eps && value < minirt->rec.dist)
+		{
+			minirt->rec.normal = ft_unit_vec(plane->dir);
+			minirt->rec.pos = ft_add(minirt->ray.orig, ft_mul(minirt->ray.dir, value));
+			minirt->rec.pos = ft_add(minirt->rec.pos, ft_mul(minirt->rec.normal, minirt->canvas.eps));
+			minirt->rec.dist = value;
+			minirt->rec.color = plane->color;
+			return (TRUE);
+		}
+	}
+	return (FALSE);
 }
-
-
-// void	ft_new_plane(t_vec3 pos, t_vec3 dir, t_vec3 color)
-// {
-// 	t_plane	plane;
-
-// 	plane.pos =	ft_vec(0.0 ,0.0 ,0.0);
-// 	plane.dir = ft_vec(0, 1.0, 0);
-// 	plane.color = ft_vec(255, 0, 225);
-// }

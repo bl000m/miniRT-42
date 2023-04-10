@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:11:05 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/10 15:27:49 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/10 19:43:12 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void    add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content
 void	ft_put_pixel(t_image *img_info, int x, int y, int color);
 void    generating_camera_ray_draw(t_minirt *minirt, t_object *object);
 /*	hit_plane.c	*/
-bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec);
+bool	ft_hit_plane(t_minirt *minirt, t_plane *plane);
 
 /*	hit_sphere.c	*/
 bool	ft_hit_sph(t_sphere *sph, t_ray ray, double root_max, t_record *rec);
