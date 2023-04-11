@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/09 18:40:41 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/11 18:48:47 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ bool	ft_init(t_minirt *minirt)
 	ret = ft_init_mlx(minirt);
 	ret += ft_init_map(minirt);
 	ret += ft_init_scene(minirt);
+	minirt->rec.dist = INFINITY;
 	printf("ret in ft_init = %d\n", ret);
 	return (ret);
 }
