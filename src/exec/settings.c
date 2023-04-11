@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/10 19:42:58 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/11 19:08:32 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,10 @@ void    setting_canvas(t_minirt *minirt)
 
 void    putting_pixel_depending_on_objects(t_minirt *minirt, t_object *object)
 {
-	if (((object->type == 's') && (ft_hit_sph(object->sphere, minirt->ray, 10000, &(minirt->rec))))
-		|| ((object->type == 'c') && (ft_hit_cyl(*object->cylinder, minirt->ray, 1000000, &(minirt->rec)))))
+	if (( (object->type == 's') && (ft_hit_sph(object->sphere, minirt->ray, 10000, &(minirt->rec))) )
+		|| ( (object->type == 'c') && (ft_hit_cyl(*object->cylinder, minirt->ray, 1000000, &(minirt->rec))) )
+		|| ( (object->type == 'p') && (ft_hit_plane(minirt, object->plane)) ))
 		ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.normal));
-	else if (object->type == 'p')
-	{
-		if (ft_hit_plane(minirt, object->plane))
-		    ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.normal));
-		else
-		    ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
-	}
 	else
 		ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
 }

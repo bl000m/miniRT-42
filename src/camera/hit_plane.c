@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/10 19:47:38 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/11 19:09:03 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,16 @@ bool	ft_hit_plane(t_minirt *minirt, t_plane *plane)
 	if (fabs(scalar_magnitude) > 0)
 	{
 		value = ft_dot(ft_sub(plane->pos, minirt->ray.orig), plane->dir) / scalar_magnitude;
+		// printf("\t/\t%.2f\t%.2f", value, minirt->rec.dist);
 		if (value > minirt->canvas.eps && value < minirt->rec.dist)
 		{
+			// printf("HERE\n");
 			minirt->rec.normal = ft_unit_vec(plane->dir);
 			minirt->rec.pos = ft_add(minirt->ray.orig, ft_mul(minirt->ray.dir, value));
 			minirt->rec.pos = ft_add(minirt->rec.pos, ft_mul(minirt->rec.normal, minirt->canvas.eps));
 			minirt->rec.dist = value;
 			minirt->rec.color = plane->color;
+			// printf("\t%.2f", minirt->rec.dist);
 			return (TRUE);
 		}
 	}
