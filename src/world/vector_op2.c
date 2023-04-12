@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_op2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/20 16:05:50 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/12 13:16:55 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ t_vec3	ft_unit_vec(t_vec3 v)
 	return (ft_div(v, len));
 }
 
+/* The dot product, also called scalar product,
+is a measure of how closely two vectors align, in terms of the directions they point.
+*/
 double	ft_dot(t_vec3 v1, t_vec3 v2)
 {
 	double	temp;
