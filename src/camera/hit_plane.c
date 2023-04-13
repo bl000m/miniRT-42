@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/13 06:38:47 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/13 12:15:00 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	ft_hit_plane(t_minirt *minirt, t_plane *plane)
 		minirt->rec.normal = ft_unit_vec(plane->dir);
 		minirt->rec.pos = ft_add(minirt->ray.orig, ft_mul(minirt->ray.dir, distance_to_plane));
 		minirt->rec.dist = distance_to_plane;
-		minirt->rec.color = plane->color;
+		//minirt->rec.color = plane->color;
 		// printf("\t%.2f\n", minirt->rec.dist);
 		return (TRUE);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/09 16:57:11 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:26:34 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,7 @@ int	main(int argc, char **argv)
 	setting_canvas(&minirt);
 	//initialize objects
 	temp = minirt.scene->objects;
-	while (temp)
-	{
-		generating_camera_ray_draw(&minirt, temp);
-		temp = temp->next;
-	}
+	generating_camera_ray_draw(&minirt, temp);
 	mlx_put_image_to_window(minirt.mlx, minirt.win, minirt.img, 0, 0);
 	mlx_loop(minirt.mlx);
 	return (0);
