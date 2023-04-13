@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/12 17:25:55 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/13 06:14:39 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ bool	ft_hit_plane(t_minirt *minirt, t_plane *plane)
 	t_vec3	distance_origins;
 
 	align_difference = ft_dot(minirt->ray.dir, plane->dir);
-	if (fabs(align_difference) < 0)
+	if (align_difference = 0)
 		return (FALSE);
 	distance_origins = ft_sub(plane->pos, minirt->ray.orig);
 	distance_to_plane = ft_dot(distance_origins, plane->dir) / align_difference;
 	// printf("\t/\t%.2f\t%.2f\n", distance_to_plane, minirt->rec.dist);
-	if (distance_to_plane > minirt->canvas.eps || distance_to_plane < minirt->rec.dist)
+	if (distance_to_plane > 0.00001 || distance_to_plane < minirt->rec.dist)
 	{
 		// printf("HERE\n");
 		minirt->rec.normal = ft_unit_vec(plane->dir);
@@ -41,6 +41,7 @@ bool	ft_hit_plane(t_minirt *minirt, t_plane *plane)
 		minirt->rec.dist = distance_to_plane;
 		minirt->rec.color = plane->color;
 		// printf("\t%.2f\n", minirt->rec.dist);
+		return (TRUE);
 	}
-	return (TRUE);
+	return(FALSE);
 }
