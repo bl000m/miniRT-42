@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/13 06:14:39 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/13 06:38:47 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	ft_hit_plane(t_minirt *minirt, t_plane *plane)
 	t_vec3	distance_origins;
 
 	align_difference = ft_dot(minirt->ray.dir, plane->dir);
-	if (align_difference = 0)
+	if (align_difference == 0)
 		return (FALSE);
 	distance_origins = ft_sub(plane->pos, minirt->ray.orig);
 	distance_to_plane = ft_dot(distance_origins, plane->dir) / align_difference;

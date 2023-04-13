@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/11 19:08:32 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/13 06:59:06 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,23 @@ void    putting_pixel_depending_on_objects(t_minirt *minirt, t_object *object)
 		ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
 }
 
+void	initialize_rec_except_dist(t_minirt *minirt)
+{
+	minirt->rec.pos.x = 0;
+	minirt->rec.pos.y = 0;
+	minirt->rec.pos.z = 0;
+	minirt->rec.normal.x = 0;
+	minirt->rec.normal.y = 0;
+	minirt->rec.normal.z = 0;
+	minirt->rec.color.x = 0;
+	minirt->rec.color.y = 0;
+	minirt->rec.color.z = 0;
+}
+
 void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
 	minirt->y = 0;
+	initialize_rec_except_dist(minirt);
 	while (minirt->y < HEIGHT)
 	{
 		minirt->x = 0;
