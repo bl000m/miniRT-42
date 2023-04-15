@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/13 12:13:18 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/15 16:10:34 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,14 @@ void	initialize_rec(t_minirt *minirt)
 
 void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
-	minirt->y = 0;
 	t_object	*temp;
 	bool		hit;
 
+	minirt->y = 0;
 	temp = object;
 	while (minirt->y < HEIGHT)
 	{
 		minirt->x = 0;
-		//initialize_rec(minirt);
 		while (minirt->x < WIDTH)
 		{
 			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
@@ -86,7 +85,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 			hit = 0;
 			while (temp)
 			{
-	            hit += stocking_rec_depending_on_objects(minirt, temp);
+				hit += stocking_rec_depending_on_objects(minirt, temp);
 				temp = temp->next;
 			}
 			temp = object;
