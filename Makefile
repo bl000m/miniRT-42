@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
+#    By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/10 19:31:15 by mathia           ###   ########.fr        #
+#    Updated: 2023/04/15 16:37:10 by mpagani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,11 @@ LIST_PARSING	=	reading_rt.c scanning_rt.c init_instructions.c parsing_utils.c
 LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
 					hit_cyl.c hit_cyl_helper.c hit_plane.c
 
-LIST_LIGHT		= 
+LIST_LIGHT		=
 
 LIST_WORLD		= 	list_op1.c math_utils.c matrix_op.c \
-					vector_op1.c vector_op2.c vector_op3.c 
+					vector_op1.c vector_op2.c vector_op3.c \
+					color.c
 
 LIST_EXEC		=	main.c hooks.c init.c settings.c
 
@@ -74,7 +75,7 @@ LIBFT_LNK	= -Llibft -l ft
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror 
+CFLAGS	=	-Wall -Wextra -Werror
 
 all: $(NAME)
 
@@ -90,16 +91,16 @@ $(OBJ_DIR)%.o: %.c $(INC)
 
 $(LIBFT):	FORCE
 	make -C $(LIBFT_DIR)
-	
-$(OBJ_DIR) : 
+
+$(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
-	
+
 FORCE	:
 
 val :
 	valgrind --tool=memcheck --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --leak-resolution=high --show-reachable=no ./miniRT scene_basic.rt
 
-clean : 
+clean :
 	rm -rf $(OBJ_DIR)
 	make -C $(LIBFT_DIR) clean
 

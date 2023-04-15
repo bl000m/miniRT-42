@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*	                                                                          */
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:11:05 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/10 19:43:12 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/15 16:07:50 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include <fcntl.h>
 
 typedef struct s_canvas	t_canvas;
+
+typedef struct s_rgb
+{
+	int		r;
+	int		g;
+	int		b;
+}	t_rgb;
 
 typedef struct s_ray
 {
@@ -38,7 +45,7 @@ typedef struct s_record
 typedef struct s_ambient
 {
 	double	ratio;
-	t_vec3	color;
+	t_rgb	color;
 }	t_ambient;
 
 typedef struct s_light
@@ -75,11 +82,11 @@ typedef struct s_scene
 
 typedef struct s_image
 {
-    char    *buf;
-    int     pixel_bit;
-    int     line_byte;
-    int     endian;
-}   t_image;
+	char	*buf;
+	int		pixel_bit;
+	int		line_byte;
+	int		endian;
+}	t_image;
 
 /*
 	pos is the lower left corner of the canvas
@@ -99,7 +106,7 @@ typedef struct s_map
 typedef struct s_minirt
 {
 	void		*mlx;
-    void		*win;
+	void		*win;
 	void		*img;
 	t_image		img_info;
 	t_canvas	canvas;
@@ -110,28 +117,27 @@ typedef struct s_minirt
 	t_ray		ray;
 	int			x;
 	int			y;
-	//ambient light
-    //light source
 }	t_minirt;
 
 void	read_rt_map(char *source, t_minirt *minirt);
 int		open_file_map(char *file_map);
-void    initialize_plane(t_minirt *minirt, char **tokens);
-void    initialize_sphere(t_minirt *minirt, char **tokens);
-void    initialize_cylinder(t_minirt *minirt, char **tokens);
-void    initialize_ambient_light(t_minirt *minirt, char **tokens);
-void    initialize_camera(t_minirt *minirt, char **tokens);
-void    initialize_light(t_minirt *minirt, char **tokens);
+void	initialize_plane(t_minirt *minirt, char **tokens);
+void	initialize_sphere(t_minirt *minirt, char **tokens);
+void	initialize_cylinder(t_minirt *minirt, char **tokens);
+void	initialize_ambient_light(t_minirt *minirt, char **tokens);
+void	initialize_camera(t_minirt *minirt, char **tokens);
+void	initialize_light(t_minirt *minirt, char **tokens);
 void	get_size(char *file_map, t_minirt *minirt);
 int		get_n_lines(int fd);
-t_vec3 	get_instruction(char **tokens, int index);
-double 	get_instruction_double(char **tokens, int index);
-int    	check_commas(char *token);
-void    add_new_plane_object(t_minirt *minirt, t_plane *new_object_content);
-void    add_new_sphere_object(t_minirt *minirt, t_sphere *new_object_content);
-void    add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content);
+t_vec3	get_instruction(char **tokens, int index);
+double	get_instruction_double(char **tokens, int index);
+t_rgb 	get_instruction_rgb(char **tokens, int index);
+int		check_commas(char *token);
+void	add_new_plane_object(t_minirt *minirt, t_plane *new_object_content);
+void	add_new_sphere_object(t_minirt *minirt, t_sphere *new_object_content);
+void	add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content);
 void	ft_put_pixel(t_image *img_info, int x, int y, int color);
-void    generating_camera_ray_draw(t_minirt *minirt, t_object *object);
+void	generating_camera_ray_draw(t_minirt *minirt, t_object *object);
 /*	hit_plane.c	*/
 bool	ft_hit_plane(t_minirt *minirt, t_plane *plane);
 
@@ -146,17 +152,17 @@ bool	ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2]);
 void	ft_copy_rec(t_record *rec, t_record *temp);
 
 /*	hit_cyl_helper.c	*/
-void		ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2]);
-void		ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp);
-bool		ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2]);
+void	ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2]);
+void	ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp);
+bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2]);
 t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3]);
-t_ray		ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift);
+t_ray	ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift);
 
 /*	ray_op.c	*/
 t_vec3	ft_ray_at(t_ray ray, double t);
 
 /*	ft_camera_ray.c	*/
 t_ray	ft_camera_ray(t_canvas *canvas, int x, int y);
-
+t_rgb	create_rgb(int r, int g, int b);
 
 #endif
