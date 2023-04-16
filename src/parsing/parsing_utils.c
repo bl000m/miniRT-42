@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/15 16:40:57 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/16 06:57:16 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,16 +150,14 @@ t_rgb get_instruction_rgb(char **tokens, int index)
 	t_rgb  *result;
 	char	**xyz;
 
-	result = calloc(sizeof(*result), 1);
-	// if (!result)
-	//	 return (NULL);
+	result = NULL;
 	if (tokens[index])
 	{
-		if (check_commas(tokens[index]))
-		{
+		// if (check_commas(tokens[index]))
+		// {
 			xyz = ft_split(tokens[index], ',');
 			*result = create_rgb(ft_atoi(xyz[0]), ft_atoi(xyz[1]), ft_atoi(xyz[2]));
-		}
+		// }
 	}
 	return (*result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/15 16:10:34 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/16 06:58:26 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
 	t_object	*temp;
 	bool		hit;
+	t_rgb		*color;
 
+	color = NULL;
 	minirt->y = 0;
 	temp = object;
 	while (minirt->y < HEIGHT)
@@ -80,6 +82,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 		minirt->x = 0;
 		while (minirt->x < WIDTH)
 		{
+			*color = create_rgb(0, 0, 0);
 			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
 			initialize_rec(minirt);
 			hit = 0;
