@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/17 09:17:46 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:18:47 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	temp = minirt.scene->objects;
 	// printf("object type = %c color = %f %f %f\n", temp->type, temp->plane->color.x, temp->plane->color.y, temp->plane->color.z);	temp = minirt.scene->objects;
 	// printf("object type = %c diameter = %f color = %f %f %f\n", temp->next->type, temp->next->sphere->diameter, temp->next->sphere->color.x, temp->next->sphere->color.y, temp->next->sphere->color.z);
-	// printf("object type = %c color = %f %f %f\n", temp->next->next->type, temp->next->next->cylinder->color.x, temp->next->next->cylinder->color.y, temp->next->next->cylinder->color.z);
+	// printf("object type = %c color = %f %f %f\n", temp->type, temp->cylinder->color.x, temp->cylinder->color.y, temp->cylinder->color.z);
 	generating_camera_ray_draw(&minirt, temp);
 	mlx_put_image_to_window(minirt.mlx, minirt.win, minirt.img, 0, 0);
 	mlx_loop(minirt.mlx);

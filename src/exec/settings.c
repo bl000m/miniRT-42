@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/17 12:00:55 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:20:06 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
 	t_object	*temp;
 	bool		hit;
-	// t_vec3		color;
 
 	minirt->y = 0;
 	temp = object;
@@ -81,7 +80,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 		minirt->x = 0;
 		while (minirt->x < WIDTH)
 		{
-			// color = ft_vec(0.0, 0.0, 0.0);
+			temp = object;
 			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
 			initialize_rec(minirt);
 			hit = 0;
@@ -90,18 +89,13 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 				hit += stocking_rec_depending_on_objects(minirt, temp);
 				temp = temp->next;
 			}
-			temp = object;
 			if (hit != 0)
-			{
-				// pick_color(temp, color);
-				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.normal));
-			}
+				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.color));
 			else
 				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
 			minirt->x++;
 		}
 		minirt->y++;
-		// free(color);
 	}
 }
 
