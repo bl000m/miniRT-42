@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/16 06:58:26 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/17 12:00:55 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,8 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
 	t_object	*temp;
 	bool		hit;
-	t_rgb		*color;
+	// t_vec3		color;
 
-	color = NULL;
 	minirt->y = 0;
 	temp = object;
 	while (minirt->y < HEIGHT)
@@ -82,7 +81,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 		minirt->x = 0;
 		while (minirt->x < WIDTH)
 		{
-			*color = create_rgb(0, 0, 0);
+			// color = ft_vec(0.0, 0.0, 0.0);
 			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
 			initialize_rec(minirt);
 			hit = 0;
@@ -93,12 +92,16 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 			}
 			temp = object;
 			if (hit != 0)
+			{
+				// pick_color(temp, color);
 				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.normal));
+			}
 			else
 				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
 			minirt->x++;
 		}
 		minirt->y++;
+		// free(color);
 	}
 }
 

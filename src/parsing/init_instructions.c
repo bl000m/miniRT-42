@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_instructions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:36:05 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/15 16:39:31 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/17 06:45:38 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	initialize_sphere(t_minirt *minirt, char **tokens)
 	new_sphere->center = get_instruction(tokens, 1);
 	new_sphere->diameter = get_instruction_double(tokens, 2);
 	new_sphere->color = get_instruction(tokens, 3);
+	// printf("new sphere color = %f %f %f\n", new_sphere->color.x, new_sphere->color.y, new_sphere->color.z);
 	add_new_sphere_object(minirt, new_sphere);
 }
 
@@ -63,7 +64,8 @@ void	initialize_ambient_light(t_minirt *minirt, char **tokens)
 	if (ambient_light == NULL)
 		return ;
 	ambient_light->ratio = get_instruction_double(tokens, 1);
-	ambient_light->color = get_instruction_rgb(tokens, 2);
+	// ambient_light->color = get_instruction_rgb(tokens, 2);
+	ambient_light->color = get_instruction(tokens, 2);
 	minirt->scene->ambient_light = ambient_light;
 }
 

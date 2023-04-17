@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/16 06:57:16 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/16 16:39:09 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,19 +145,16 @@ double get_instruction_double(char **tokens, int index)
 	return (result);
 }
 
-t_rgb get_instruction_rgb(char **tokens, int index)
-{
-	t_rgb  *result;
-	char	**xyz;
+// t_rgb get_instruction_rgb(char **tokens, int index)
+// {
+// 	t_rgb  *result;
+// 	char	**xyz;
 
-	result = NULL;
-	if (tokens[index])
-	{
-		// if (check_commas(tokens[index]))
-		// {
-			xyz = ft_split(tokens[index], ',');
-			*result = create_rgb(ft_atoi(xyz[0]), ft_atoi(xyz[1]), ft_atoi(xyz[2]));
-		// }
-	}
-	return (*result);
-}
+// 	result = NULL;
+// 	if (tokens[index])
+// 	{
+// 		xyz = ft_split(tokens[index], ',');
+// 		*result = create_rgb(*xyz[0], *xyz[1], *xyz[2]);
+// 	}
+// 	return (*result);
+// }
