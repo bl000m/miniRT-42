@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 16:32:20 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/17 14:18:18 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/17 14:35:51 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,10 @@
 // 	else if (object->type == 'p')
 // 		*color = object->plane->color;
 // }
+
+void	manage_color(t_object *object, t_minirt *minirt)
+{
+	t_vec3		ambient_reflect;
+
+	
+}

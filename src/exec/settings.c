@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/17 14:20:06 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/17 14:35:42 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
 	t_object	*temp;
 	bool		hit;
+	t_vec3		diffuse_light;
 
 	minirt->y = 0;
 	temp = object;
@@ -90,7 +91,10 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 				temp = temp->next;
 			}
 			if (hit != 0)
-				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(minirt->rec.color));
+			{
+				manage_color(temp, minirt, &diffuse_light);
+				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(diffuse_light));
+			}
 			else
 				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
 			minirt->x++;
