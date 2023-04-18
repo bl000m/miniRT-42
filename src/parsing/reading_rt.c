@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reading_rt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/09 15:49:18 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/18 16:18:29 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	read_rt_map(char *source, t_minirt *minirt)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		printf("line = %s\n", line);
 		tokens = ft_split(line, ' ');
 		checking_identifier(minirt, tokens);
 		n_line++;

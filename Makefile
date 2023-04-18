@@ -6,7 +6,7 @@
 #    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/18 13:58:40 by hsliu            ###   ########.fr        #
+#    Updated: 2023/04/18 15:48:26 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ INC_DIR	=	./include/
 
 VPATH	=	./src/parsing ./src/camera ./src/light ./src/world ./src/exec
 
-LIST_PARSING	=	reading_rt.c scanning_rt.c init_instructions.c parsing_utils.c
+LIST_PARSING	=	reading_rt.c scanning_rt.c init_instructions.c parsing_utils.c\
+					ft_redef_space.c
 
 LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
 					hit_cyl.c hit_cyl_helper.c hit_plane.c ft_hit.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/11 18:48:47 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/18 16:13:21 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ bool	ft_init_objects(t_scene **scene)
 	return (TRUE);
 }
 
+// bool	ft_init_camera(t_scene **scene)
+// {
+// 	t_camera	*camera;
+
+// 	(*scene)->camera = camera;
+// 	return (TRUE);
+// }
+
 bool	ft_init_map(t_minirt *minirt)
 {
 	t_map	*rt_map;
@@ -92,6 +100,7 @@ bool	ft_init_scene(t_minirt *minirt)
 		return (FALSE);
 	scene->ambient_light = NULL;
 	scene->camera = NULL;
+	// ret = ft_init_camera(&scene);
 	scene->light = NULL;
 	ret = ft_init_objects(&scene);
 	minirt->scene = scene;

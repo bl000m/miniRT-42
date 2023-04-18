@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_instructions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:36:05 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/17 06:45:38 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/18 16:20:23 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,15 @@ void	initialize_camera(t_minirt *minirt, char **tokens)
 	camera = ft_calloc(sizeof(*camera), 1);
 	if (camera == NULL)
 		return ;
+	printf("camera instr 1 = %s\n", tokens[1]);
+	printf("camera instr 2 = %s\n", tokens[2]);
+	printf("camera instr 3 = %s\n", tokens[3]);
 	camera->view_point = get_instruction(tokens, 1);
 	camera->orientation = get_instruction(tokens, 2);
 	camera->FOV = get_instruction_double(tokens, 3);
+	printf("camera pov x = %f, y= %f, z = %f\n", camera->view_point.x, camera->view_point.y, camera->view_point.z);
+	printf("camera orientation x = %f, y= %f, z = %f\n", camera->orientation.x, camera->orientation.y, camera->orientation.z);
+
 	minirt->scene->camera = camera;
 }
 
