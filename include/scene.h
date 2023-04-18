@@ -140,7 +140,7 @@ void	add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content);
 void	ft_put_pixel(t_image *img_info, int x, int y, int color);
 void	generating_camera_ray_draw(t_minirt *minirt, t_object *object);
 /*	hit_plane.c	*/
-bool	ft_hit_plane(t_minirt *minirt, t_plane *plane);
+bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec);
 
 /*	hit_sphere.c	*/
 bool	ft_hit_sph(t_sphere *sph, t_ray ray, double root_max, t_record *rec);
@@ -158,6 +158,12 @@ void	ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp);
 bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2]);
 t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3]);
 t_ray	ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift);
+
+/*	ft_hit.c	*/
+bool	ft_hit(t_object *world, t_ray ray, t_record *rec);
+void	ft_init_rec(t_record *rec);
+
+
 
 /*	ray_op.c	*/
 t_vec3	ft_ray_at(t_ray ray, double t);

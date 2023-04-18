@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/17 12:00:55 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/18 14:02:12 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ bool    stocking_rec_depending_on_objects(t_minirt *minirt, t_object *object)
 		return (ft_hit_sph(object->sphere, minirt->ray, minirt->rec.dist, &(minirt->rec)));
 	else if (object->type == 'c')
 		return (ft_hit_cyl(*object->cylinder, minirt->ray, minirt->rec.dist, &(minirt->rec)));
-	else if (object->type == 'p')
-		return (ft_hit_plane(minirt, object->plane));
+//	else if (object->type == 'p')
+//		return (ft_hit_plane(minirt, object->plane));
 	return (FALSE);
 }
 
@@ -70,12 +70,10 @@ void	initialize_rec(t_minirt *minirt)
 
 void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
-	t_object	*temp;
 	bool		hit;
 	// t_vec3		color;
 
 	minirt->y = 0;
-	temp = object;
 	while (minirt->y < HEIGHT)
 	{
 		minirt->x = 0;
@@ -83,14 +81,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 		{
 			// color = ft_vec(0.0, 0.0, 0.0);
 			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
-			initialize_rec(minirt);
-			hit = 0;
-			while (temp)
-			{
-				hit += stocking_rec_depending_on_objects(minirt, temp);
-				temp = temp->next;
-			}
-			temp = object;
+			hit = ft_hit(object, minirt->ray, &(minirt->rec));
 			if (hit != 0)
 			{
 				// pick_color(temp, color);
