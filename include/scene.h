@@ -167,4 +167,7 @@ t_ray	ft_camera_ray(t_canvas *canvas, int x, int y);
 // t_rgb	create_rgb(char r, char g, char b);
 void	pick_color(t_object *object, t_vec3 *color);
 
+/*	ft_redef_space.c	*/
+void	ft_redef_space(t_minirt	*minirt);
+
 #endif
