@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:06:11 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/07 18:15:58 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 16:35:27 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_size(char *file_map, t_minirt *minirt)
 	int	fd;
 
 	fd = open_file_map(file_map);
-	minirt->rt_map->n_lines = get_n_lines(fd);
+	minirt->rt_map.n_lines = get_n_lines(fd);
 	close(fd);
 }
 

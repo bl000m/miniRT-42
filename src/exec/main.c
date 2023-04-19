@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 16:10:49 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/19 17:51:36 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,26 @@ int	main(int argc, char **argv)
 {
 	t_minirt	minirt;
 	t_object	*temp;
+	int			error;
 
 	(void)argc;
+	error = 0;
 	if (!ft_init(&minirt))
+		return (1);
+	if (read_rt_map(argv[1], &minirt, &error))
 	{
-		(void) (write(2, "init fails\n", 11) + 1);
+		error_manager(&minirt, "Parsing error. Try again", RED);
 		return (1);
 	}
-	read_rt_map(argv[1], &minirt);
 	ft_redef_space(&minirt);
 	ft_init_mlx(&minirt);
 	ft_set_hook(&minirt);
+	// setting_canvas(&minirt);
+	// printf("camera orienta: %f %f %f\n", minirt.scene->camera->orientation.x, minirt.scene->camera->orientation.y, minirt.scene->camera->orientation.z);
 	temp = minirt.scene->objects;
-	
+	// printf("object type = %c color = %f %f %f\n", temp->type, temp->plane->color.x, temp->plane->color.y, temp->plane->color.z);	temp = minirt.scene->objects;
+	// printf("object type = %c diameter = %f color = %f %f %f\n", temp->next->type, temp->next->sphere->diameter, temp->next->sphere->color.x, temp->next->sphere->color.y, temp->next->sphere->color.z);
+	// printf("object type = %c color = %f %f %f\n", temp->next->next->type, temp->next->next->cylinder->color.x, temp->next->next->cylinder->color.y, temp->next->next->cylinder->color.z);
 	generating_camera_ray_draw(&minirt, temp);
 	mlx_put_image_to_window(minirt.mlx, minirt.win, minirt.img, 0, 0);
 	mlx_loop(minirt.mlx);

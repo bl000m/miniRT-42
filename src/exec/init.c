@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/19 16:10:00 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/19 17:55:34 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ bool	ft_init_mlx(t_minirt *minirt)
 	minirt->win = mlx_new_window(minirt->mlx, minirt->canvas.img_width, HEIGHT, "MiniRT");
 	if (minirt->win == NULL)
 	{
-		mlx_destroy_display(minirt->mlx);
-		free(minirt->mlx);
+		// mlx_destroy_display(minirt->mlx);
+		// free(minirt->mlx);
 		return (FALSE);
 	}
 	minirt->img = mlx_new_image(minirt->mlx, minirt->canvas.img_width, HEIGHT);
 	if (minirt->img == NULL)
 	{
-		mlx_destroy_window(minirt->mlx, minirt->win);
-		mlx_destroy_display(minirt->mlx);
-		free(minirt->mlx);
+		// mlx_destroy_window(minirt->mlx, minirt->win);
+		// mlx_destroy_display(minirt->mlx);
+		// free(minirt->mlx);
 		return (FALSE);
 	}
 	img_info->buf = mlx_get_data_addr(minirt->img, &(img_info->pixel_bit),
@@ -69,22 +69,14 @@ bool	ft_init_objects(t_scene **scene)
 	return (TRUE);
 }
 
-// bool	ft_init_camera(t_scene **scene)
-// {
-// 	t_camera	*camera;
-
-// 	(*scene)->camera = camera;
-// 	return (TRUE);
-// }
-
 bool	ft_init_map(t_minirt *minirt)
 {
-	t_map	*rt_map;
+	t_map	rt_map;
 
-	rt_map = malloc(sizeof(*rt_map));
-	if (!rt_map)
-		return (FALSE);
-	rt_map->n_lines = 0;
+	// rt_map = malloc(sizeof(*rt_map));
+	// if (!rt_map)
+	// 	return (FALSE);
+	rt_map.n_lines = 0;
 	minirt->rt_map = rt_map;
 	return (TRUE);
 }
@@ -100,7 +92,6 @@ bool	ft_init_scene(t_minirt *minirt)
 		return (FALSE);
 	scene->ambient_light = NULL;
 	scene->camera = NULL;
-	// ret = ft_init_camera(&scene);
 	scene->light = NULL;
 	ret = ft_init_objects(&scene);
 	minirt->scene = scene;
@@ -115,6 +106,7 @@ bool	ft_init(t_minirt *minirt)
 	ret = ft_init_map(minirt);
 	ret += ft_init_scene(minirt);
 	minirt->rec.dist = INFINITY;
-	printf("ret in ft_init = %d\n", ret);
+	if (!ret)
+		error_manager(minirt, "init fails", RED);
 	return (ret);
 }
