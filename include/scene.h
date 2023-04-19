@@ -170,6 +170,8 @@ t_ray	ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift);
 bool	ft_hit(t_object *world, t_ray ray, t_record *rec);
 void	ft_init_rec(t_record *rec);
 
+/*	ft_ambient_light.c	*/
+t_vec3	ft_ambient_light(t_minirt *minirt, t_record *rec);
 
 
 /*	ray_op.c	*/
