@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:36:05 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/19 21:56:44 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/19 22:10:41 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,6 @@ int	initialize_ambient_light(t_minirt *minirt, char **tokens)
 	t_ambient	ambient_light;
 
 	error = 0;
-	// ambient_light = ft_calloc(sizeof(*ambient_light), 1);
-	// if (ambient_light == NULL)
-	// 	return (1);
 	ambient_light.ratio = get_instruction_double(tokens, 1);
 	ambient_light.color = get_instruction(tokens, 2);
 	minirt->scene->ambient_light = ambient_light;
@@ -91,23 +88,13 @@ int	initialize_camera(t_minirt *minirt, char **tokens)
 	t_camera	camera;
 
 	error = 0;
-	// camera = ft_calloc(sizeof(*camera), 1);
-	// if (camera == NULL)
-	// 	return (1);
-	// printf("camera instr 1 = %s\n", tokens[1]);
-	// printf("camera instr 2 = %s\n", tokens[2]);
-	// printf("camera instr 3 = %s\n", tokens[3]);
 	camera.view_point = get_instruction(tokens, 1);
 	camera.orientation = get_instruction(tokens, 2);
 	error = check_parameters(camera.orientation);
 	if (error)
 		alert("Input error: Camera orientation can't be 0,0,0", INFO);
 	camera.FOV = get_instruction_double(tokens, 3);
-	printf("camera pov x = %f, y= %f, z = %f\n", camera.view_point.x, camera.view_point.y, camera.view_point.z);
-	printf("camera orientation x = %f, y= %f, z = %f\n", camera.orientation.x, camera.orientation.y, camera.orientation.z);
-
 	minirt->scene->camera = camera;
-	// printf("camera orientation z = %f\n", camera.orientation.z);
 	return (error);
 }
 
@@ -117,9 +104,6 @@ int	initialize_light(t_minirt *minirt, char **tokens)
 	t_light	light;
 
 	error = 0;
-	// light = ft_calloc(sizeof(*light), 1);
-	// if (light == NULL)
-	// 	return (1);
 	light.pos = get_instruction(tokens, 1);
 	light.ratio = get_instruction_double(tokens, 2);
 	light.color = get_instruction(tokens, 3);
