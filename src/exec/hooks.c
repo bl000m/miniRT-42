@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:05:54 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/28 13:50:19 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/19 17:39:07 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_key_up_hook(int keycode, void *param)
 {
 	t_minirt    *minirt;
 
-	printf("hooks\n");
+	// printf("hooks\n");
 	if (keycode != 65307)
 		return (0);
     minirt = (t_minirt *)param;

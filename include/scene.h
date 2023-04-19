@@ -20,6 +20,10 @@
 # include <fcntl.h>
 # include <stdint.h>
 
+# define GREEN "\x1b[32m"
+# define RED "\x1b[41m"
+# define INFO "\x1b[35m"
+# define NORMAL "\x1b[m"
 typedef struct s_canvas	t_canvas;
 
 // typedef struct s_rgb
@@ -112,7 +116,7 @@ typedef struct s_minirt
 	t_image		img_info;
 	t_canvas	canvas;
 	t_node		*world;
-	t_map		*rt_map;
+	t_map		rt_map;
 	t_scene		*scene;
 	t_record	rec;
 	t_ray		ray;
@@ -120,14 +124,14 @@ typedef struct s_minirt
 	int			y;
 }	t_minirt;
 
-void	read_rt_map(char *source, t_minirt *minirt);
+int		read_rt_map(char *source, t_minirt *minirt, int *error);
 int		open_file_map(char *file_map);
-void	initialize_plane(t_minirt *minirt, char **tokens);
-void	initialize_sphere(t_minirt *minirt, char **tokens);
-void	initialize_cylinder(t_minirt *minirt, char **tokens);
-void	initialize_ambient_light(t_minirt *minirt, char **tokens);
-void	initialize_camera(t_minirt *minirt, char **tokens);
-void	initialize_light(t_minirt *minirt, char **tokens);
+int		initialize_plane(t_minirt *minirt, char **tokens);
+int		initialize_sphere(t_minirt *minirt, char **tokens);
+int		initialize_cylinder(t_minirt *minirt, char **tokens);
+int		initialize_ambient_light(t_minirt *minirt, char **tokens);
+int		initialize_camera(t_minirt *minirt, char **tokens);
+int		initialize_light(t_minirt *minirt, char **tokens);
 void	get_size(char *file_map, t_minirt *minirt);
 int		get_n_lines(int fd);
 t_vec3	get_instruction(char **tokens, int index);
@@ -139,6 +143,8 @@ void	add_new_sphere_object(t_minirt *minirt, t_sphere *new_object_content);
 void	add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content);
 void	ft_put_pixel(t_image *img_info, int x, int y, int color);
 void	generating_camera_ray_draw(t_minirt *minirt, t_object *object);
+int		check_parameters(t_vec3 vector);
+
 /*	hit_plane.c	*/
 bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec);
 
@@ -175,5 +181,11 @@ void	pick_color(t_object *object, t_vec3 *color);
 
 /*	ft_redef_space.c	*/
 void	ft_redef_space(t_minirt	*minirt);
+
+/* style */
+void	alert(char *str, char *color);
+
+/*	error */
+void	error_manager(t_minirt *minirt, char *message, char *color);
 
 #endif

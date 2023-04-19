@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/16 16:39:09 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/19 17:29:21 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,16 +145,34 @@ double get_instruction_double(char **tokens, int index)
 	return (result);
 }
 
-// t_rgb get_instruction_rgb(char **tokens, int index)
-// {
-// 	t_rgb  *result;
-// 	char	**xyz;
+int	check_parameters(t_vec3 vector)
+{
+	if (vector.x == 0 && vector.y == 0 && vector.z == 0)
+		return (1);
+	return (0);
+}
 
-// 	result = NULL;
-// 	if (tokens[index])
-// 	{
-// 		xyz = ft_split(tokens[index], ',');
-// 		*result = create_rgb(*xyz[0], *xyz[1], *xyz[2]);
-// 	}
-// 	return (*result);
-// }
+void alert(char *str, char *color)
+{
+    int len;
+	int	i;
+
+	i = 0;
+	len = ft_strlen(str);
+    printf("╭─");
+	while (i < len)
+	{
+		printf("-");
+		i++;
+	}
+    printf("─╮\n");
+	printf("│ %s%s%s │\n", color, str, NORMAL);
+	printf("╰─");
+	i = 0;
+	while (i < len)
+	{
+		printf("─");
+		i++;
+	}
+	printf("─╯\n");
+}
