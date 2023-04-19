@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/18 14:00:33 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/19 14:39:06 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,16 @@ bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec)
 		return (FALSE);
 	distance_origins = ft_sub(plane->pos, ray.orig);
 	distance_to_plane = ft_dot(distance_origins, plane->dir) / align_difference;
-	// printf("\t/\t%.2f\t%.2f\n", distance_to_plane, minirt->rec.dist);
 	if (distance_to_plane > 0.00001 && distance_to_plane < dist_max)
 	{
-		// printf("HERE\n");
 		rec->normal = ft_unit_vec(plane->dir);
+		if (ft_dot(ray.dir, rec->normal) > 0)
+		{
+			rec->normal = ft_mul(rec->normal, -1);
+		}
 		rec->pos = ft_add(ray.orig, ft_mul(ray.dir, distance_to_plane));
 		rec->dist = distance_to_plane;
-		//minirt->rec.color = plane->color;
-		// printf("\t%.2f\n", minirt->rec.dist);
+		rec->color = plane->color;
 		return (TRUE);
 	}
 	return(FALSE);

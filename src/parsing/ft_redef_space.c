@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redef_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:59:49 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/18 16:46:07 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/19 16:12:15 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,27 @@ static void	ft_new_pos(t_object *temp, double matrix[3][3], t_vec3 shift)
 	}
 }
 
+static void	ft_init_canvas(t_minirt *minirt)
+{
+	double		fov;
+	double		focal_len;
+	t_canvas	*canvas;
+
+	fov = (double)minirt->scene->camera->FOV;
+	fov = (fov / 2) * 3.14159 / 180;
+	focal_len = -5;
+	canvas = &(minirt->canvas);
+	canvas->eps = 0.01;
+	canvas->pos.y = (HEIGHT / 2) * canvas->eps * -1;
+	canvas->pos.z = focal_len;
+	canvas->pos.x = (sin(fov) / cos(fov)) * focal_len;
+	canvas->img_width = canvas->pos.x * (-2) / canvas->eps;
+	//canvas->pos.z = canvas->pos.x / (sin(fov) / cos(fov));
+	//printf("sin(fov): %f\ncos(fov): %f\n", sin(fov), cos(fov));
+	//printf("sin(fov) / cos(fov): %f\n", sin(fov) / cos(fov));
+	printf("canvas pos: %f %f %f\n", canvas->pos.x,canvas->pos.y,canvas->pos.z);
+}
+
 void	ft_redef_space(t_minirt	*minirt)
 {
 	double		matrix[3][3];
@@ -58,4 +79,5 @@ void	ft_redef_space(t_minirt	*minirt)
 		temp = temp->next;
 	}
 	minirt->scene->light->pos = ft_matrix_mul(matrix, ft_sub(minirt->scene->light->pos, shift));
+	ft_init_canvas(minirt);
 }

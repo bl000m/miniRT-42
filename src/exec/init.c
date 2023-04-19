@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/19 17:34:29 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 17:55:34 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ bool	ft_init_mlx(t_minirt *minirt)
 	{
 		return (FALSE);
 	}
-	minirt->win = mlx_new_window(minirt->mlx, WIDTH, HEIGHT, "MiniRT");
+	minirt->win = mlx_new_window(minirt->mlx, minirt->canvas.img_width, HEIGHT, "MiniRT");
 	if (minirt->win == NULL)
 	{
 		// mlx_destroy_display(minirt->mlx);
 		// free(minirt->mlx);
 		return (FALSE);
 	}
-	minirt->img = mlx_new_image(minirt->mlx, WIDTH, HEIGHT);
+	minirt->img = mlx_new_image(minirt->mlx, minirt->canvas.img_width, HEIGHT);
 	if (minirt->img == NULL)
 	{
 		// mlx_destroy_window(minirt->mlx, minirt->win);
@@ -102,8 +102,8 @@ bool	ft_init(t_minirt *minirt)
 {
 	int	ret;
 
-	ret = ft_init_mlx(minirt);
-	ret += ft_init_map(minirt);
+	//ret = ft_init_mlx(minirt);
+	ret = ft_init_map(minirt);
 	ret += ft_init_scene(minirt);
 	minirt->rec.dist = INFINITY;
 	if (!ret)

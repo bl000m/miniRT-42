@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:15:42 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/27 13:19:05 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/19 15:50:33 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_draw_canvas(t_minirt *minirt)
 	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < WIDTH)
+		while (j < minirt->canvas.img_width)
 		{
 			//ft_draw_pixel
 			j++;

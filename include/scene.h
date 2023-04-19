@@ -101,6 +101,7 @@ typedef struct s_canvas
 {
 	t_vec3	pos; // -(WIDTH / 2) * eps ; -(HEIGHT / 2) * eps ; -focal_length
 	double	eps;
+	int		img_width;
 }	t_canvas;
 
 typedef struct s_map

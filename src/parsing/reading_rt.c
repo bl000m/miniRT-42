@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 17:10:58 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 17:46:49 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		//printf("line = %s\n", line);
 		tokens = ft_split(line, ' ');
 		checking_identifier(minirt, tokens, error);
 		n_line++;
