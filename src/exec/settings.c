@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/19 22:03:47 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/19 23:21:12 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 			if (hit != 0)
 			{
 				color = ft_ambient_light(minirt, &(minirt->rec));
+				// printf("color before mixing = %f,%f,%f\n", color.x, color.y, color.z);
+				color = ft_mixing_light(&color);
+				// printf("color after mixing = %f,%f,%f\n", color.x, color.y, color.z);
 				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
 			}
 			else

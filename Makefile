@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
+#    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/19 21:55:52 by sasha            ###   ########.fr        #
+#    Updated: 2023/04/19 23:08:22 by mathia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIST_PARSING	=	reading_rt.c scanning_rt.c init_instructions.c parsing_utils.c\
 
 LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
 					hit_cyl.c hit_cyl_helper.c hit_plane.c ft_hit.c \
-					ft_ambient_light.c
+					ft_ambient_light.c ft_mixing_light.c
 
 LIST_WORLD		= 	list_op1.c math_utils.c matrix_op.c \
 					vector_op1.c vector_op2.c vector_op3.c \
