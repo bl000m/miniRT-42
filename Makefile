@@ -26,7 +26,7 @@ LIST_PARSING	=	reading_rt.c scanning_rt.c init_instructions.c parsing_utils.c\
 					ft_redef_space.c
 
 LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
-					hit_cyl.c hit_cyl_helper.c hit_plane.c
+					hit_cyl.c hit_cyl_helper.c hit_plane.c ft_hit.c
 
 LIST_LIGHT		=
 
