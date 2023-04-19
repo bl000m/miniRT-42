@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:05:54 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/19 17:39:07 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 21:23:08 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ int	ft_destroy_hook(void *param)
 	mlx_destroy_window(minirt->mlx, minirt->win);
 	mlx_destroy_display(minirt->mlx);
 	free(minirt->mlx);
+	minirt->mlx = NULL;
+	free_clean(minirt);
     exit(0);
 }

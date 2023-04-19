@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:06:52 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 17:32:53 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 21:37:33 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,16 @@ void	error_manager(t_minirt *minirt, char *message, char *color)
 		free_clean(minirt);
 		alert(message, color);
 	}
+	exit (1);
+}
+
+void	ft_free(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+		free(strs[i++]);
+	free(strs);
+	strs = NULL;
 }

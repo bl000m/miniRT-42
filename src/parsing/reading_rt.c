@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reading_rt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 17:46:49 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 21:39:25 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 
 	n_line = 0;
 	get_size(source, minirt);
-	fd = open_file_map(source);
+	fd = open_file_map(source, minirt);
 	while (n_line < minirt->rt_map.n_lines)
 	{
 		line = get_next_line(fd);
@@ -50,9 +50,12 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 		//printf("line = %s\n", line);
 		tokens = ft_split(line, ' ');
 		checking_identifier(minirt, tokens, error);
+		ft_free(tokens);
+		free(line);
 		n_line++;
 	}
 	if (close(fd) < 0)
-		printf("need to set error\n");
+		error_manager(minirt, "Error in closing FD", RED);
 	return (*error);
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/19 17:55:34 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 22:00:56 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ bool	ft_init_scene(t_minirt *minirt)
 	scene = malloc(sizeof(*scene));
 	if (!scene)
 		return (FALSE);
-	scene->ambient_light = NULL;
-	scene->camera = NULL;
-	scene->light = NULL;
+	// scene->ambient_light = NULL;
+	// scene->camera = NULL;
+	// scene->light = NULL;
 	ret = ft_init_objects(&scene);
 	minirt->scene = scene;
 	return (ret);
@@ -102,11 +102,9 @@ bool	ft_init(t_minirt *minirt)
 {
 	int	ret;
 
-	//ret = ft_init_mlx(minirt);
+	// minirt->mlx = NULL;
 	ret = ft_init_map(minirt);
 	ret += ft_init_scene(minirt);
 	minirt->rec.dist = INFINITY;
-	if (!ret)
-		error_manager(minirt, "init fails", RED);
 	return (ret);
 }
