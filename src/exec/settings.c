@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/18 15:58:16 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/19 15:51:00 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 	while (minirt->y < HEIGHT)
 	{
 		minirt->x = 0;
-		while (minirt->x < WIDTH)
+		while (minirt->x < minirt->canvas.img_width)
 		{
 			// color = ft_vec(0.0, 0.0, 0.0);
 			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
