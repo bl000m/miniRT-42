@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/19 17:55:34 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 22:10:03 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ bool	ft_init_objects(t_scene **scene)
 	objects = malloc(sizeof(*objects));
 	if (!objects)
 		return (FALSE);
-	objects->plane = malloc(sizeof(t_plane));
-	if (!objects->plane)
-		return (FALSE);
 	objects->plane = NULL;
 	objects->sphere = NULL;
 	objects->cylinder = NULL;
@@ -73,9 +70,6 @@ bool	ft_init_map(t_minirt *minirt)
 {
 	t_map	rt_map;
 
-	// rt_map = malloc(sizeof(*rt_map));
-	// if (!rt_map)
-	// 	return (FALSE);
 	rt_map.n_lines = 0;
 	minirt->rt_map = rt_map;
 	return (TRUE);
@@ -90,9 +84,6 @@ bool	ft_init_scene(t_minirt *minirt)
 	scene = malloc(sizeof(*scene));
 	if (!scene)
 		return (FALSE);
-	scene->ambient_light = NULL;
-	scene->camera = NULL;
-	scene->light = NULL;
 	ret = ft_init_objects(&scene);
 	minirt->scene = scene;
 	return (ret);
@@ -102,11 +93,8 @@ bool	ft_init(t_minirt *minirt)
 {
 	int	ret;
 
-	//ret = ft_init_mlx(minirt);
 	ret = ft_init_map(minirt);
 	ret += ft_init_scene(minirt);
 	minirt->rec.dist = INFINITY;
-	if (!ret)
-		error_manager(minirt, "init fails", RED);
 	return (ret);
 }

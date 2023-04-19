@@ -79,9 +79,9 @@ typedef struct s_object
 
 typedef struct s_scene
 {
-	t_ambient	*ambient_light;
-	t_camera	*camera;
-	t_light		*light;
+	t_ambient	ambient_light;
+	t_camera	camera;
+	t_light		light;
 	t_object	*objects;
 }	t_scene;
 
@@ -126,7 +126,7 @@ typedef struct s_minirt
 }	t_minirt;
 
 int		read_rt_map(char *source, t_minirt *minirt, int *error);
-int		open_file_map(char *file_map);
+int		open_file_map(char *file_map, t_minirt *minirt);
 int		initialize_plane(t_minirt *minirt, char **tokens);
 int		initialize_sphere(t_minirt *minirt, char **tokens);
 int		initialize_cylinder(t_minirt *minirt, char **tokens);
@@ -188,7 +188,9 @@ void	ft_redef_space(t_minirt	*minirt);
 /* style */
 void	alert(char *str, char *color);
 
-/*	error */
+/*	memory stuff */
+void	free_clean(t_minirt *minirt);
 void	error_manager(t_minirt *minirt, char *message, char *color);
+void	ft_free(char **strs);
 
 #endif

@@ -98,7 +98,7 @@ $(OBJ_DIR) :
 FORCE	:
 
 val :
-	valgrind --tool=memcheck --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --leak-resolution=high --show-reachable=no ./miniRT scene_basic.rt
+	valgrind --tool=memcheck --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./miniRT scene_basic.rt
 
 clean :
 	rm -rf $(OBJ_DIR)
