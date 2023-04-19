@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   scanning_rt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:06:11 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 16:35:27 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 21:31:31 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-int	open_file_map(char *file_map)
+int	open_file_map(char *file_map, t_minirt *minirt)
 {
 	int		fd;
 
 	fd = open(file_map, O_RDONLY);
-	// check_fd_error(fd);
+	if (fd < 0)
+		error_manager(minirt, "Error in opening FD", RED);
 	return (fd);
 }
 
@@ -25,9 +26,12 @@ void	get_size(char *file_map, t_minirt *minirt)
 {
 	int	fd;
 
-	fd = open_file_map(file_map);
+	fd = open(file_map, O_RDONLY);
+	if (fd < 0)
+		error_manager(minirt, "Error in opening FD", RED);
 	minirt->rt_map.n_lines = get_n_lines(fd);
-	close(fd);
+	if (close(fd) < 0)
+		error_manager(minirt, "Error in closing FD", RED);
 }
 
 int	get_n_lines(int fd)
