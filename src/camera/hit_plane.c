@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 13:49:03 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/19 14:39:06 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec)
 		}
 		rec->pos = ft_add(ray.orig, ft_mul(ray.dir, distance_to_plane));
 		rec->dist = distance_to_plane;
-		minirt->rec.color = plane->color;
+		rec->color = plane->color;
 		return (TRUE);
 	}
 	return(FALSE);
