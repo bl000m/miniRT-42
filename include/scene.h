@@ -174,6 +174,7 @@ void	ft_init_rec(t_record *rec);
 
 /*	ray_op.c	*/
 t_vec3	ft_ray_at(t_ray ray, double t);
+t_ray	ft_init_ray(t_vec3 orig, t_vec3 dir);
 
 /*	ft_camera_ray.c	*/
 t_ray	ft_camera_ray(t_canvas *canvas, int x, int y);
@@ -188,5 +189,8 @@ void	alert(char *str, char *color);
 
 /*	error */
 void	error_manager(t_minirt *minirt, char *message, char *color);
+
+/*	ft_spec_light.c	*/
+t_vec3	ft_spec_light(t_minirt *minirt, t_record *rec);
 
 #endif
