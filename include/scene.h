@@ -25,6 +25,9 @@
 # define RED "\x1b[91m"
 # define INFO "\x1b[35m"
 # define NORMAL "\x1b[m"
+
+# define ALBEDO 0.3
+
 typedef struct s_canvas	t_canvas;
 
 // typedef struct s_rgb
@@ -173,6 +176,9 @@ void	ft_init_rec(t_record *rec);
 
 /*	ft_ambient_light.c	*/
 t_vec3	ft_ambient_light(t_minirt *minirt, t_record *rec);
+t_vec3	ft_diffuse_light(t_minirt *minirt, t_record *rec, t_vec3 ambient_spec_light);
+bool	ft_in_shadow(t_minirt *minirt, t_record *rec);
+
 
 
 /*	ray_op.c	*/

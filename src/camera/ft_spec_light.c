@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 22:11:36 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/20 11:39:42 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 12:33:05 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,35 @@
 #include "scene.h"
 #include "world.h"
 
-static bool	ft_in_shadow(t_minirt *minirt, t_record *rec)
+t_vec3	ft_diffuse_light(t_minirt *minirt, t_record *rec, t_vec3 ambient_spec_light)
+{
+	t_vec3	in;
+	double	angle;
+	t_vec3	mixed_light;
+
+	in = minirt->ray.dir;
+	angle = fabs(ft_dot(in, rec->normal));
+	mixed_light = ft_vec(0, 0, 0);
+	if (ft_in_shadow(minirt, rec))
+	{
+		return (mixed_light);
+	}
+	// printf("angle = %f\n", angle);
+	if (angle)
+	{
+		mixed_light.x = ambient_spec_light.x * angle;
+		mixed_light.y = ambient_spec_light.y * angle;
+		mixed_light.z = ambient_spec_light.z * angle;
+	}
+	// diffuse_light.x = diffuse_light.x * ALBEDO;
+	// diffuse_light.y = diffuse_light.y * ALBEDO;
+	// diffuse_light.z = diffuse_light.z * ALBEDO;
+	// mixed_light = ft_add(diffuse_light, *ambient_spec_light);
+	// mixed_light = ft_mul(mixed_light, mixed_light);
+	return (mixed_light);
+}
+
+bool	ft_in_shadow(t_minirt *minirt, t_record *rec)
 {
 	t_light		light;
 	t_ray		to_light;
