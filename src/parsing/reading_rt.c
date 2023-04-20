@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 15:24:27 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 16:07:55 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_numeric(char *token)
 	i = 0;
 	while (token[i])
 	{
-		if ((token[i] >= '0' && token[i] <= '9') || token[i] <= '\n'
+		if ((token[i] >= '0' && token[i] <= '9') || token[i] == '\n'
 			|| token[i] == ',' || token[i] == '.' || token[i] == '-')
 			res = 1;
 		else

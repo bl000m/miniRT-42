@@ -1,0 +1,546 @@
+==575154== Memcheck, a memory error detector
+==575154== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==575154== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==575154== Command: ./miniRT scene_basic.rt
+==575154== Parent PID: 575153
+==575154== 
+==575154== 
+==575154== Process terminating with default action of signal 2 (SIGINT)
+==575154==    at 0x10C380: ft_hit_sph (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10DF75: ft_hit (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F969: generating_camera_ray_draw (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A875: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== FILE DESCRIPTORS: 5 open at exit.
+==575154== Open AF_UNIX socket 4: <unknown>
+==575154==    at 0x4C237AB: socket (syscall-template.S:78)
+==575154==    by 0x4D0439D: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D0488B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x48B4D29: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A53A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== Open file descriptor 3: /nfs/homes/mpagani/1_Projects/miniRT/val_log
+==575154==    <inherited from parent>
+==575154== 
+==575154== Open file descriptor 2: /dev/pts/1
+==575154==    <inherited from parent>
+==575154== 
+==575154== Open file descriptor 1: /dev/pts/1
+==575154==    <inherited from parent>
+==575154== 
+==575154== Open file descriptor 0: /dev/pts/1
+==575154==    <inherited from parent>
+==575154== 
+==575154== 
+==575154== HEAP SUMMARY:
+==575154==     in use at exit: 93,515 bytes in 90 blocks
+==575154==   total heap usage: 948 allocs, 858 frees, 118,496 bytes allocated
+==575154== 
+==575154== 1 bytes in 1 blocks are still reachable in loss record 1 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x1116FE: clean_record (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x1113CB: get_next_line (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B107: read_rt_map (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A839: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 3 bytes in 1 blocks are still reachable in loss record 2 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4BA238E: strdup (strdup.c:42)
+==575154==    by 0x48A5385: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 8 bytes in 1 blocks are still reachable in loss record 3 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4BA238E: strdup (strdup.c:42)
+==575154==    by 0x489F25E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48703F0: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 8 bytes in 1 blocks are still reachable in loss record 4 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4870144: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48701AE: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48705A2: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 10 bytes in 1 blocks are still reachable in loss record 5 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4BA238E: strdup (strdup.c:42)
+==575154==    by 0x489F25E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x490BC43: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A5E19: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 16 bytes in 1 blocks are still reachable in loss record 6 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x11163A: clean_record (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x1113CB: get_next_line (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B107: read_rt_map (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A839: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 16 bytes in 1 blocks are still reachable in loss record 7 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4D03F81: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D023FB: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D008F5: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D04B72: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x48B4D29: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A53A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 21 bytes in 1 blocks are still reachable in loss record 8 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A583C: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 24 bytes in 1 blocks are still reachable in loss record 9 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4870351: XextCreateExtension (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486FE1C: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x487019B: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48705A2: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 24 bytes in 1 blocks are still reachable in loss record 10 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4BA238E: strdup (strdup.c:42)
+==575154==    by 0x489F25E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48703F0: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486FE5A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x487019B: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48705A2: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 24 bytes in 1 blocks are still reachable in loss record 11 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48701CD: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48705A2: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 24 bytes in 1 blocks are still reachable in loss record 12 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B52B5: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B5E89: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B17F0: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x110589: mlx_int_new_xshm_image (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x1107B2: mlx_new_image (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2C6: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 29 bytes in 1 blocks are still reachable in loss record 13 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A014D: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A0519: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FEB6: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 32 bytes in 1 blocks are still reachable in loss record 14 of 56
+==575154==    at 0x483B723: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x483E017: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4D03B9E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D03C2B: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D0113E: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D011B4: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x48A5CD8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 32 bytes in 1 blocks are still reachable in loss record 15 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4D030C5: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D00E9E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D0261E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D02734: xcb_wait_for_reply (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D03C82: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D0113E: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D011B4: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x48A5CD8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 32 bytes in 1 blocks are still reachable in loss record 16 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48703CF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 32 bytes in 1 blocks are still reachable in loss record 17 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48703CF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486FE5A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x487019B: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48705A2: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 33 bytes in 1 blocks are still reachable in loss record 18 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A014D: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A0519: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE9F: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 40 bytes in 1 blocks are still reachable in loss record 19 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x10F40F: ft_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A820: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 40 bytes in 1 blocks are still reachable in loss record 20 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B6DD1: _XPollfdCacheInit (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A566F: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 48 bytes in 1 blocks are still reachable in loss record 21 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B4CB1: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A53A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 48 bytes in 1 blocks are still reachable in loss record 22 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B4CC7: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A53A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 72 bytes in 1 blocks are still reachable in loss record 23 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x110EA9: ft_calloc (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B36B: initialize_plane (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10ACEA: checking_identifier (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B146: read_rt_map (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A839: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 72 bytes in 1 blocks are still reachable in loss record 24 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A5721: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 80 bytes in 2 blocks are still reachable in loss record 25 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x10B9D6: add_new_sphere_object (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B50A: initialize_sphere (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10AD0A: checking_identifier (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B146: read_rt_map (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A839: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 88 bytes in 1 blocks are still reachable in loss record 26 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x11049B: mlx_int_new_xshm_image (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x1107B2: mlx_new_image (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2C6: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 104 bytes in 1 blocks are still reachable in loss record 27 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B4BB2: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A53A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 112 bytes in 1 blocks are still reachable in loss record 28 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A59A0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 112 bytes in 2 blocks are still reachable in loss record 29 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x110EA9: ft_calloc (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B493: initialize_sphere (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10AD0A: checking_identifier (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B146: read_rt_map (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A839: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 128 bytes in 1 blocks are still reachable in loss record 30 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A58D0: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 128 bytes in 1 blocks are still reachable in loss record 31 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x489F24E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x490BC43: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A5E19: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 128 bytes in 1 blocks are still reachable in loss record 32 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x489F24E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48703F0: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 128 bytes in 1 blocks are still reachable in loss record 33 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x489F24E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48703F0: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486FE5A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x487019B: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48705A2: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 136 bytes in 1 blocks are still reachable in loss record 34 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x10FDFF: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 136 bytes in 1 blocks are still reachable in loss record 35 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x486BBB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x1104CE: mlx_int_new_xshm_image (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x1107B2: mlx_new_image (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2C6: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 150 bytes in 1 blocks are still reachable in loss record 36 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A5E81: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 152 bytes in 1 blocks are still reachable in loss record 37 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x10F3FD: ft_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A820: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 152 bytes in 1 blocks are still reachable in loss record 38 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x490BE3E: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A5E19: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 160 bytes in 1 blocks are still reachable in loss record 39 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x489382F: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A5D48: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 160 bytes in 1 blocks are still reachable in loss record 40 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x489382F: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x11003E: mlx_new_window (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2AD: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 168 bytes in 1 blocks are still reachable in loss record 41 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A5C37: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 208 bytes in 1 blocks are still reachable in loss record 42 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48700F9: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48701AE: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x48705A2: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x486B7B2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==575154==    by 0x10FC23: mlx_int_deal_shm (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10FEC5: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 208 bytes in 1 blocks are still reachable in loss record 43 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B853E: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B50B6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B5B10: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B4039: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x110335: mlx_int_wait_first_expose (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x11007D: mlx_new_window (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2AD: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 240 bytes in 6 blocks are still reachable in loss record 44 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x10BA76: add_new_cylinder_object (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B635: initialize_cylinder (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10AD2A: checking_identifier (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B146: read_rt_map (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A839: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 416 bytes in 2 blocks are still reachable in loss record 45 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B853E: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B50B6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B5B10: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B4070: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x110335: mlx_int_wait_first_expose (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x11007D: mlx_new_window (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2AD: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 512 bytes in 1 blocks are still reachable in loss record 46 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A00BA: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A043E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE9F: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 528 bytes in 6 blocks are still reachable in loss record 47 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x110EA9: ft_calloc (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B56B: initialize_cylinder (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10AD2A: checking_identifier (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10B146: read_rt_map (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A839: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 832 bytes in 4 blocks are still reachable in loss record 48 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B853E: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B50B6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B59E1: _XEventsQueued (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x4896CCD: XFlush (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x110637: mlx_int_new_xshm_image (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x1107B2: mlx_new_image (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2C6: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 936 bytes in 1 blocks are still reachable in loss record 49 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x10FFA0: mlx_new_window (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2AD: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 1,456 bytes in 7 blocks are still reachable in loss record 50 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B853E: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B50B6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B5B59: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B4070: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x110335: mlx_int_wait_first_expose (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x11007D: mlx_new_window (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2AD: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 2,496 bytes in 12 blocks are still reachable in loss record 51 of 56
+==575154==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48B853E: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B50B6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B5B59: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48B4039: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x110335: mlx_int_wait_first_expose (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x11007D: mlx_new_window (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F2AD: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 4,688 bytes in 1 blocks are still reachable in loss record 52 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A5371: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 12,308 bytes in 1 blocks are still reachable in loss record 53 of 56
+==575154==    at 0x483DFAF: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4D00A62: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D04B72: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x48B4D29: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A53A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 16,384 bytes in 1 blocks are still reachable in loss record 54 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A56BF: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 21,168 bytes in 1 blocks are still reachable in loss record 55 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x4D00884: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x4D04B72: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==575154==    by 0x48B4D29: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x48A53A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== 28,224 bytes in 2 blocks are still reachable in loss record 56 of 56
+==575154==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==575154==    by 0x48A5A24: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==575154==    by 0x10FE17: mlx_init (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10F28E: ft_init_mlx (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154==    by 0x10A851: main (in /nfs/homes/mpagani/1_Projects/miniRT/miniRT)
+==575154== 
+==575154== LEAK SUMMARY:
+==575154==    definitely lost: 0 bytes in 0 blocks
+==575154==    indirectly lost: 0 bytes in 0 blocks
+==575154==      possibly lost: 0 bytes in 0 blocks
+==575154==    still reachable: 93,515 bytes in 90 blocks
+==575154==         suppressed: 0 bytes in 0 blocks
+==575154== 
+==575154== For lists of detected and suppressed errors, rerun with: -s
+==575154== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
