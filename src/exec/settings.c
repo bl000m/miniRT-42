@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/20 11:59:54 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 12:29:53 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 			{
 				color = ft_add(ft_ambient_light(minirt, &(minirt->rec)), ft_spec_light(minirt, &(minirt->rec)));
 				// printf("color before mixing = %f,%f,%f\n", color.x, color.y, color.z);
-				// color = ft_mixing_light(minirt, &(minirt->rec));
+				color = ft_diffuse_light(minirt, &(minirt->rec), color);
 				// printf("color after mixing = %f,%f,%f\n", color.x, color.y, color.z);
 				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
 			}
