@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reading_rt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 22:10:57 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 11:03:19 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,50 @@ void	checking_identifier(t_minirt *minirt, char **tokens, int *error)
 		*error += initialize_light(minirt, tokens);
 }
 
+int	check_capital(char c)
+{
+	return (c >= 65 && c <= 90 && (c == 'C' || c == 'L' || c == 'A'));
+}
+
+int	check_object_id(char *token)
+{
+	return (!ft_strncmp(token, "sp", 2) && !ft_strncmp(token, "pl", 2)
+		&& !ft_strncmp(token, "cy", 2));
+}
+
+void	check_tokens(char **tokens, t_minirt *minirt, char *line)
+{
+	// (void)minirt;
+	printf("tokens[0] = %s\n", tokens[0]);
+	printf("tokens[0][0] = %c\n", tokens[0][0]);
+	printf("tokens[0][1] = %c\n", tokens[0][1]);
+	printf("check_capital(tokens[0][0] = %d\n", check_capital(tokens[0][0]));
+	if (tokens[0][0] >= 65 && tokens[0][0] <= 90)
+	{
+		if (!check_capital(tokens[0][0])
+		|| (check_capital(tokens[0][0]) && tokens[0][1]))
+		{
+			ft_free(tokens);
+			free(line);
+			error_manager(minirt, "Scene element type identifier error", RED);
+		}
+	}
+	if (tokens[0][0] >= 97 && tokens[0][0] <= 122)
+	{
+		if (check_object_id(tokens[0]))
+		{
+			ft_free(tokens);
+			free(line);
+			error_manager(minirt, "Object type identifier error", RED);
+		}
+	}
+
+}
+
 int	read_rt_map(char *source, t_minirt *minirt, int *error)
 {
-	int		fd;
 	char	*line;
+	int		fd;
 	int		n_line;
 	char	**tokens;
 
@@ -48,6 +88,7 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 		if (!line)
 			break ;
 		tokens = ft_split(line, ' ');
+		check_tokens(tokens, minirt, line);
 		checking_identifier(minirt, tokens, error);
 		ft_free(tokens);
 		free(line);
@@ -57,4 +98,3 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 		error_manager(minirt, "Error in closing FD", RED);
 	return (*error);
 }
-
