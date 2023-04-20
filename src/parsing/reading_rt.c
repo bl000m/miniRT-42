@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 13:22:14 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 15:24:27 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 
 int	check_params_err(char **tokens)
 {
-	if (ft_strncmp(tokens[0], "pl", 2) == 0)
+	if (ft_strncmp(tokens[0], "pl", 2) == 0 && !tokens[0][2])
 		return (tokens_number(tokens) == 4);
-	if (ft_strncmp(tokens[0], "sp", 2) == 0)
+	if (ft_strncmp(tokens[0], "sp", 2) == 0 && !tokens[0][2])
 		return (tokens_number(tokens) == 4);
-	if (ft_strncmp(tokens[0], "cy", 2) == 0)
+	if (ft_strncmp(tokens[0], "cy", 2) == 0 && !tokens[0][2])
 		return (tokens_number(tokens) == 6);
-	if (ft_strncmp(tokens[0], "A", 1) == 0)
+	if (ft_strncmp(tokens[0], "A", 1) == 0 && !tokens[0][1])
 		return (tokens_number(tokens) == 3);
-	if (ft_strncmp(tokens[0], "C", 1) == 0)
+	if (ft_strncmp(tokens[0], "C", 1) == 0 && !tokens[0][1])
 		return (tokens_number(tokens) == 4);
-	if (ft_strncmp(tokens[0], "L", 1) == 0)
+	if (ft_strncmp(tokens[0], "L", 1) == 0 && !tokens[0][1])
 		return (tokens_number(tokens) == 4);
-	if (ft_strncmp(tokens[0], "\n", 1) == 0)
+	if (ft_strncmp(tokens[0], "\n", 1) == 0 && !tokens[0][1])
 		return (1);
 	return (0);
 }
@@ -40,24 +40,24 @@ void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line
 	printf("tokens[0] = %s check_params = %d\n", tokens[0], check_params_err(tokens));
 	if (check_params_err(tokens))
 	{
-		if (ft_strncmp(tokens[0], "pl", 2) == 0)
+		if (ft_strncmp(tokens[0], "pl", 2) == 0 && !tokens[0][2])
 			*error += initialize_plane(minirt, tokens);
-		if (ft_strncmp(tokens[0], "sp", 2) == 0)
+		if (ft_strncmp(tokens[0], "sp", 2) == 0 && !tokens[0][2])
 			*error += initialize_sphere(minirt, tokens);
-		if (ft_strncmp(tokens[0], "cy", 2) == 0)
+		if (ft_strncmp(tokens[0], "cy", 2) == 0 && !tokens[0][2])
 			*error += initialize_cylinder(minirt, tokens);
-		if (ft_strncmp(tokens[0], "A", 1) == 0)
+		if (ft_strncmp(tokens[0], "A", 1) == 0 && !tokens[0][1])
 			*error += initialize_ambient_light(minirt, tokens);
-		if (ft_strncmp(tokens[0], "C", 1) == 0)
+		if (ft_strncmp(tokens[0], "C", 1) == 0 && !tokens[0][1])
 			*error += initialize_camera(minirt, tokens);
-		if (ft_strncmp(tokens[0], "L", 1) == 0)
+		if (ft_strncmp(tokens[0], "L", 1) == 0 && !tokens[0][1])
 			*error += initialize_light(minirt, tokens);
 	}
 	else
 	{
 		ft_free(tokens);
 		free(line);
-		error_manager(minirt, "Wrong number of parameters", INFO);
+		error_manager(minirt, "Error in the instruction file", INFO);
 	}
 }
 
@@ -82,16 +82,9 @@ int	check_numeric(char *token)
 	{
 		if ((token[i] >= '0' && token[i] <= '9') || token[i] <= '\n'
 			|| token[i] == ',' || token[i] == '.' || token[i] == '-')
-		{
 			res = 1;
-			printf("token[i] = %c res = %d\n", token[i], res);
-		}
 		else
-		{
-			res = 0;
-			printf("token[i] = %c res = %d\n", token[i], res);
 			return (0);
-		}
 		i++;
 	}
 	return (res);
@@ -101,8 +94,10 @@ int	check_numeric(char *token)
 void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 {
 	int	i;
+	int	j;
 
 	i = 1;
+	j = 0;
 	if (tokens[0][0] >= 65 && tokens[0][0] <= 90)
 	{
 		if (!check_capital(tokens[0][0])
@@ -124,13 +119,26 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 	}
 	while (tokens[i])
 	{
-		printf("token = %s - check_num = %d\n", tokens[i], check_numeric(tokens[i]));
+		// printf("token = %s - check_num = %d\n", tokens[i], check_numeric(tokens[i]));
 		if (!check_numeric(tokens[i]))
 		{
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Error: not allowed characters in parameters", RED);
+			error_manager(minirt, "Error: char not allowed in parameters", RED);
 		}
+		while (tokens[i][j])
+		{
+
+			if (tokens[i][j] == ',' && (j == 0 || tokens[i][j + 1] < '0' || tokens[i][j + 1] > '9')
+				&& (tokens[i][j + 1] != '-'))
+			{
+				ft_free(tokens);
+				free(line);
+				error_manager(minirt, "too much commas in params", RED);
+			}
+			j++;
+		}
+		j = 0;
 		i++;
 	}
 }
@@ -151,6 +159,8 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 		if (!line)
 			break ;
 		tokens = ft_split(line, ' ');
+		if (!tokens)
+			error_manager(minirt, "Please remove spaces in empty line", RED);
 		check_tokens(tokens, minirt, line);
 		checking_identifier(minirt, tokens, error, line);
 		ft_free(tokens);
