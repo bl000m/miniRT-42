@@ -177,7 +177,10 @@ void	ft_init_rec(t_record *rec);
 /*	ft_ambient_light.c	*/
 t_vec3	ft_ambient_light(t_minirt *minirt, t_record *rec);
 t_vec3	ft_diffuse_light(t_minirt *minirt, t_record *rec);
+t_vec3	ft_spec_light(t_minirt *minirt, t_record *rec);
 bool	ft_in_shadow(t_minirt *minirt, t_record *rec);
+t_vec3	ft_mix_light(t_minirt *minirt, t_record *rec);
+t_vec3	ft_fix_overflow(t_vec3 color);
 
 
 
@@ -200,8 +203,5 @@ void	alert(char *str, char *color);
 void	free_clean(t_minirt *minirt);
 void	error_manager(t_minirt *minirt, char *message, char *color);
 void	ft_free(char **strs);
-
-/*	ft_spec_light.c	*/
-t_vec3	ft_spec_light(t_minirt *minirt, t_record *rec);
 
 #endif

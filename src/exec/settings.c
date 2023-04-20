@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/20 13:49:32 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/20 14:08:36 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,14 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 			color = ft_vec(0.0, 0.0, 0.0);
 			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
 			hit = ft_hit(object, minirt->ray, &(minirt->rec));
-			if (hit != 0)
+			if (hit)
 			{
-				
-				color = ft_add(color, ft_ambient_light(minirt, &(minirt->rec)));
+				color = ft_mix_light(minirt, &(minirt->rec));
 				// printf("color before mixing = %f,%f,%f\n", color.x, color.y, color.z);
-				
-				color = ft_add(color, ft_diffuse_light(minirt, &(minirt->rec)));
-				color = ft_add(color, ft_spec_light(minirt, &(minirt->rec)));
-				color = ft_mul(color, 0.5);
 				// printf("color after mixing = %f,%f,%f\n", color.x, color.y, color.z);
-				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
+				//ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
 			}
-			else
-				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, 0x0);
+			ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
 			minirt->x++;
 		}
 		minirt->y++;
