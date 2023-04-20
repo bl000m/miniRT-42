@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/09 16:01:53 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/19 22:35:25 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ t_vec3	ft_matrix_mul(double matrix[3][3], t_vec3 x);
 
 /*	math_utils.c	*/
 double	ft_dabs(double x);
+double	ft_max(double x, double y);
 
 #endif

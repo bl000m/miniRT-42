@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:08:38 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/26 19:10:12 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/19 22:35:04 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,13 @@ double	ft_dabs(double x)
 		return (x);
 	}
 	return (-x);
+}
+
+double	ft_max(double x, double y)
+{
+	if (x >= y)
+	{
+		return (x);
+	}
+	return (y);
 }
