@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/19 17:29:21 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/19 21:45:23 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,11 @@ int	check_commas(char *token)
 // N.B. still need to sitch the int from atoi to a double=> recode strtod
 t_vec3 get_instruction(char **tokens, int index)
 {
-	t_vec3  *result;
+	t_vec3  result;
 	char	**xyz;
 	char	*ptr;
 
-	result = calloc(sizeof(*result), 1);
+	// result = calloc(sizeof(*result), 1);
 	// if (!result)
 	//	 return (NULL);
 	if (tokens[index])
@@ -128,10 +128,11 @@ t_vec3 get_instruction(char **tokens, int index)
 		if (check_commas(tokens[index]))
 		{
 			xyz = ft_split(tokens[index], ',');
-			*result = ft_vec(strtod(xyz[0], &ptr), strtod(xyz[1], &ptr), strtod(xyz[2], &ptr));
+			result = ft_vec(strtod(xyz[0], &ptr), strtod(xyz[1], &ptr), strtod(xyz[2], &ptr));
+			ft_free(xyz);
 		}
 	}
-	return (*result);
+	return (result);
 }
 
 double get_instruction_double(char **tokens, int index)

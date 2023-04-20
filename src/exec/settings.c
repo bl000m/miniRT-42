@@ -21,6 +21,7 @@ int	ft_vec_to_int(t_vec3 color)
 {
 	int	temp;
 
+
 	// color = ft_unit_vec(color);
 	// color.x += 1;
 	// color.y += 1;
@@ -84,7 +85,7 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 			hit = ft_hit(object, minirt->ray, &(minirt->rec));
 			if (hit != 0)
 			{
-				color = ft_spec_light(minirt, &(minirt->rec));
+				color = ft_ambient_light(minirt, &(minirt->rec)) + ft_spec_light(minirt, &(minirt->rec));
 				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
 			}
 			else

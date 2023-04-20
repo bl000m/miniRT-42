@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:09 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/09 15:56:00 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/19 21:23:26 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void    setting_canvas(t_minirt *minirt);
 /*	hooks.c	*/
 void	ft_set_hook(t_minirt *minirt);
 int		ft_key_up_hook(int keycode, void *param);
-int		ft_destroy_hook(void *param);
+int 	ft_destroy_hook(void *param);
 
 #endif

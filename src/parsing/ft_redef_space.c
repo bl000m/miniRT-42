@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redef_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:59:49 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/19 16:12:15 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/19 21:59:16 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_init_canvas(t_minirt *minirt)
 	double		focal_len;
 	t_canvas	*canvas;
 
-	fov = (double)minirt->scene->camera->FOV;
+	fov = (double)minirt->scene->camera.FOV;
 	fov = (fov / 2) * 3.14159 / 180;
 	focal_len = -5;
 	canvas = &(minirt->canvas);
@@ -69,8 +69,8 @@ void	ft_redef_space(t_minirt	*minirt)
 
 	(void)	inv;
 	//printf("%f %f %f\n", minirt->scene->camera->orientation.x, minirt->scene->camera->orientation.y, minirt->scene->camera->orientation.z);
-	ft_rotate_xyz(ft_mul(minirt->scene->camera->orientation, -1) , matrix, inv);
-	shift = minirt->scene->camera->view_point;
+	ft_rotate_xyz(ft_mul(minirt->scene->camera.orientation, -1) , matrix, inv);
+	shift = minirt->scene->camera.view_point;
 	temp = minirt->scene->objects;
 	while (temp)
 	{
@@ -78,6 +78,6 @@ void	ft_redef_space(t_minirt	*minirt)
 		ft_new_pos(temp, matrix, shift);
 		temp = temp->next;
 	}
-	minirt->scene->light->pos = ft_matrix_mul(matrix, ft_sub(minirt->scene->light->pos, shift));
+	minirt->scene->light.pos = ft_matrix_mul(matrix, ft_sub(minirt->scene->light.pos, shift));
 	ft_init_canvas(minirt);
 }

@@ -21,7 +21,8 @@
 # include <stdint.h>
 
 # define GREEN "\x1b[32m"
-# define RED "\x1b[41m"
+# define BLUE "\x1b[94m"
+# define RED "\x1b[91m"
 # define INFO "\x1b[35m"
 # define NORMAL "\x1b[m"
 typedef struct s_canvas	t_canvas;
@@ -79,9 +80,9 @@ typedef struct s_object
 
 typedef struct s_scene
 {
-	t_ambient	*ambient_light;
-	t_camera	*camera;
-	t_light		*light;
+	t_ambient	ambient_light;
+	t_camera	camera;
+	t_light		light;
 	t_object	*objects;
 }	t_scene;
 
@@ -126,7 +127,7 @@ typedef struct s_minirt
 }	t_minirt;
 
 int		read_rt_map(char *source, t_minirt *minirt, int *error);
-int		open_file_map(char *file_map);
+int		open_file_map(char *file_map, t_minirt *minirt);
 int		initialize_plane(t_minirt *minirt, char **tokens);
 int		initialize_sphere(t_minirt *minirt, char **tokens);
 int		initialize_cylinder(t_minirt *minirt, char **tokens);
@@ -170,6 +171,8 @@ t_ray	ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift);
 bool	ft_hit(t_object *world, t_ray ray, t_record *rec);
 void	ft_init_rec(t_record *rec);
 
+/*	ft_ambient_light.c	*/
+t_vec3	ft_ambient_light(t_minirt *minirt, t_record *rec);
 
 
 /*	ray_op.c	*/
@@ -187,8 +190,10 @@ void	ft_redef_space(t_minirt	*minirt);
 /* style */
 void	alert(char *str, char *color);
 
-/*	error */
+/*	memory stuff */
+void	free_clean(t_minirt *minirt);
 void	error_manager(t_minirt *minirt, char *message, char *color);
+void	ft_free(char **strs);
 
 /*	ft_spec_light.c	*/
 t_vec3	ft_spec_light(t_minirt *minirt, t_record *rec);
