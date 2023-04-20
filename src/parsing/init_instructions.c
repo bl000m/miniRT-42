@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_instructions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:36:05 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/19 22:10:41 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 13:19:53 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	initialize_camera(t_minirt *minirt, char **tokens)
 	if (error)
 		alert("Input error: Camera orientation can't be 0,0,0", INFO);
 	camera.FOV = get_instruction_double(tokens, 3);
+	if (camera.FOV >= 180)
+		alert("Input error: Camera fov can't be higher than 179", INFO);
 	minirt->scene->camera = camera;
 	return (error);
 }

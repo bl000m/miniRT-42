@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 12:51:58 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 13:22:14 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,49 @@
 #include "mlx.h"
 #include "exec.h"
 
-void	checking_identifier(t_minirt *minirt, char **tokens, int *error)
+int	check_params_err(char **tokens)
 {
 	if (ft_strncmp(tokens[0], "pl", 2) == 0)
-		*error += initialize_plane(minirt, tokens);
+		return (tokens_number(tokens) == 4);
 	if (ft_strncmp(tokens[0], "sp", 2) == 0)
-		*error += initialize_sphere(minirt, tokens);
+		return (tokens_number(tokens) == 4);
 	if (ft_strncmp(tokens[0], "cy", 2) == 0)
-		*error += initialize_cylinder(minirt, tokens);
+		return (tokens_number(tokens) == 6);
 	if (ft_strncmp(tokens[0], "A", 1) == 0)
-		*error += initialize_ambient_light(minirt, tokens);
+		return (tokens_number(tokens) == 3);
 	if (ft_strncmp(tokens[0], "C", 1) == 0)
-		*error += initialize_camera(minirt, tokens);
+		return (tokens_number(tokens) == 4);
 	if (ft_strncmp(tokens[0], "L", 1) == 0)
-		*error += initialize_light(minirt, tokens);
+		return (tokens_number(tokens) == 4);
+	if (ft_strncmp(tokens[0], "\n", 1) == 0)
+		return (1);
+	return (0);
+}
+
+void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line)
+{
+	printf("tokens[0] = %s check_params = %d\n", tokens[0], check_params_err(tokens));
+	if (check_params_err(tokens))
+	{
+		if (ft_strncmp(tokens[0], "pl", 2) == 0)
+			*error += initialize_plane(minirt, tokens);
+		if (ft_strncmp(tokens[0], "sp", 2) == 0)
+			*error += initialize_sphere(minirt, tokens);
+		if (ft_strncmp(tokens[0], "cy", 2) == 0)
+			*error += initialize_cylinder(minirt, tokens);
+		if (ft_strncmp(tokens[0], "A", 1) == 0)
+			*error += initialize_ambient_light(minirt, tokens);
+		if (ft_strncmp(tokens[0], "C", 1) == 0)
+			*error += initialize_camera(minirt, tokens);
+		if (ft_strncmp(tokens[0], "L", 1) == 0)
+			*error += initialize_light(minirt, tokens);
+	}
+	else
+	{
+		ft_free(tokens);
+		free(line);
+		error_manager(minirt, "Wrong number of parameters", INFO);
+	}
 }
 
 int	check_capital(char c)
@@ -123,7 +152,7 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 			break ;
 		tokens = ft_split(line, ' ');
 		check_tokens(tokens, minirt, line);
-		checking_identifier(minirt, tokens, error);
+		checking_identifier(minirt, tokens, error, line);
 		ft_free(tokens);
 		free(line);
 		n_line++;
