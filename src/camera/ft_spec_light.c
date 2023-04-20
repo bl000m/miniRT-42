@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 22:11:36 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/20 14:05:55 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:29:26 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,16 @@ t_vec3	ft_diffuse_light(t_minirt *minirt, t_record *rec)
 
 bool	ft_in_shadow(t_minirt *minirt, t_record *rec)
 {
-	t_light		light;
+	t_light		*light;
 	t_ray		to_light;
 	t_record	temp;
 
-	light = minirt->scene->light;
-	to_light = ft_init_ray(rec->pos, ft_unit_vec(ft_sub(light.pos, rec->pos)));
+	light = &(minirt->scene->light);
+	to_light = ft_init_ray(rec->pos, ft_unit_vec(ft_sub(light->pos, rec->pos)));
 	if (ft_hit(minirt->scene->objects, to_light, &(temp)))
 	{
-		return (TRUE);
+		if (temp.dist <= ft_veclen(ft_sub(light->pos, rec->pos)))
+			return (TRUE);
 	}
 	return (FALSE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/08 13:52:03 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 14:29:49 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ bool	ft_hit_sph(t_sphere *sph, t_ray ray, double dist_max, t_record *rec)
 	{
 		return (FALSE);
 	}
-	if (temp[0] < dist_max && temp[0] > 0.001)
+	if (temp[0] < dist_max && temp[0] > 0.00001)
 	{
 		ft_set_rec_sph(temp[0], sph, ray, rec);
 		return (TRUE);
 	}
-	else if (temp[1] < dist_max && temp[1] > 0.001)
+	else if (temp[1] < dist_max && temp[1] > 0.00001)
 	{
 		ft_set_rec_sph(temp[1], sph, ray, rec);
 		return (TRUE);
