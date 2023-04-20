@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redef_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:59:49 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/20 15:00:46 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/20 20:52:36 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@ static void	ft_init_canvas(t_minirt *minirt)
 	canvas->pos.z = focal_len;
 	canvas->pos.x = (sin(fov) / cos(fov)) * focal_len;
 	canvas->img_width = canvas->pos.x * (-2) / canvas->eps;
-	//canvas->pos.z = canvas->pos.x / (sin(fov) / cos(fov));
-	//printf("sin(fov): %f\ncos(fov): %f\n", sin(fov), cos(fov));
-	//printf("sin(fov) / cos(fov): %f\n", sin(fov) / cos(fov));
-	printf("canvas pos: %f %f %f\n", canvas->pos.x,canvas->pos.y,canvas->pos.z);
 }
 
 void	ft_redef_space(t_minirt	*minirt)
@@ -68,13 +64,11 @@ void	ft_redef_space(t_minirt	*minirt)
 	t_object	*temp;
 
 	(void)	inv;
-	//printf("%f %f %f\n", minirt->scene->camera->orientation.x, minirt->scene->camera->orientation.y, minirt->scene->camera->orientation.z);
 	ft_rotate_xyz(ft_mul(minirt->scene->camera.orientation, -1) , matrix, inv);
 	shift = minirt->scene->camera.view_point;
 	temp = minirt->scene->objects;
 	while (temp)
 	{
-	//	printf("%f %f %f\n", minirt->scene->camera->orientation.x, minirt->scene->camera->orientation.y, minirt->scene->camera->orientation.z);
 		ft_new_pos(temp, matrix, shift);
 		temp = temp->next;
 	}

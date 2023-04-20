@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:37:03 by zrebhi            #+#    #+#             */
-/*   Updated: 2023/04/20 19:55:48 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 20:49:41 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static int	ft_words(char const *s, char c)
 		while (s[i] && s[i] != c)
 			i++;
 	}
-	printf("s = %s\n", s);
-	printf("ft_strlen(s) = %d\n", (int)ft_strlen(s));
 	if (ft_strlen(s) == (spaces + 1) && s[0] != '\n')
 		return (0);
 	return (words);

@@ -30,13 +30,6 @@
 
 typedef struct s_canvas	t_canvas;
 
-// typedef struct s_rgb
-// {
-// 	uint8_t		r; // unsigned char = 1 byte. instead of 3 byte of a double or 2 of an int
-// 	uint8_t		g;
-// 	uint8_t		b;
-// }	t_rgb;
-
 typedef struct s_ray
 {
 	t_vec3	orig;
@@ -127,10 +120,11 @@ typedef struct s_minirt
 	t_ray		ray;
 	int			x;
 	int			y;
+	int			fd;
 }	t_minirt;
 
 int		read_rt_map(char *source, t_minirt *minirt, int *error);
-int		open_file_map(char *file_map, t_minirt *minirt);
+void	open_file_map(char *file_map, t_minirt *minirt);
 int		initialize_plane(t_minirt *minirt, char **tokens);
 int		initialize_sphere(t_minirt *minirt, char **tokens);
 int		initialize_cylinder(t_minirt *minirt, char **tokens);
@@ -152,6 +146,8 @@ void	generating_camera_ray_draw(t_minirt *minirt, t_object *object);
 int		check_parameters(t_vec3 vector);
 int		check_params_err(char **tokens);
 int		tokens_number(char **tokens);
+void	closing_fd(t_minirt *minirt);
+double	ft_atof(char *nptr);
 
 /*	hit_plane.c	*/
 bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec);
