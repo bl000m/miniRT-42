@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 20:41:20 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 20:47:12 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line
 	{
 		ft_free(tokens);
 		free(line);
-		error_manager(minirt, "Error: wrong n. of params in instructions file", INFO);
+		error_manager(minirt, "Error: something wrong in instructions file", INFO);
 	}
 }
 
