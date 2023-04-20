@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/19 21:45:23 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 16:15:05 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,26 +103,29 @@ void	add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content)
 int	check_commas(char *token)
 {
 	int i;
+	int	count;
 
+	count = 0;
 	i = 0;
 	while (token[i])
 	{
 		if (token[i++] == ',')
-			return (1);
+		{
+			count++;
+		}
 	}
+	if (count == 2)
+		return (1);
 	return (0);
 }
 
 // N.B. still need to sitch the int from atoi to a double=> recode strtod
-t_vec3 get_instruction(char **tokens, int index)
+t_vec3 get_instruction(char **tokens, int index, t_minirt *minirt)
 {
 	t_vec3  result;
 	char	**xyz;
 	char	*ptr;
 
-	// result = calloc(sizeof(*result), 1);
-	// if (!result)
-	//	 return (NULL);
 	if (tokens[index])
 	{
 		if (check_commas(tokens[index]))
@@ -131,18 +134,50 @@ t_vec3 get_instruction(char **tokens, int index)
 			result = ft_vec(strtod(xyz[0], &ptr), strtod(xyz[1], &ptr), strtod(xyz[2], &ptr));
 			ft_free(xyz);
 		}
+		else
+			error_manager(minirt, "Wrong number of params for a vector", RED);
 	}
 	return (result);
 }
 
-double get_instruction_double(char **tokens, int index)
+int	check_double(char *token)
+{
+	int	i;
+	int	res;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (token[i])
+	{
+		if ((token[i] >= '0' && token[i] <= '9') || token[i] == '.' || token[i] == '\n')
+		{
+			if (token[i] == '.')
+				count++;
+			res = 1;
+		}
+		else
+			return (0);
+		i++;
+	}
+	if (count <= 1)
+		return (1);
+	else
+		return (0);
+	return (res);
+}
+
+double get_instruction_double(char **tokens, int index, t_minirt *minirt)
 {
 	double  result;
 	char	*ptr;
 
 	result = 0;
-	if (tokens[index])
+	printf("check_double(tokens[index]) = %d\n", check_double(tokens[index]));
+	if (tokens[index] && check_double(tokens[index]))
 		result = strtod(tokens[index], &ptr);
+	else
+		error_manager(minirt, "Wrong double input", RED);
 	return (result);
 }
 
@@ -176,4 +211,16 @@ void alert(char *str, char *color)
 		i++;
 	}
 	printf("─╯\n");
+}
+
+int	tokens_number(char **tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i])
+	{
+		i++;
+	}
+	return (i);
 }

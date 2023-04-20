@@ -139,9 +139,10 @@ int		initialize_camera(t_minirt *minirt, char **tokens);
 int		initialize_light(t_minirt *minirt, char **tokens);
 void	get_size(char *file_map, t_minirt *minirt);
 int		get_n_lines(int fd);
-t_vec3	get_instruction(char **tokens, int index);
-double	get_instruction_double(char **tokens, int index);
+t_vec3 	get_instruction(char **tokens, int index, t_minirt *minirt);
+double 	get_instruction_double(char **tokens, int index, t_minirt *minirt);
 // t_rgb 	get_instruction_rgb(char **tokens, int index);
+void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line);
 int		check_commas(char *token);
 void	add_new_plane_object(t_minirt *minirt, t_plane *new_object_content);
 void	add_new_sphere_object(t_minirt *minirt, t_sphere *new_object_content);
@@ -149,6 +150,8 @@ void	add_new_cylinder_object(t_minirt *minirt, t_cylinder *new_object_content);
 void	ft_put_pixel(t_image *img_info, int x, int y, int color);
 void	generating_camera_ray_draw(t_minirt *minirt, t_object *object);
 int		check_parameters(t_vec3 vector);
+int		check_params_err(char **tokens);
+int		tokens_number(char **tokens);
 
 /*	hit_plane.c	*/
 bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec);
