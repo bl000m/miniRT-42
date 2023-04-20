@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:06:11 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 21:31:31 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 20:18:36 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	open_file_map(char *file_map, t_minirt *minirt)
 
 	fd = open(file_map, O_RDONLY);
 	if (fd < 0)
-		error_manager(minirt, "Error in opening FD", RED);
+		error_manager(minirt, "Error: error in opening FD", RED);
 	return (fd);
 }
 
@@ -28,10 +28,10 @@ void	get_size(char *file_map, t_minirt *minirt)
 
 	fd = open(file_map, O_RDONLY);
 	if (fd < 0)
-		error_manager(minirt, "Error in opening FD", RED);
+		error_manager(minirt, "Error: error in opening FD", RED);
 	minirt->rt_map.n_lines = get_n_lines(fd);
 	if (close(fd) < 0)
-		error_manager(minirt, "Error in closing FD", RED);
+		error_manager(minirt, "Error: error in closing FD", RED);
 }
 
 int	get_n_lines(int fd)

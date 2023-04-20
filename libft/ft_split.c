@@ -3,26 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:37:03 by zrebhi            #+#    #+#             */
-/*   Updated: 2023/02/18 14:07:32 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 19:55:48 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	ft_words(char const *s, char c)
 {
 	int	i;
 	int	words;
+	int	spaces;
 
 	i = 0;
+	spaces = 0;
 	words = 0;
 	while (s[i])
 	{
 		while (s[i] && s[i] == c)
+		{
+			spaces++;
 			i++;
+		}
 		if (s[i] != c && s[i] != 0)
 		{
 			words++;
@@ -31,6 +37,10 @@ static int	ft_words(char const *s, char c)
 		while (s[i] && s[i] != c)
 			i++;
 	}
+	printf("s = %s\n", s);
+	printf("ft_strlen(s) = %d\n", (int)ft_strlen(s));
+	if (ft_strlen(s) == (spaces + 1) && s[0] != '\n')
+		return (0);
 	return (words);
 }
 
@@ -95,9 +105,11 @@ static	char	**ft_lines(char const *s, char c, char **strs, int x)
 char	**ft_split(char const *s, char c)
 {
 	char	**strs;
-
+	
 	if (!s)
 		return (0);
+	if (ft_words(s, c) == 0)
+		return (NULL);
 	strs = malloc(sizeof(char *) * (ft_words(s, c) + 1));
 	if (!strs)
 		return (NULL);

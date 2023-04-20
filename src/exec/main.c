@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 10:09:47 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 20:16:36 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	if (!ft_init(&minirt))
-		error_manager(&minirt, "Init fails", RED);
+		error_manager(&minirt, "Error: Init fails", RED);
 	if (read_rt_map(argv[1], &minirt, &error))
-		error_manager(&minirt, "Parsing error. Try again", RED);
+		error_manager(&minirt, "Error: Parsing error. Try again", RED);
 	ft_redef_space(&minirt);
 	if (!ft_init_mlx(&minirt))
-		error_manager(&minirt, "Mlx init error", RED);
+		error_manager(&minirt, "Error: Mlx init error", RED);
 	ft_set_hook(&minirt);
 	// setting_canvas(&minirt);
 	// printf("camera orienta: %f %f %f\n", minirt.scene->camera->orientation.x, minirt.scene->camera->orientation.y, minirt.scene->camera->orientation.z);

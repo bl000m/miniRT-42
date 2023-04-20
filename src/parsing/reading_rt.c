@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reading_rt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 16:07:55 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 20:18:08 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line
 	{
 		ft_free(tokens);
 		free(line);
-		error_manager(minirt, "Error in the instruction file", INFO);
+		error_manager(minirt, "Error: something wrong in the instruction file", INFO);
 	}
 }
 
@@ -105,7 +105,7 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 		{
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Scene element type identifier error", RED);
+			error_manager(minirt, "Error: Scene element type identifier error", RED);
 		}
 	}
 	if (tokens[0][0] >= 97 && tokens[0][0] <= 122)
@@ -114,7 +114,7 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 		{
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Object type identifier error", RED);
+			error_manager(minirt, "Error: object type identifier error", RED);
 		}
 	}
 	while (tokens[i])
@@ -124,7 +124,7 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 		{
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Error: char not allowed in parameters", RED);
+			error_manager(minirt, "Error: character not allowed in parameters", RED);
 		}
 		while (tokens[i][j])
 		{
@@ -134,7 +134,7 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 			{
 				ft_free(tokens);
 				free(line);
-				error_manager(minirt, "too much commas in params", RED);
+				error_manager(minirt, "Error: too much commas in params", RED);
 			}
 			j++;
 		}
@@ -152,6 +152,8 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 
 	n_line = 0;
 	get_size(source, minirt);
+	if (minirt->rt_map.n_lines == 0)
+		error_manager(minirt, "Error: an empty file as argument is not good for your health", RED);
 	fd = open_file_map(source, minirt);
 	while (n_line < minirt->rt_map.n_lines)
 	{
@@ -160,7 +162,7 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 			break ;
 		tokens = ft_split(line, ' ');
 		if (!tokens)
-			error_manager(minirt, "Please remove spaces in empty line", RED);
+			error_manager(minirt, "Error: just spaces in line is not good... or another parsin problem occured", RED);
 		check_tokens(tokens, minirt, line);
 		checking_identifier(minirt, tokens, error, line);
 		ft_free(tokens);
@@ -168,6 +170,6 @@ int	read_rt_map(char *source, t_minirt *minirt, int *error)
 		n_line++;
 	}
 	if (close(fd) < 0)
-		error_manager(minirt, "Error in closing FD", RED);
+		error_manager(minirt, "Error: error in closing FD", RED);
 	return (*error);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/20 16:15:05 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 20:16:50 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ t_vec3 get_instruction(char **tokens, int index, t_minirt *minirt)
 			ft_free(xyz);
 		}
 		else
-			error_manager(minirt, "Wrong number of params for a vector", RED);
+			error_manager(minirt, "Error: Wrong number of params for a vector", RED);
 	}
 	return (result);
 }
@@ -177,7 +177,7 @@ double get_instruction_double(char **tokens, int index, t_minirt *minirt)
 	if (tokens[index] && check_double(tokens[index]))
 		result = strtod(tokens[index], &ptr);
 	else
-		error_manager(minirt, "Wrong double input", RED);
+		error_manager(minirt, "Error: Wrong double input", RED);
 	return (result);
 }
 
