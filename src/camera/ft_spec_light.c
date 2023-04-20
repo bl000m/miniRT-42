@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_spec_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 22:11:36 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/20 15:29:26 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/20 16:20:38 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 t_vec3	ft_mix_light(t_minirt *minirt, t_record *rec)
 {
 	t_vec3	color;
-	
+
 	color = ft_ambient_light(minirt, rec);
 	color = ft_add(color, ft_diffuse_light(minirt, rec));
 	color = ft_add(color, ft_spec_light(minirt, rec));
@@ -29,7 +29,7 @@ t_vec3	ft_mix_light(t_minirt *minirt, t_record *rec)
 t_vec3	ft_fix_overflow(t_vec3 color)
 {
 	double	max;
-	
+
 	max = ft_max(color.x, color.y);
 	max = ft_max(max, color.z);
 	if (max < 255)
