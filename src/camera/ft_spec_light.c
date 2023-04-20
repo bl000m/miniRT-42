@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_spec_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 22:11:36 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/20 13:50:45 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/20 16:20:38 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,33 @@
 #include "parsing.h"
 #include "scene.h"
 #include "world.h"
-/*
-t_vec3	ft_diffuse_light(t_minirt *minirt, t_record *rec, t_vec3 ambient_spec_light)
-{
-	t_vec3	in;
-	double	angle;
-	t_vec3	mixed_light;
 
-	in = minirt->ray.dir;
-	angle = fabs(ft_dot(in, rec->normal));
-	mixed_light = ft_vec(0, 0, 0);
-	if (ft_in_shadow(minirt, rec))
+t_vec3	ft_mix_light(t_minirt *minirt, t_record *rec)
+{
+	t_vec3	color;
+
+	color = ft_ambient_light(minirt, rec);
+	color = ft_add(color, ft_diffuse_light(minirt, rec));
+	color = ft_add(color, ft_spec_light(minirt, rec));
+	return (ft_fix_overflow(color));
+}
+
+t_vec3	ft_fix_overflow(t_vec3 color)
+{
+	double	max;
+
+	max = ft_max(color.x, color.y);
+	max = ft_max(max, color.z);
+	if (max < 255)
 	{
-		return (mixed_light);
+		return (color);
 	}
-	// printf("angle = %f\n", angle);
-	if (angle)
-	{
-		mixed_light.x = ambient_spec_light.x * angle;
-		mixed_light.y = ambient_spec_light.y * angle;
-		mixed_light.z = ambient_spec_light.z * angle;
-	}
-	// diffuse_light.x = diffuse_light.x * ALBEDO;
-	// diffuse_light.y = diffuse_light.y * ALBEDO;
-	// diffuse_light.z = diffuse_light.z * ALBEDO;
-	// mixed_light = ft_add(diffuse_light, *ambient_spec_light);
-	// mixed_light = ft_mul(mixed_light, mixed_light);
-	return (mixed_light);
-}*/
+	color.x = (color.x / max) * 255;
+	color.y = (color.y / max) * 255;
+	color.z = (color.z / max) * 255;
+	return (color);
+}
+
 
 t_vec3	ft_diffuse_light(t_minirt *minirt, t_record *rec)
 {
@@ -71,15 +70,16 @@ t_vec3	ft_diffuse_light(t_minirt *minirt, t_record *rec)
 
 bool	ft_in_shadow(t_minirt *minirt, t_record *rec)
 {
-	t_light		light;
+	t_light		*light;
 	t_ray		to_light;
 	t_record	temp;
 
-	light = minirt->scene->light;
-	to_light = ft_init_ray(rec->pos, ft_unit_vec(ft_sub(light.pos, rec->pos)));
+	light = &(minirt->scene->light);
+	to_light = ft_init_ray(rec->pos, ft_unit_vec(ft_sub(light->pos, rec->pos)));
 	if (ft_hit(minirt->scene->objects, to_light, &(temp)))
 	{
-		return (TRUE);
+		if (temp.dist <= ft_veclen(ft_sub(light->pos, rec->pos)))
+			return (TRUE);
 	}
 	return (FALSE);
 }

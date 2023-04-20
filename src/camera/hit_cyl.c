@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:21:23 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/29 13:36:16 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/20 14:30:02 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ bool	ft_hit_cyl(t_cylinder cyl, t_ray ray, double dist_max, t_record *rec)
 	{
 		return (FALSE);
 	}
-	else if (temp[0].dist < dist_max && temp[0].dist > 0.001)
+	else if (temp[0].dist < dist_max && temp[0].dist > 0.00001)
 	{
 		ft_copy_rec(rec, temp);
 		return (TRUE);
 	}
-	else if (temp[1].dist < dist_max && temp[1].dist > 0.001)
+	else if (temp[1].dist < dist_max && temp[1].dist > 0.00001)
 	{
 		ft_copy_rec(rec, temp + 1);
 		return (TRUE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redef_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:59:49 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/19 21:59:16 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 15:00:46 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_new_pos(t_object *temp, double matrix[3][3], t_vec3 shift)
 		temp->plane->pos = \
 		ft_matrix_mul(matrix, ft_sub(temp->plane->pos, shift));
 		temp->plane->dir = \
-		ft_matrix_mul(matrix, temp->plane->pos);
+		ft_matrix_mul(matrix, temp->plane->dir);
 	}
 }
 
