@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/19 23:21:12 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 11:59:54 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ int	ft_vec_to_int(t_vec3 color)
 {
 	int	temp;
 
-	//color = ft_unit_vec(color);
-	//color.x += 1;
-	//color.y += 1;
-	//color.z += 1;
-	//color = ft_unit_vec(color);
+
+	// color = ft_unit_vec(color);
+	// color.x += 1;
+	// color.y += 1;
+	// color.z += 1;
+	// color = ft_unit_vec(color);
+   // double	t = 0.5 * (color.y + 1.0);
+   // color = ft_add(ft_mul(ft_vec(1.0, 1.0, 1.0), (1.0 - t)), ft_mul(ft_vec(0.5, 0.7, 1.0), t));
 
 	temp = 0;
 	temp |= (int)(color.x) << 0; // blue
@@ -82,9 +85,9 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 			hit = ft_hit(object, minirt->ray, &(minirt->rec));
 			if (hit != 0)
 			{
-				color = ft_ambient_light(minirt, &(minirt->rec));
+				color = ft_add(ft_ambient_light(minirt, &(minirt->rec)), ft_spec_light(minirt, &(minirt->rec)));
 				// printf("color before mixing = %f,%f,%f\n", color.x, color.y, color.z);
-				color = ft_mixing_light(&color);
+				// color = ft_mixing_light(minirt, &(minirt->rec));
 				// printf("color after mixing = %f,%f,%f\n", color.x, color.y, color.z);
 				ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
 			}

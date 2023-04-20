@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:06:52 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 21:37:33 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 10:36:55 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void	free_mlx(t_minirt *minirt)
 
 void	free_clean(t_minirt *minirt)
 {
-	if (minirt->mlx)
-		free_mlx(minirt);
+	// if (minirt->mlx)
+	// 	free_mlx(minirt);
 	if (minirt->scene)
 		free_scene(minirt);
 }
 
 void	error_manager(t_minirt *minirt, char *message, char *color)
 {
-	(void) minirt;
+	// (void) minirt;
 	if (message)
 	{
 		free_clean(minirt);

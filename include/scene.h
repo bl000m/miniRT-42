@@ -21,11 +21,12 @@
 # include <stdint.h>
 
 # define GREEN "\x1b[32m"
-# define RED "\x1b[41m"
+# define BLUE "\x1b[94m"
+# define RED "\x1b[91m"
 # define INFO "\x1b[35m"
 # define NORMAL "\x1b[m"
 
-# define ALBEDO 1.4
+# define ALBEDO 0.3
 
 typedef struct s_canvas	t_canvas;
 
@@ -175,10 +176,14 @@ void	ft_init_rec(t_record *rec);
 
 /*	ft_ambient_light.c	*/
 t_vec3	ft_ambient_light(t_minirt *minirt, t_record *rec);
-t_vec3	ft_mixing_light(t_vec3 *ambient_light);
+t_vec3	ft_mixing_light(t_vec3 *ambient_spec_light);
+bool	ft_in_shadow(t_minirt *minirt, t_record *rec);
+
+
 
 /*	ray_op.c	*/
 t_vec3	ft_ray_at(t_ray ray, double t);
+t_ray	ft_init_ray(t_vec3 orig, t_vec3 dir);
 
 /*	ft_camera_ray.c	*/
 t_ray	ft_camera_ray(t_canvas *canvas, int x, int y);
@@ -195,5 +200,8 @@ void	alert(char *str, char *color);
 void	free_clean(t_minirt *minirt);
 void	error_manager(t_minirt *minirt, char *message, char *color);
 void	ft_free(char **strs);
+
+/*	ft_spec_light.c	*/
+t_vec3	ft_spec_light(t_minirt *minirt, t_record *rec);
 
 #endif

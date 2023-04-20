@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 21:41:26 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 10:09:47 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	error = 0;
+	if (argc != 2)
+	{
+		alert("Wrong number of argument", BLUE);
+		exit(1);
+	}
 	if (!ft_init(&minirt))
-		error_manager(&minirt, "init fails", RED);
+		error_manager(&minirt, "Init fails", RED);
 	if (read_rt_map(argv[1], &minirt, &error))
 		error_manager(&minirt, "Parsing error. Try again", RED);
 	ft_redef_space(&minirt);
