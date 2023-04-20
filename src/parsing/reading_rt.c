@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 11:26:43 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 12:51:58 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,27 @@ int	check_object_id(char *token)
 int	check_numeric(char *token)
 {
 	int	i;
+	int	res;
 
 	i = 0;
 	while (token[i])
 	{
-		if ((token[i] >= '0' && token[i] <= '9')
+		if ((token[i] >= '0' && token[i] <= '9') || token[i] <= '\n'
 			|| token[i] == ',' || token[i] == '.' || token[i] == '-')
-			return (1);
+		{
+			res = 1;
+			printf("token[i] = %c res = %d\n", token[i], res);
+		}
+		else
+		{
+			res = 0;
+			printf("token[i] = %c res = %d\n", token[i], res);
+			return (0);
+		}
 		i++;
 	}
-	return (0);
+	return (res);
 }
-
 
 
 void	check_tokens(char **tokens, t_minirt *minirt, char *line)
@@ -91,7 +100,7 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 		{
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Error: not numeric parameters", RED);
+			error_manager(minirt, "Error: not allowed characters in parameters", RED);
 		}
 		i++;
 	}
