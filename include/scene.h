@@ -139,7 +139,7 @@ int		initialize_camera(t_minirt *minirt, char **tokens);
 int		initialize_light(t_minirt *minirt, char **tokens);
 void	get_size(char *file_map, t_minirt *minirt);
 int		get_n_lines(int fd);
-t_vec3	get_instruction(char **tokens, int index);
+t_vec3 	get_instruction(char **tokens, int index, t_minirt *minirt);
 double	get_instruction_double(char **tokens, int index);
 // t_rgb 	get_instruction_rgb(char **tokens, int index);
 void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line);
