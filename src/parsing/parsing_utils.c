@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/20 15:51:46 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 15:58:20 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,13 +140,30 @@ t_vec3 get_instruction(char **tokens, int index, t_minirt *minirt)
 	return (result);
 }
 
+int	check_double(char *token)
+{
+	int i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (token[i])
+	{
+		if (token[i++] == ',')
+			count++;
+	}
+	if (count <= 1)
+		return (1);
+	return (0);
+}
+
 double get_instruction_double(char **tokens, int index)
 {
 	double  result;
 	char	*ptr;
 
 	result = 0;
-	if (tokens[index])
+	if (tokens[index] && check_double(tokens[index]))
 		result = strtod(tokens[index], &ptr);
 	return (result);
 }
