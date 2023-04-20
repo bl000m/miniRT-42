@@ -21,7 +21,8 @@
 # include <stdint.h>
 
 # define GREEN "\x1b[32m"
-# define RED "\x1b[41m"
+# define BLUE "\x1b[94m"
+# define RED "\x1b[91m"
 # define INFO "\x1b[35m"
 # define NORMAL "\x1b[m"
 typedef struct s_canvas	t_canvas;
