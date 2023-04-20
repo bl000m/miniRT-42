@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/20 15:58:20 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 16:15:05 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,29 +142,42 @@ t_vec3 get_instruction(char **tokens, int index, t_minirt *minirt)
 
 int	check_double(char *token)
 {
-	int i;
+	int	i;
+	int	res;
 	int	count;
 
 	count = 0;
 	i = 0;
 	while (token[i])
 	{
-		if (token[i++] == ',')
-			count++;
+		if ((token[i] >= '0' && token[i] <= '9') || token[i] == '.' || token[i] == '\n')
+		{
+			if (token[i] == '.')
+				count++;
+			res = 1;
+		}
+		else
+			return (0);
+		i++;
 	}
 	if (count <= 1)
 		return (1);
-	return (0);
+	else
+		return (0);
+	return (res);
 }
 
-double get_instruction_double(char **tokens, int index)
+double get_instruction_double(char **tokens, int index, t_minirt *minirt)
 {
 	double  result;
 	char	*ptr;
 
 	result = 0;
+	printf("check_double(tokens[index]) = %d\n", check_double(tokens[index]));
 	if (tokens[index] && check_double(tokens[index]))
 		result = strtod(tokens[index], &ptr);
+	else
+		error_manager(minirt, "Wrong double input", RED);
 	return (result);
 }
 
