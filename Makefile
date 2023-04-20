@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+         #
+#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/20 12:00:30 by mpagani          ###   ########.fr        #
+#    Updated: 2023/04/20 15:56:06 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,7 @@ $(OBJ_DIR) :
 FORCE	:
 
 val :
-	valgrind --tool=memcheck --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./miniRT scene_basic.rt
+	valgrind --log-file="val_log" --tool=memcheck --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./miniRT scene_basic.rt
 
 clean :
 	rm -rf $(OBJ_DIR)
