@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 11:03:19 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 11:26:43 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,28 @@ int	check_object_id(char *token)
 		&& !ft_strncmp(token, "cy", 2));
 }
 
+int	check_numeric(char *token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i])
+	{
+		if ((token[i] >= '0' && token[i] <= '9')
+			|| token[i] == ',' || token[i] == '.' || token[i] == '-')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+
+
 void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 {
-	// (void)minirt;
-	printf("tokens[0] = %s\n", tokens[0]);
-	printf("tokens[0][0] = %c\n", tokens[0][0]);
-	printf("tokens[0][1] = %c\n", tokens[0][1]);
-	printf("check_capital(tokens[0][0] = %d\n", check_capital(tokens[0][0]));
+	int	i;
+
+	i = 1;
 	if (tokens[0][0] >= 65 && tokens[0][0] <= 90)
 	{
 		if (!check_capital(tokens[0][0])
@@ -69,7 +84,17 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 			error_manager(minirt, "Object type identifier error", RED);
 		}
 	}
-
+	while (tokens[i])
+	{
+		printf("token = %s - check_num = %d\n", tokens[i], check_numeric(tokens[i]));
+		if (!check_numeric(tokens[i]))
+		{
+			ft_free(tokens);
+			free(line);
+			error_manager(minirt, "Error: not numeric parameters", RED);
+		}
+		i++;
+	}
 }
 
 int	read_rt_map(char *source, t_minirt *minirt, int *error)
