@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/20 16:15:05 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 22:01:52 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,23 +119,22 @@ int	check_commas(char *token)
 	return (0);
 }
 
-// N.B. still need to sitch the int from atoi to a double=> recode strtod
+// N.B. still need to sitch the int from atoi to a double=> recode ft_atof
 t_vec3 get_instruction(char **tokens, int index, t_minirt *minirt)
 {
 	t_vec3  result;
 	char	**xyz;
-	char	*ptr;
 
 	if (tokens[index])
 	{
 		if (check_commas(tokens[index]))
 		{
 			xyz = ft_split(tokens[index], ',');
-			result = ft_vec(strtod(xyz[0], &ptr), strtod(xyz[1], &ptr), strtod(xyz[2], &ptr));
+			result = ft_vec(ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 			ft_free(xyz);
 		}
 		else
-			error_manager(minirt, "Wrong number of params for a vector", RED);
+			error_manager(minirt, "Error: Wrong number of params for a vector", RED);
 	}
 	return (result);
 }
@@ -170,14 +169,12 @@ int	check_double(char *token)
 double get_instruction_double(char **tokens, int index, t_minirt *minirt)
 {
 	double  result;
-	char	*ptr;
 
 	result = 0;
-	printf("check_double(tokens[index]) = %d\n", check_double(tokens[index]));
 	if (tokens[index] && check_double(tokens[index]))
-		result = strtod(tokens[index], &ptr);
+		result = ft_atof(tokens[index]);
 	else
-		error_manager(minirt, "Wrong double input", RED);
+		error_manager(minirt, "Error: Wrong single float parameter", RED);
 	return (result);
 }
 
@@ -223,4 +220,50 @@ int	tokens_number(char **tokens)
 		i++;
 	}
 	return (i);
+}
+
+static int	ft_isspace(int c)
+{
+	if (c == ' ' || c == '\f' || c == '\n'
+		|| c == '\r' || c == '\t' || c == '\v')
+		return (1);
+	return (0);
+}
+
+static inline void	treat_decimal_part(const char *nptr, double *result)
+{
+	ssize_t	nbr_decimal;
+
+	if (*nptr == '.')
+	{
+		nbr_decimal = 0;
+		nptr++;
+		while (ft_isdigit(*nptr))
+		{
+			*result = *result * 10 + (*nptr++ - '0');
+			nbr_decimal--;
+		}
+		while (nbr_decimal++ < 0)
+			*result /= 10;
+	}
+}
+
+double	ft_atof(char *nptr)
+{
+	double	result;
+	int		sign;
+
+	result = 0;
+	sign = 1;
+	while (ft_isspace(*nptr))
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr++ == '-')
+			sign = -1;
+	}
+	while (ft_isdigit(*nptr))
+		result = result * 10 + (*nptr++ - '0');
+	treat_decimal_part(nptr, &result);
+	return (result * sign);
 }

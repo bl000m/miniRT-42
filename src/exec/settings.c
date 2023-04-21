@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/20 14:08:36 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/20 20:52:42 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,12 @@ void    setting_canvas(t_minirt *minirt)
 	minirt->canvas.eps = 0.01;
 	minirt->canvas.pos = ft_vec((WIDTH / 2) * -0.01, (HEIGHT / 2) * -0.01, -20);
 }
-
-	// printf("dist = %f\n", minirt->rec.dist);
 bool    stocking_rec_depending_on_objects(t_minirt *minirt, t_object *object)
 {
 	if (object->type == 's')
 		return (ft_hit_sph(object->sphere, minirt->ray, minirt->rec.dist, &(minirt->rec)));
 	else if (object->type == 'c')
 		return (ft_hit_cyl(*object->cylinder, minirt->ray, minirt->rec.dist, &(minirt->rec)));
-//	else if (object->type == 'p')
-//		return (ft_hit_plane(minirt, object->plane));
 	return (FALSE);
 }
 
@@ -86,9 +82,6 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 			if (hit)
 			{
 				color = ft_mix_light(minirt, &(minirt->rec));
-				// printf("color before mixing = %f,%f,%f\n", color.x, color.y, color.z);
-				// printf("color after mixing = %f,%f,%f\n", color.x, color.y, color.z);
-				//ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
 			}
 			ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
 			minirt->x++;

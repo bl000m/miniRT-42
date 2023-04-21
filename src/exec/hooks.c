@@ -6,7 +6,7 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:05:54 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/19 21:23:08 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 20:52:38 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_key_up_hook(int keycode, void *param)
 {
 	t_minirt    *minirt;
 
-	// printf("hooks\n");
 	if (keycode != 65307)
 		return (0);
     minirt = (t_minirt *)param;

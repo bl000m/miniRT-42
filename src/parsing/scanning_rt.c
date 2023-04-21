@@ -6,32 +6,27 @@
 /*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:06:11 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/19 21:31:31 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/20 21:20:27 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-int	open_file_map(char *file_map, t_minirt *minirt)
+void	open_file_map(char *file_map, t_minirt *minirt)
 {
-	int		fd;
-
-	fd = open(file_map, O_RDONLY);
-	if (fd < 0)
-		error_manager(minirt, "Error in opening FD", RED);
-	return (fd);
+	minirt->fd = open(file_map, O_RDONLY);
+	if (minirt->fd < 0)
+		error_manager(minirt, "Error: error in opening FD", RED);
 }
 
 void	get_size(char *file_map, t_minirt *minirt)
 {
-	int	fd;
-
-	fd = open(file_map, O_RDONLY);
-	if (fd < 0)
-		error_manager(minirt, "Error in opening FD", RED);
-	minirt->rt_map.n_lines = get_n_lines(fd);
-	if (close(fd) < 0)
-		error_manager(minirt, "Error in closing FD", RED);
+	minirt->fd = open(file_map, O_RDONLY);
+	if (minirt->fd< 0)
+		error_manager(minirt, "Error: error in opening FD", RED);
+	minirt->rt_map.n_lines = get_n_lines(minirt->fd);
+	if (close(minirt->fd) < 0)
+		error_manager(minirt, "Error: error in closing FD", RED);
 }
 
 int	get_n_lines(int fd)

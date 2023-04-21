@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reading_rt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 16:07:55 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/20 21:16:47 by mathia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	check_params_err(char **tokens)
 
 void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line)
 {
-	printf("tokens[0] = %s check_params = %d\n", tokens[0], check_params_err(tokens));
 	if (check_params_err(tokens))
 	{
 		if (ft_strncmp(tokens[0], "pl", 2) == 0 && !tokens[0][2])
@@ -55,9 +54,10 @@ void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line
 	}
 	else
 	{
+		closing_fd(minirt);
 		ft_free(tokens);
 		free(line);
-		error_manager(minirt, "Error in the instruction file", INFO);
+		error_manager(minirt, "Error: something wrong in instructions file", INFO);
 	}
 }
 
@@ -103,28 +103,30 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 		if (!check_capital(tokens[0][0])
 		|| (check_capital(tokens[0][0]) && tokens[0][1]))
 		{
+			closing_fd(minirt);
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Scene element type identifier error", RED);
+			error_manager(minirt, "Error: Scene element type identifier error", RED);
 		}
 	}
 	if (tokens[0][0] >= 97 && tokens[0][0] <= 122)
 	{
 		if (check_object_id(tokens[0]))
 		{
+			closing_fd(minirt);
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Object type identifier error", RED);
+			error_manager(minirt, "Error: object type identifier error", RED);
 		}
 	}
 	while (tokens[i])
 	{
-		// printf("token = %s - check_num = %d\n", tokens[i], check_numeric(tokens[i]));
 		if (!check_numeric(tokens[i]))
 		{
+			closing_fd(minirt);
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Error: char not allowed in parameters", RED);
+			error_manager(minirt, "Error: character not allowed in parameters", RED);
 		}
 		while (tokens[i][j])
 		{
@@ -132,9 +134,10 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 			if (tokens[i][j] == ',' && (j == 0 || tokens[i][j + 1] < '0' || tokens[i][j + 1] > '9')
 				&& (tokens[i][j + 1] != '-'))
 			{
+				closing_fd(minirt);
 				ft_free(tokens);
 				free(line);
-				error_manager(minirt, "too much commas in params", RED);
+				error_manager(minirt, "Error: too much commas in params", RED);
 			}
 			j++;
 		}
@@ -143,31 +146,41 @@ void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 	}
 }
 
+void	closing_fd(t_minirt *minirt)
+{
+	if (close(minirt->fd) < 0)
+		error_manager(minirt, "Error: error in closing FD", RED);
+}
+
 int	read_rt_map(char *source, t_minirt *minirt, int *error)
 {
 	char	*line;
-	int		fd;
 	int		n_line;
 	char	**tokens;
 
+	minirt->fd = 0;
 	n_line = 0;
 	get_size(source, minirt);
-	fd = open_file_map(source, minirt);
+	if (minirt->rt_map.n_lines == 0)
+		error_manager(minirt, "Error: an empty file as argument is not good for your health", RED);
+	open_file_map(source, minirt);
 	while (n_line < minirt->rt_map.n_lines)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(minirt->fd);
 		if (!line)
 			break ;
 		tokens = ft_split(line, ' ');
 		if (!tokens)
-			error_manager(minirt, "Please remove spaces in empty line", RED);
+		{
+			closing_fd(minirt);
+			error_manager(minirt, "Error: just spaces in line is not good... or another parsin problem occured", RED);
+		}
 		check_tokens(tokens, minirt, line);
 		checking_identifier(minirt, tokens, error, line);
 		ft_free(tokens);
 		free(line);
 		n_line++;
 	}
-	if (close(fd) < 0)
-		error_manager(minirt, "Error in closing FD", RED);
+	closing_fd(minirt);
 	return (*error);
 }
