@@ -6,20 +6,19 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:47:47 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 14:40:53 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/21 13:02:22 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "world.h"
-#include "camera.h"
-#include "mlx.h"
 #include "exec.h"
 #include "scene.h"
 
 /*
-	if align_difference = 0 ray and plane are parallel and no intersection is possible
-	The fabs() function calculates the absolute value of the floating-point argument x.
+	if align_difference = 0 ray and plane are parallel and 
+	no intersection is possible
+	The fabs() function calculates the absolute value of the
+	floating-point argument x.
 */
 bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec)
 {
@@ -44,5 +43,5 @@ bool	ft_hit_plane(t_plane *plane, t_ray ray, double dist_max, t_record *rec)
 		rec->color = plane->color;
 		return (TRUE);
 	}
-	return(FALSE);
+	return (FALSE);
 }

@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:42:24 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/18 13:51:15 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/21 12:49:51 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
 #include "exec.h"
-#include "parsing.h"
 #include "scene.h"
 #include "world.h"
 
@@ -20,7 +18,7 @@ bool	ft_hit(t_object *world, t_ray ray, t_record *rec)
 {
 	t_object	*temp;
 	int			hit;
-	
+
 	ft_init_rec(rec);
 	temp = world;
 	hit = 0;

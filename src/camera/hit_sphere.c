@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:39 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/20 14:29:49 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/21 12:49:32 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
+#include "scene.h"
 
 bool	ft_hit_sph(t_sphere *sph, t_ray ray, double dist_max, t_record *rec)
 {
@@ -51,7 +51,7 @@ void	ft_set_rec_sph(double dist, t_sphere *sph, t_ray ray, t_record *rec)
 
 /*
 	return 0 when no solution
-	
+
 	sph : (x - c1)^2 + (y - c2)^2 + (z - c3)^2 = r^2
 	ray : orig + dir * t
 	solve t

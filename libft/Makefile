@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
+#    By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 13:34:03 by mpagani           #+#    #+#              #
-#    Updated: 2023/02/21 16:19:51 by fbelfort         ###   ########.fr        #
+#    Updated: 2023/04/21 10:16:40 by mpagani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS  = ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 		ft_lstnew_bonus.c ft_lstadd_front_bonus.c \
 		ft_lstclear_bonus.c ft_lstiter_bonus.c \
 		ft_lstadd_back_bonus.c ft_lstlast_bonus.c \
-		ft_lstmap_bonus.c
+		ft_lstmap_bonus.c ft_atof.c
 OBJS  = ${SRCS:.c=.o}
 NAME  = libft.a
 CC    = cc

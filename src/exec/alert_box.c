@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_op.c                                           :+:      :+:    :+:   */
+/*   alert_box.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 15:32:21 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/21 12:49:37 by mpagani          ###   ########.fr       */
+/*   Created: 2023/04/21 12:56:07 by mpagani           #+#    #+#             */
+/*   Updated: 2023/04/21 12:56:24 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-t_vec3	ft_ray_at(t_ray ray, double t)
+void	alert(char *str, char *color)
 {
-	t_vec3	temp;
+	int	len;
+	int	i;
 
-	temp = ft_mul(ray.dir, t);
-	temp = ft_add(temp, ray.orig);
-	return (temp);
-}
-
-t_ray	ft_init_ray(t_vec3 orig, t_vec3 dir)
-{
-	t_ray	temp;
-
-	temp.orig = orig;
-	temp.dir = dir;
-	return (temp);
+	i = 0;
+	len = ft_strlen(str);
+	printf("╭─");
+	while (i < len)
+	{
+		printf("-");
+		i++;
+	}
+	printf("─╮\n");
+	printf("│ %s%s%s │\n", color, str, NORMAL);
+	printf("╰─");
+	i = 0;
+	while (i < len)
+	{
+		printf("─");
+		i++;
+	}
+	printf("─╯\n");
 }

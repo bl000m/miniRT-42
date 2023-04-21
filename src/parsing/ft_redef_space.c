@@ -3,24 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redef_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:59:49 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/20 20:52:36 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/21 13:05:00 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
 #include "exec.h"
-#include "parsing.h"
 #include "scene.h"
-#include "world.h"
 
 static void	ft_new_pos(t_object *temp, double matrix[3][3], t_vec3 shift)
 {
 	if (temp->type == 's')
 	{
-		temp->sphere->center =\
+		temp->sphere->center = \
 		ft_matrix_mul(matrix, ft_sub(temp->sphere->center, shift));
 	}
 	else if (temp->type == 'c')
@@ -45,7 +42,7 @@ static void	ft_init_canvas(t_minirt *minirt)
 	double		focal_len;
 	t_canvas	*canvas;
 
-	fov = (double)minirt->scene->camera.FOV;
+	fov = (double)minirt->scene->camera.fov;
 	fov = (fov / 2) * 3.14159 / 180;
 	focal_len = -5;
 	canvas = &(minirt->canvas);
@@ -63,8 +60,8 @@ void	ft_redef_space(t_minirt	*minirt)
 	t_vec3		shift;
 	t_object	*temp;
 
-	(void)	inv;
-	ft_rotate_xyz(ft_mul(minirt->scene->camera.orientation, -1) , matrix, inv);
+	(void) inv;
+	ft_rotate_xyz(ft_mul(minirt->scene->camera.orientation, -1), matrix, inv);
 	shift = minirt->scene->camera.view_point;
 	temp = minirt->scene->objects;
 	while (temp)
@@ -72,6 +69,7 @@ void	ft_redef_space(t_minirt	*minirt)
 		ft_new_pos(temp, matrix, shift);
 		temp = temp->next;
 	}
-	minirt->scene->light.pos = ft_matrix_mul(matrix, ft_sub(minirt->scene->light.pos, shift));
+	minirt->scene->light.pos = \
+		ft_matrix_mul(matrix, ft_sub(minirt->scene->light.pos, shift));
 	ft_init_canvas(minirt);
 }

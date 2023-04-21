@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:37:03 by zrebhi            #+#    #+#             */
-/*   Updated: 2023/04/20 20:49:41 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/21 15:32:25 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static	char	**ft_lines(char const *s, char c, char **strs, int x)
 char	**ft_split(char const *s, char c)
 {
 	char	**strs;
-	
+
 	if (!s)
 		return (0);
 	if (ft_words(s, c) == 0)

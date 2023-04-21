@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 16:32:20 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 20:52:29 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/21 12:50:26 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "parsing.h"
-#include "world.h"
 
 void	pick_color(t_object *object, t_vec3 *color)
 {

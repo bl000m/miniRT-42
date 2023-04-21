@@ -3,51 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/20 20:52:42 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/21 13:02:20 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "world.h"
-#include "camera.h"
-#include "mlx.h"
-#include "exec.h"
 #include "scene.h"
 
 int	ft_vec_to_int(t_vec3 color)
 {
 	int	temp;
 
-
-	// color = ft_unit_vec(color);
-	// color.x += 1;
-	// color.y += 1;
-	// color.z += 1;
-	// color = ft_unit_vec(color);
-   // double	t = 0.5 * (color.y + 1.0);
-   // color = ft_add(ft_mul(ft_vec(1.0, 1.0, 1.0), (1.0 - t)), ft_mul(ft_vec(0.5, 0.7, 1.0), t));
-
 	temp = 0;
-	temp |= (int)(color.x) << 0; // blue
-	temp |= (int)(color.y) << 8; // green
-	temp |= (int)(color.z) << 16; //red
+	temp |= (int)(color.x) << 0;
+	temp |= (int)(color.y) << 8;
+	temp |= (int)(color.z) << 16;
 	return (temp);
 }
 
-void    setting_canvas(t_minirt *minirt)
-{
-	minirt->canvas.eps = 0.01;
-	minirt->canvas.pos = ft_vec((WIDTH / 2) * -0.01, (HEIGHT / 2) * -0.01, -20);
-}
-bool    stocking_rec_depending_on_objects(t_minirt *minirt, t_object *object)
+bool	stocking_rec_depending_on_objects(t_minirt *minirt, t_object *object)
 {
 	if (object->type == 's')
-		return (ft_hit_sph(object->sphere, minirt->ray, minirt->rec.dist, &(minirt->rec)));
+		return (ft_hit_sph(object->sphere, minirt->ray, \
+			minirt->rec.dist, &(minirt->rec)));
 	else if (object->type == 'c')
-		return (ft_hit_cyl(*object->cylinder, minirt->ray, minirt->rec.dist, &(minirt->rec)));
+		return (ft_hit_cyl(*object->cylinder, minirt->ray, \
+			minirt->rec.dist, &(minirt->rec)));
 	return (FALSE);
 }
 
@@ -65,7 +48,7 @@ void	initialize_rec(t_minirt *minirt)
 	minirt->rec.dist = INFINITY;
 }
 
-void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
+void	generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 {
 	bool		hit;
 	t_vec3		color;
@@ -77,17 +60,18 @@ void    generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 		while (minirt->x < minirt->canvas.img_width)
 		{
 			color = ft_vec(0.0, 0.0, 0.0);
-			minirt->ray = ft_camera_ray(&(minirt->canvas), minirt->x, minirt->y);
+			minirt->ray = ft_camera_ray(&(minirt->canvas), \
+				minirt->x, minirt->y);
 			hit = ft_hit(object, minirt->ray, &(minirt->rec));
 			if (hit)
 			{
 				color = ft_mix_light(minirt, &(minirt->rec));
 			}
-			ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, ft_vec_to_int(color));
+			ft_put_pixel(&(minirt->img_info), minirt->x, minirt->y, \
+				ft_vec_to_int(color));
 			minirt->x++;
 		}
 		minirt->y++;
-		// free(color);
 	}
 }
 

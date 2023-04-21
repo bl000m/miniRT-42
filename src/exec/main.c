@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:56:01 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 20:50:08 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/21 12:41:01 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "world.h"
-#include "camera.h"
 #include "mlx.h"
 #include "exec.h"
 #include "scene.h"
 
-//remember to code strtod before push
 int	main(int argc, char **argv)
 {
 	t_minirt	minirt;

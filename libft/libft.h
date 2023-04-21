@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:37:46 by mpagani           #+#    #+#             */
-/*   Updated: 2023/02/23 12:27:15 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/04/21 10:15:27 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ void	ft_free_list(t_gnl *record);
 void	clean_record(t_gnl **record);
 void	compose_line(char **line, t_gnl *record);
 void	read_stock(t_gnl **record, int fd);
+double	ft_atof(char *nptr);
 
 #endif

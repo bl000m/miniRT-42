@@ -3,67 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   reading_rt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathia <mathia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:01:33 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/20 21:16:47 by mathia           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:56:43 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "world.h"
-#include "camera.h"
-#include "mlx.h"
-#include "exec.h"
+#include "scene.h"
 
-int	check_params_err(char **tokens)
+void	check_filename(char *file_map, t_minirt *minirt)
 {
-	if (ft_strncmp(tokens[0], "pl", 2) == 0 && !tokens[0][2])
-		return (tokens_number(tokens) == 4);
-	if (ft_strncmp(tokens[0], "sp", 2) == 0 && !tokens[0][2])
-		return (tokens_number(tokens) == 4);
-	if (ft_strncmp(tokens[0], "cy", 2) == 0 && !tokens[0][2])
-		return (tokens_number(tokens) == 6);
-	if (ft_strncmp(tokens[0], "A", 1) == 0 && !tokens[0][1])
-		return (tokens_number(tokens) == 3);
-	if (ft_strncmp(tokens[0], "C", 1) == 0 && !tokens[0][1])
-		return (tokens_number(tokens) == 4);
-	if (ft_strncmp(tokens[0], "L", 1) == 0 && !tokens[0][1])
-		return (tokens_number(tokens) == 4);
-	if (ft_strncmp(tokens[0], "\n", 1) == 0 && !tokens[0][1])
-		return (1);
-	return (0);
+	int	size;
+
+	size = ft_strlen(file_map);
+	if (ft_strncmp(&file_map[size - 3], ".rt", 3))
+		error_manager(minirt, "Error: needed .rt file", RED);
 }
 
-void	checking_identifier(t_minirt *minirt, char **tokens, int *error, char *line)
+int	read_rt_map(char *source, t_minirt *minirt, int *error)
 {
-	if (check_params_err(tokens))
-	{
-		if (ft_strncmp(tokens[0], "pl", 2) == 0 && !tokens[0][2])
-			*error += initialize_plane(minirt, tokens);
-		if (ft_strncmp(tokens[0], "sp", 2) == 0 && !tokens[0][2])
-			*error += initialize_sphere(minirt, tokens);
-		if (ft_strncmp(tokens[0], "cy", 2) == 0 && !tokens[0][2])
-			*error += initialize_cylinder(minirt, tokens);
-		if (ft_strncmp(tokens[0], "A", 1) == 0 && !tokens[0][1])
-			*error += initialize_ambient_light(minirt, tokens);
-		if (ft_strncmp(tokens[0], "C", 1) == 0 && !tokens[0][1])
-			*error += initialize_camera(minirt, tokens);
-		if (ft_strncmp(tokens[0], "L", 1) == 0 && !tokens[0][1])
-			*error += initialize_light(minirt, tokens);
-	}
-	else
-	{
-		closing_fd(minirt);
-		ft_free(tokens);
-		free(line);
-		error_manager(minirt, "Error: something wrong in instructions file", INFO);
-	}
-}
+	char	*line;
+	int		n_line;
+	char	**tokens;
 
-int	check_capital(char c)
-{
-	return (c >= 65 && c <= 90 && (c == 'C' || c == 'L' || c == 'A'));
+	minirt->fd = 0;
+	n_line = 0;
+	check_filename(source, minirt);
+	get_size(source, minirt);
+	open_file_map(source, minirt);
+	line = NULL;
+	while (1)
+	{
+		line = get_next_line(minirt->fd);
+		if (!line)
+			break ;
+		tokens = ft_split(line, ' ');
+		check_quality_token(minirt, tokens);
+		check_tokens(tokens, minirt, line);
+		checking_id(minirt, tokens, error, line);
+		free_parsing(tokens, line);
+		n_line++;
+	}
+	closing_fd(minirt);
+	return (*error);
 }
 
 int	check_object_id(char *token)
@@ -82,7 +65,13 @@ int	check_numeric(char *token)
 	{
 		if ((token[i] >= '0' && token[i] <= '9') || token[i] == '\n'
 			|| token[i] == ',' || token[i] == '.' || token[i] == '-')
+		{
+			if ((token[i] == '-' && (token[i + 1] < '0' || token[i + 1] > '9'))
+				|| (token[i] == '.' && (token[i + 1] < '0'
+						|| token[i + 1] > '9')))
+				return (0);
 			res = 1;
+		}
 		else
 			return (0);
 		i++;
@@ -90,97 +79,24 @@ int	check_numeric(char *token)
 	return (res);
 }
 
-
 void	check_tokens(char **tokens, t_minirt *minirt, char *line)
 {
 	int	i;
-	int	j;
 
 	i = 1;
-	j = 0;
-	if (tokens[0][0] >= 65 && tokens[0][0] <= 90)
-	{
-		if (!check_capital(tokens[0][0])
-		|| (check_capital(tokens[0][0]) && tokens[0][1]))
-		{
-			closing_fd(minirt);
-			ft_free(tokens);
-			free(line);
-			error_manager(minirt, "Error: Scene element type identifier error", RED);
-		}
-	}
-	if (tokens[0][0] >= 97 && tokens[0][0] <= 122)
-	{
-		if (check_object_id(tokens[0]))
-		{
-			closing_fd(minirt);
-			ft_free(tokens);
-			free(line);
-			error_manager(minirt, "Error: object type identifier error", RED);
-		}
-	}
+	elem_id_scenario(minirt, tokens, line);
+	object_id_scenario(minirt, tokens, line);
 	while (tokens[i])
 	{
 		if (!check_numeric(tokens[i]))
 		{
+			finish_gnl(minirt->fd);
 			closing_fd(minirt);
 			ft_free(tokens);
 			free(line);
-			error_manager(minirt, "Error: character not allowed in parameters", RED);
+			error_manager(minirt, "Error: something wrong in parameters", RED);
 		}
-		while (tokens[i][j])
-		{
-
-			if (tokens[i][j] == ',' && (j == 0 || tokens[i][j + 1] < '0' || tokens[i][j + 1] > '9')
-				&& (tokens[i][j + 1] != '-'))
-			{
-				closing_fd(minirt);
-				ft_free(tokens);
-				free(line);
-				error_manager(minirt, "Error: too much commas in params", RED);
-			}
-			j++;
-		}
-		j = 0;
+		commas_scenario(minirt, tokens, line, i);
 		i++;
 	}
-}
-
-void	closing_fd(t_minirt *minirt)
-{
-	if (close(minirt->fd) < 0)
-		error_manager(minirt, "Error: error in closing FD", RED);
-}
-
-int	read_rt_map(char *source, t_minirt *minirt, int *error)
-{
-	char	*line;
-	int		n_line;
-	char	**tokens;
-
-	minirt->fd = 0;
-	n_line = 0;
-	get_size(source, minirt);
-	if (minirt->rt_map.n_lines == 0)
-		error_manager(minirt, "Error: an empty file as argument is not good for your health", RED);
-	open_file_map(source, minirt);
-	while (n_line < minirt->rt_map.n_lines)
-	{
-		line = get_next_line(minirt->fd);
-		if (!line)
-			break ;
-		tokens = ft_split(line, ' ');
-		if (!tokens)
-		{
-			closing_fd(minirt);
-			error_manager(minirt, "Error: just spaces in line is not good... or another parsin problem occured", RED);
-		}
-		check_tokens(tokens, minirt, line);
-		checking_identifier(minirt, tokens, error, line);
-		ft_free(tokens);
-		free(line);
-		n_line++;
-	}
-	closing_fd(minirt);
-	return (*error);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_camera_ray.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:54:35 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/29 12:01:32 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/21 12:48:53 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
+#include "scene.h"
 
 /*
 	Camera is at origin (0, 0, 0), facing (0, 0, -1)

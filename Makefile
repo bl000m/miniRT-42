@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mathia <mathia@student.42.fr>              +#+  +:+       +#+         #
+#    By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/04/20 21:28:27 by mathia           ###   ########.fr        #
+#    Updated: 2023/04/21 13:21:53 by mpagani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,18 +22,20 @@ INC_DIR	=	./include/
 
 VPATH	=	./src/parsing ./src/camera ./src/light ./src/world ./src/exec
 
-LIST_PARSING	=	reading_rt.c scanning_rt.c init_instructions.c parsing_utils.c\
-					ft_redef_space.c
+LIST_PARSING	=	reading_rt.c scanning_rt.c init_ambient_instructions.c parsing_utils.c\
+					ft_redef_space.c init_object_instructions.c parsing_add_objects.c \
+					parsing_checking.c parsing_checking_2.c
 
 LIST_CAMERA		=	ft_camera_ray.c hit_sphere.c ray_op.c \
 					hit_cyl.c hit_cyl_helper.c hit_plane.c ft_hit.c \
 					ft_ambient_light.c ft_spec_light.c
 
-LIST_WORLD		= 	list_op1.c math_utils.c matrix_op.c \
+LIST_WORLD		= 	math_utils.c matrix_op.c \
 					vector_op1.c vector_op2.c vector_op3.c \
 					color.c
 
-LIST_EXEC		=	main.c hooks.c init.c settings.c memory_error.c
+LIST_EXEC		=	main.c hooks.c init.c settings.c memory_error.c \
+					alert_box.c
 
 PARSING_DIR		=	$(addprefix $(SRC_DIR), parsing)
 
@@ -57,7 +59,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_WORLD:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_EXEC:.c=.o))
 
-LIST_INC	=	parsing.h camera.h world.h exec.h scene.h
+LIST_INC	=	world.h exec.h scene.h
 
 INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
 

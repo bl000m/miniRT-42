@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cyl_helper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:39 by hsliu             #+#    #+#             */
-/*   Updated: 2023/03/31 12:38:21 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/21 13:16:26 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
+#include "scene.h"
 
 void	ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2])
 {
@@ -30,7 +30,7 @@ void	ft_inv_record(double inv[3][3], t_vec3 shift, t_record temp[2])
 	the ray actually hit the top or bottom of the cyl
 	solve the point where ray and the circle intersect
 */
-void	ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp)
+void	ft_solve_cyl_top(t_cyl cyl, t_ray ray, t_record *temp)
 {
 	if (ft_dabs(temp->pos.z) <= cyl.height / 2)
 	{
@@ -48,7 +48,8 @@ void	ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp)
 		temp->pos = ft_ray_at(ray, temp->dist);
 		temp->normal = ft_vec(0, 0, -1);
 	}
-	if (temp->pos.x * temp->pos.x + temp->pos.y * temp->pos.y > cyl.diameter * cyl.diameter)
+	if (temp->pos.x * temp->pos.x + temp->pos.y * temp->pos.y > \
+			cyl.diameter * cyl.diameter)
 	{
 		temp->dist = -1;
 	}
@@ -57,13 +58,13 @@ void	ft_solve_cyl_top(t_cylinder cyl, t_ray ray, t_record *temp)
 /*
 	return 0 if there's no solution
 */
-bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
+bool	ft_solve_cyl_body(t_cyl cyl, t_ray ray, t_record rec[2])
 {
 	double	a;
 	double	b;
 	double	c;
 	double	discrim;
-	
+
 	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y;
 	b = 2 * (ray.orig.x * ray.dir.x + ray.orig.y * ray.dir.y);
 	c = ray.orig.x * ray.orig.x + ray.orig.y * ray.orig.y
@@ -85,12 +86,11 @@ bool	ft_solve_cyl_body(t_cylinder cyl, t_ray ray, t_record rec[2])
 	return (TRUE);
 }
 
-
 /*
 	change the base so that cyl is now upright along the z-axis
 	with its center at (0, 0, 0)
 */
-t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3])
+t_cyl	ft_new_cyl(t_cyl *cyl, double matrix[3][3])
 {
 	cyl->center = ft_vec(0, 0, 0);
 	cyl->dir = ft_matrix_mul(matrix, cyl->dir);
@@ -98,7 +98,7 @@ t_cylinder	ft_new_cyl(t_cylinder *cyl, double matrix[3][3])
 }
 
 t_ray	ft_new_ray(t_ray *ray, double matrix[3][3], t_vec3 shift)
-{	
+{
 	ray->orig = ft_matrix_mul(matrix, ft_sub(ray->orig, shift));
 	ray->dir = ft_matrix_mul(matrix, ray->dir);
 	return (*ray);

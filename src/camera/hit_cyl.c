@@ -6,17 +6,16 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:21:23 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/20 14:30:02 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/04/21 14:52:03 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
-#include "stdio.h"
+#include "scene.h"
 
 /*
 	return only one record according to the value of dist_max
 */
-bool	ft_hit_cyl(t_cylinder cyl, t_ray ray, double dist_max, t_record *rec)
+bool	ft_hit_cyl(t_cyl cyl, t_ray ray, double dist_max, t_record *rec)
 {
 	t_record	temp[2];
 
@@ -24,36 +23,39 @@ bool	ft_hit_cyl(t_cylinder cyl, t_ray ray, double dist_max, t_record *rec)
 	{
 		return (FALSE);
 	}
-	else if (temp[0].dist < dist_max && temp[0].dist > 0.00001)
+	if (temp[0].dist < dist_max && temp[0].dist > 0.00001)
 	{
 		ft_copy_rec(rec, temp);
+		if (ft_dot(ray.dir, rec->normal) > 0)
+			rec->normal = ft_mul(rec->normal, -1);
 		return (TRUE);
 	}
-	else if (temp[1].dist < dist_max && temp[1].dist > 0.00001)
+	if (temp[1].dist < dist_max && temp[1].dist > 0.00001)
 	{
 		ft_copy_rec(rec, temp + 1);
+		if (ft_dot(ray.dir, rec->normal) > 0)
+			rec->normal = ft_mul(rec->normal, -1);
 		return (TRUE);
 	}
 	return (FALSE);
 }
 
-
 /*
 	if no hit, return false
 	ray : A + tB
-	cylinder: 
+	cylinder:
 	solve t and keep the result in temp[2]
 	t is not effected by change base
 	the record are inverted back at the end
 	note:
 	the function MUST take a copy of cyl cause it modifies the cyl
 */
-bool	ft_solve_cyl(t_cylinder cyl, t_ray ray, t_record temp[2])
+bool	ft_solve_cyl(t_cyl cyl, t_ray ray, t_record temp[2])
 {
 	double		matrix[3][3];
 	double		inv[3][3];
 	t_vec3		shift;
-	
+
 	ft_rotate_xyz(cyl.dir, matrix, inv);
 	shift = cyl.center;
 	ray = ft_new_ray(&ray, matrix, shift);
