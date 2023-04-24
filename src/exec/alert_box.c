@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 12:56:07 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/21 12:56:24 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:05:25 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,13 @@ void	alert(char *str, char *color)
 		i++;
 	}
 	printf("─╯\n");
+}
+
+void	check_arguments(int argc)
+{
+	if (argc != 2)
+	{
+		alert("Wrong number of argument", BLUE);
+		exit(1);
+	}
 }

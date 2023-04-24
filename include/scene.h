@@ -220,6 +220,8 @@ void	ft_free(char **strs);
 void	free_parsing(char **tokens, char *line);
 void	check_scene_elem(char *line, int *al_p, int *c_p, int *l_p);
 void	manage_scene_err(t_minirt *minirt, int al_p, int c_p, int l_p);
-void	message_exit(char *message, t_minirt *minirt, char **tokens, char *line);
+void	message_exit(char *message, t_minirt *minirt, \
+	char **tokens, char *line);
+void	check_arguments(int argc);
 
 #endif
