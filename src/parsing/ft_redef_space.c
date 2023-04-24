@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:59:49 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/21 13:05:00 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:56:25 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,17 @@ static void	ft_init_canvas(t_minirt *minirt)
 	t_canvas	*canvas;
 
 	fov = (double)minirt->scene->camera.fov;
-	fov = (fov / 2) * 3.14159 / 180;
-	focal_len = -5;
+	if (fov <= 0)
+		fov = 0.0001;
+	else if (fov >= 180)
+		fov = 179.9999;
+	fov = (fov / 2) * (3.14159 / 180);
+	focal_len = (WIDTH / 2) * (cos(fov) / sin(fov));
 	canvas = &(minirt->canvas);
 	canvas->eps = 0.01;
 	canvas->pos.y = (HEIGHT / 2) * canvas->eps * -1;
-	canvas->pos.z = focal_len;
-	canvas->pos.x = (sin(fov) / cos(fov)) * focal_len;
-	canvas->img_width = canvas->pos.x * (-2) / canvas->eps;
+	canvas->pos.z = focal_len * canvas->eps * -1;
+	canvas->pos.x = (WIDTH / 2) * canvas->eps * -1;
 }
 
 void	ft_redef_space(t_minirt	*minirt)

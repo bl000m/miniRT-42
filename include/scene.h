@@ -29,6 +29,10 @@
 #  define HEIGHT 680
 # endif
 
+# ifndef WIDTH
+#  define WIDTH 1020
+# endif
+
 # define ALBEDO 0.3
 
 typedef struct s_canvas	t_canvas;
@@ -64,7 +68,7 @@ typedef struct s_camera
 {
 	t_vec3		view_point;
 	t_vec3		orientation;
-	int			fov;
+	double		fov;
 }	t_camera;
 
 typedef struct s_object
@@ -101,7 +105,7 @@ typedef struct s_canvas
 {
 	t_vec3	pos;
 	double	eps;
-	int		img_width;
+	//int		img_width;
 }	t_canvas;
 
 typedef struct s_map
