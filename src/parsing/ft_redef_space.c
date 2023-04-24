@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:59:49 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/24 15:56:25 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:07:20 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	ft_init_canvas(t_minirt *minirt)
 	double		focal_len;
 	t_canvas	*canvas;
 
-	fov = (double)minirt->scene->camera.fov;
+	fov = minirt->scene->camera.fov;
 	if (fov <= 0)
 		fov = 0.0001;
 	else if (fov >= 180)
