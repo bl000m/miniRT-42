@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/04/21 12:26:58 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:51:53 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	ft_init_mlx(t_minirt *minirt)
 	minirt->mlx = mlx_init();
 	if (minirt->mlx == NULL)
 		return (FALSE);
-	minirt->win = mlx_new_window(minirt->mlx, minirt->canvas.img_width, \
+	minirt->win = mlx_new_window(minirt->mlx, WIDTH, \
 		HEIGHT, "MiniRT");
 	if (minirt->win == NULL)
 	{
@@ -28,7 +28,7 @@ bool	ft_init_mlx(t_minirt *minirt)
 		free(minirt->mlx);
 		return (FALSE);
 	}
-	minirt->img = mlx_new_image(minirt->mlx, minirt->canvas.img_width, HEIGHT);
+	minirt->img = mlx_new_image(minirt->mlx, WIDTH, HEIGHT);
 	if (minirt->img == NULL)
 	{
 		mlx_destroy_window(minirt->mlx, minirt->win);

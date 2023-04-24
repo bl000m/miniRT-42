@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:36:05 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/24 15:11:11 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:59:26 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	initialize_camera(t_minirt *minirt, char **tokens, char *line)
 		message_exit("Error: Camera orientation can't be 0,0,0", \
 				minirt, tokens, line);
 	camera.fov = get_ins_double(tokens, 3, minirt, line);
-	if (camera.fov >= 180)
+	if (camera.fov > 180.00)
 		error_manager(minirt, \
-			"Error: Camera fov can't be higher than 179", RED);
+			"Error: Camera fov can't be higher than 180", RED);
 	minirt->scene->camera = camera;
 	return (error);
 }

@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/24 15:45:49 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:52:06 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	generating_camera_ray_draw(t_minirt *minirt, t_object *object)
 	while (minirt->y < HEIGHT)
 	{
 		minirt->x = 0;
-		while (minirt->x < minirt->canvas.img_width)
+		while (minirt->x < WIDTH)
 		{
 			color = ft_vec(0.0, 0.0, 0.0);
 			minirt->ray = ft_camera_ray(&(minirt->canvas), \
