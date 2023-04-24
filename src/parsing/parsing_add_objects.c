@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:35:05 by mpagani           #+#    #+#             */
-/*   Updated: 2023/04/21 13:06:48 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:02:01 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,13 @@ void	add_new_cylinder(t_minirt *minirt, t_cyl *new_object_content)
 		new_object->next = NULL;
 		temp->next = new_object;
 	}
+}
+
+void	message_exit(char *message, t_minirt *minirt, char **tokens, char *line)
+{
+	finish_gnl(minirt->fd);
+	closing_fd(minirt);
+	ft_free(tokens);
+	free(line);
+	error_manager(minirt, message, INFO);
 }
