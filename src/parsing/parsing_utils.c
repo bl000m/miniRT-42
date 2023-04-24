@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:42:40 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/21 16:28:30 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 14:34:14 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_vec3	get_instruction(char **tokens, int index, t_minirt *minirt, char *line)
 	t_vec3	result;
 	char	**xyz;
 
+	result = ft_vec(0, 0, 0);
 	if (tokens[index])
 	{
 		if (check_commas(tokens[index]))
