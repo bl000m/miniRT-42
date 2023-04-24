@@ -105,7 +105,6 @@ typedef struct s_canvas
 {
 	t_vec3	pos;
 	double	eps;
-	//int		img_width;
 }	t_canvas;
 
 typedef struct s_map
@@ -204,7 +203,6 @@ t_ray	ft_init_ray(t_vec3 orig, t_vec3 dir);
 
 /*	ft_camera_ray.c	*/
 t_ray	ft_camera_ray(t_canvas *canvas, int x, int y);
-// t_rgb	create_rgb(char r, char g, char b);
 void	pick_color(t_object *object, t_vec3 *color);
 
 /*	ft_redef_space.c	*/
