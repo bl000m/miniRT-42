@@ -6,7 +6,7 @@
 /*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:53:20 by mathia            #+#    #+#             */
-/*   Updated: 2023/04/21 13:02:20 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:45:49 by mpagani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_vec_to_int(t_vec3 color)
 	int	temp;
 
 	temp = 0;
-	temp |= (int)(color.x) << 0;
+	temp |= (int)(color.x) << 16;
 	temp |= (int)(color.y) << 8;
-	temp |= (int)(color.z) << 16;
+	temp |= (int)(color.z) << 0;
 	return (temp);
 }
 
