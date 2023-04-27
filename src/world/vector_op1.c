@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_op1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:51:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/03/20 15:56:14 by sasha            ###   ########.fr       */
+/*   Updated: 2023/04/27 11:02:15 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,5 @@ t_vec3	ft_div(t_vec3 v1, double t)
 	temp.x = v1.x / t;
 	temp.y = v1.y / t;
 	temp.z = v1.z / t;
-	return (temp);
-}
-
-t_vec3	ft_rev_vec(t_vec3 v)
-{
-	t_vec3	temp;
-
-	temp.x = -v.x;
-	temp.y = -v.y;
-	temp.z = -v.z;
 	return (temp);
 }
