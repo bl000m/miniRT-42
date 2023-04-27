@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpagani <mpagani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:02:47 by sasha             #+#    #+#             */
-/*   Updated: 2023/04/21 13:15:30 by mpagani          ###   ########.fr       */
+/*   Updated: 2023/04/27 11:02:17 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ t_vec3	ft_add(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_sub(t_vec3 v1, t_vec3 v2);
 t_vec3	ft_mul(t_vec3 v1, double t);
 t_vec3	ft_div(t_vec3 v1, double t);
-t_vec3	ft_rev_vec(t_vec3 v);
 
 /*	vector_op2.c	*/
 double	ft_squr_len(t_vec3 v);
